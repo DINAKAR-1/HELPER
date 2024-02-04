@@ -1,0 +1,66 @@
+ structs -1 hr
+
+more into java io
+
+difference of using react and jsp servlets 
+
+and some db syntaxes 
+ db data types postgres and oracle 
+
+-----------------------
+
+tommorow
+
+1.complete hibernate scan 
+2.hibernate vs jpa
+3.spring types and uses
+new version and old version
+4. create road map done till now 
+---------------
+
+model view controller 
+
+//////////////////////
+when like button is inital mode when user clcik
+
+ 
+do postdao.postlikedbyuserinjector(pid,uid);
+
+()
+{
+
+insert into likes postid ,user id
+
+}
+///////////////////////
+when the liked button is pressed again 
+
+do postdao.postunlikedbyuserinjector(pid,uid);
+
+delete from likes where uid and pid
+//////////////////////
+
+to display all likes for certain post 
+
+displaylikesfor_a_post
+select * from likes where pid=?
+
+/////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

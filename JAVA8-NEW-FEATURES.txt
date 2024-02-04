@@ -1,0 +1,89 @@
+12/12/23
+
+1.default method ..
+2.static method ..
+3.abstarct method in java interfaces 
+
+default method is used for implementing code within method unlike abstract methods
+
+and we can have static methods in interfaces also
+
+default methods can be overriden in class implementing the interface but static cant be overriden
+
+
+13/12/23
+
+-----
+
+14/12/23
+---------
+
+
+suppose customer is  a class 
+
+so customer c1=new customer()
+
+ to get class of c1 we do c1.getClass();
+
+but if we dont have a instance of the class customer how to get class of it?
+
+so there is a thing called '.class' it gives the class object of the the classs
+
+customer c2
+
+now calll customer.class it gives the class object of customer 
+
+class object is used for info about class like methods and varibales
+
+
+--------------------------------
+throwable
+    |         |
+ exception   error
+    |
+
+  |                 |
+
+runtime except      compile exception
+
+
+------------------------
+
+15/12/23
+----------------------
+
+
+vid 74
+ end 129	
+
+jav 21 new feat
+virtual threads
+
+
+compiling and running the java files 
+
+ex: sample1.java is in C:\today\today2\today3\sample1.java
+
+now we are in c: in cmd
+
+so c:\> 
+
+to compile just say whole path of file
+
+c:\>  javac  .\today\today2\today3\sample1.java
+
+sample1 is in package -- today2.today3
+
+now to run the file 
+cp- classpath
+
+c:\> java -cp .\today today2.today3.sample1
+
+
+16/12/23
+
+--------------------
+parallel streams
+
+
+

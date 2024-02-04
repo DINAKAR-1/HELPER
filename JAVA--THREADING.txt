@@ -1,0 +1,83 @@
+java -threading
+
+arguments -- the actual values we pass to func
+
+sum(3,4)
+
+parameters -- the variables declared in the func 
+
+sum(int a,int b)
+
+CONCURRENCY AND PARALLELISM 
+
+THREAIDNG GIVES CONCURRENT SUPPORT 
+
+CONCURRENCY-- DOING ONE TASK AND HANDLING OTHER TASKS TOO
+
+PARALLESLISM -- DOING MULTIPLE TASKS AT A TIME
+
+
+WE CAN RUN A THREAD BY IMPLEMENTING RUNNABLE INTERFACE OR EXTENDING  THREAD CLASS 
+
+1.class firstThread extends Thread 
+
+AND use f1.start()
+
+
+2.class firstThread implements Runnable
+
+AND use a thread object and pass the object of our class to it and start
+
+	    Thread1 bullet1=new Thread1();
+            Thread2 bullet2=new Thread2();
+            Thread gun1=new Thread(bullet1);
+            Thread gun2=new Thread(bullet2);
+
+            gun1.start();
+            gun2.start();
+
+
+LIFECYCLE OF A THREAD
+---------------------
+
+
+NEW 
+
+RUNNABLE ---TRANSFER TO  ----->  NON RUNNABLE(BLOCKED)
+
+RUNNING -----------------------------|^
+
+TERMINATED
+
+-----------
+
+WE CAN PASS NAME TO A THREAD 
+
+class Thread11 extends Thread {
+
+  Thread11(String name) {
+    super(name);
+  }
+
+  public void run() {
+    System.out.println("hii");
+  }
+}
+
+
+AND CAN RETRIVE BY USING .GETNAME() METHOD ON THE OBJECT
+
+AND CAN ALSO GET THREAD ID BY .GETTHREADID
+
+
+THREAD HAS MANY METHODS ---->
+
+WE USE THREAD1.JOIN TO MAKE THE EXECUTION OF OTHER OTHER THREAD ONLY AFTER THIS GETS 
+EXECUTED
+
+
+AND THREAD.SLEEP(MILLISEC ..)
+TO STOP THE THREAD EXECUTION FOR A CERTAIN AMOT OF TIME
+
+--------------------
+WE CAN ALSO GET THREAD STATE BY GETSTATE()

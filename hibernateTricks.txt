@@ -1,0 +1,108 @@
+
+hibernate jpa implementation 
+visit below
+
+https://cherry-celery-c43.notion.site/MAVEN-ORM-Hibernate-69413ad373944df08899c20c130a1866
+
+@dynamicupdate 
+
+will focus on elelmtn we are updating not
+complete fields 
+
+like set salary =4444
+but without it gives 
+
+
+set csa
+set csa
+set csa
+set csa
+
+with it 
+
+
+set csa
+/////
+
+
+@dynamicinsert
+
+for only insert value which we provide
+if dont specify  it includes evry field
+
+////////////////
+
+fetch by natural id 
+
+
+Book book2 = session.byNaturalId(Book.class).using("isbn", "978-9730228236").load();
+///////
+
+we can change value of natural id by setting
+@naturalid(mutable=true)
+
+////
+we can have objects for naturalid 
+@naturalid
+public testClass t1;
+
+///
+@immutable stops changing the val of fields  throws error
+
+//
+to have unique constraint on some cols we can use 
+uniqconst in the table annot itself 
+
+@table(name="book" ,uniqueConstraints=@uniquecontraint(name="tester",columnnames={"title","auth_id"}))
+
+so now specified cols  wont be  with same values theyll be distinct
+
+///indexing 
+@table(name="book" ,indexes=@index(name="tester_idx",columnList= "first_name,last_name"))
+
+////
+
+flushing modes
+we can set the flush mode by 
+
+session.createquery.setflushmode(flushtype.COMMIT).getresultset
+
+----
+
+if we do commit before our normal query llike
+
+session.beginTransaction();
+			
+session.save(person);
+session.getTransaction().commit();
+session .createNativeQuery("select count(*) from Person")
+		    .getSingleResult();
+
+--> then it will insert first and do the selecting next but if we give commit at last it will be selecting first and inserting next
+
+//
+manual and always flush mode
+
+if manual used we need to excplicitly declare flush for saving ,persisting
+not for queries 
+
+always mode--> it flushes before evry query 
+for setting 
+session.setHibernateFlushMode(Flushmode.ALways)
+
+// batching in hibernate 
+
+making a group of queries and flushing them in groups 
+
+/////
+
+no fetching 
+
+extract only one feild from the table 
+
+///////
+
+fetch profiles must need a naturalid to work with
+
+///
+

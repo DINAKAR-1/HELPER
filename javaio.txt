@@ -1,0 +1,122 @@
+JAVA_IO
+-----------------
+
+so to read and write we need 
+
+reader and writer classes
+
+but reader and writer are abstract classes
+
+so we use the implemting subclasses
+------------------
+
+for reader(abstract)
+
+          file reader 
+
+          string reader 
+
+          chararray reader
+-----------------------
+for writer(abstract)
+
+          file writer
+
+          string writer
+
+          chararray writer
+
+----------------------
+
+
+but reader and writer is only reads 1 char at a time
+
+but --buffered reader/writer -- gives 8kb buffer container 
+ to store the input data 
+and to make less calls to source to reterive data
+
+so it fetches at a time and we can use it 
+
+it gives readline() function to read one line at a time not like single char at a time
+
+
+-------------------------
+same like reader /writer as abstract class
+
+ we have ---inputstream/outputstream --- as abstract classes
+
+we can use thier implementing classes 
+
+file inputstream
+
+byteArray inputstream
+
+buffered inputstream
+
+
+
+same as reader but reader is for characeters and input stream is for bytes
+
+----------------------------
+
+fileinputstream is having read method which read only 1 at time 
+but if we use read(byte[] a) with a certain sizze say 5;
+
+so when it iterates through file having 22 charactrs 
+
+so it stores in buffer array we provided with the size and it outputs it 
+
+but when next 5 chars read it just overriting on top 
+so when at last we have 2 chars like dd it replaces the hello 
+with ddllo
+
+its very significant 
+same for readnbytes
+
+------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------
+
+escape character -- \
+
+\n: Newline
+
+Represents a newline character. It is often used to create line breaks in strings.
+\t: Tab
+
+Represents a carriage return character. It can be used to move the cursor to the beginning of the line.
+\\: Backslash
+
+Represents a literal backslash. If you want to include a backslash in your string, you use \\.
+\': Single Quote
+
+Represents a literal single quote character. Useful when you need a single quote within a single-quoted string.
+\": Double Quote
+
+Represents a literal double quote character. Useful when you need a double quote within a double-quoted string.
+\b: Backspace
+
+means it doesnt delete really but outputs the thing if backaslashed
+
+Represents a backspace character.
+ 
+
+
+

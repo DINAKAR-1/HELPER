@@ -1,0 +1,18 @@
+login auth -done
+
+register auth -done
+
+execptions defiend- done
+
+usser logggin in 
+
+now show page 
+
+contains logout 
+
+create note --show modal for that 
+
+upon modal subit send to a request handler  of note
+
+
+
