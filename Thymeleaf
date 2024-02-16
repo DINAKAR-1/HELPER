@@ -1,0 +1,17 @@
+in normal href in html we specify like for maven
+
+including a css file in html present in templates
+
+../static/css/styles.css
+
+it means we come out of templates and search for css and dig inside 
+
+but magic for thymeleaf is 
+
+href ='@{/css/styles.css}
+
+it resolves the path into context relative path 
+
+so it becomes 
+
+localhost:8800//project/static/css/styles.css
