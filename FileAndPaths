@@ -1,0 +1,10 @@
+Path(nio) is a interface
+
+File (io) is considered legacy with Path 
+
+use Path more often than File 
+
+Paths (nio ) is a utility class consist of static methods
+
+Files (nio) is a utility class to copy,move,read,delete
+
