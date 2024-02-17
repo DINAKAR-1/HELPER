@@ -15,3 +15,19 @@ it resolves the path into context relative path
 so it becomes 
 
 localhost:8800//project/static/css/styles.css
+
+and by defalut the maven has search for classpath:// resources/ ,classpth:/static 
+so if we want to specify a folder as a static to the boot app
+
+we need to config in properties file 
+
+spring.web.resources.static-locations=classpath:/din/
+here we are specifying to serch for static files in classpath/din/
+
+it means after build it reolves into 
+
+classpath == target/classes
+
+and resources and java compiled classes are part of it so they all sit in a single place 
+
+so now specified to search for target/classes/din/css or images ....or ...
