@@ -28,6 +28,8 @@ it means after build it reolves into
 
 classpath == target/classes
 
+and full path is target/classes/din/css or target/classes/din/images.
+
 and resources and java compiled classes are part of it so they all sit in a single place 
 
 so now specified to search for target/classes/din/css or images ....or ...
