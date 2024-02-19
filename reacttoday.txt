@@ -1,0 +1,336 @@
+tabels
+shallow
+-----------------------------------
+
+
+React - A javascript Library to build User Interfaces.
+Everthing in react is a Component.
+JSX -> Mix of Javascript and HTML.
+Each Component must return one parent element.
+Components should start with the Capital Letter.
+
+----------
+
+20/11/2023
+
+
+for index.js---npm -
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------------
+-----
+11/8
+function re-rendering
+use react.memo to stop multi render	
+
+top--bottom in react
+
+
+dont go with named function for forwardref use arrow functions or normal functions and put it in a const	
+
+portals in rreact
+
+https://codesandbox.io/s/00254q4n6p
+
+error boundary
+
+object-fit for the image sizing in the component
+
+----
+higher order compo
+
+render props 
+
+context api
+----------
+
+-------------
+9/11
+
+
+higher order component
+(for similar logic in between the child components)
+
+render props
+
+can pass functions through propss
+
+ <div className="App">
+      <ClickCounterTwo />
+      <HoverCounter2 />
+      {/* <Counter
+        render={(count, increment) => (
+          <ClickCounterTwo count={count} increment={increment} />
+        )}
+      />
+      <Counter
+        render={(count, increment) => (
+          <HoverCounter2 count={count} increment={increment} />
+        )}
+      /> */}
+      <Counter>
+        {(count, increment) => (
+          <HoverCounter2 count={count} increment={increment} />
+        )}
+      </Counter>
+
+
+-------------
+
+
+
+
+
+---------
+CTRL + BACKTICK FOR TERMINAL
+
+---typescript----
+
+const cant be set without initailizing
+let can be done
+and const cant be assigned again a value
+
+can asssign null and undefined on the any type in typescript
+
+
+--------
+10/11/23
+
+
+make http request using react
+
+can use http lib or axios
+
+--npm install axios for axios
+
+styled componenets -- today
+
+npx create-react-app
+
+formic lib
+
+query lib
+
+-------------
+
+(...)spread operator for spreading the elements like
+
+let ex=arr[1,2,3,4]
+if u want to add ot to an array we do like
+let ex1=[1,2,ex]
+
+but with ... operator we get 
+let ex1=[1,2,1,2,3,4]
+
+const array = [1, 2, 3];
+const obj = { ...array }; // { 0: 1, 1: 2, 2: 3 }
+
+
+---------
+
+rest operator (...)
+
+when passing something its usful
+
+it condenses the elemtns to an array
+function(x,...args)
+{
+args gets passed as a array 
+args[]
+
+}
+-------------
+14/11/2023
+
+useEffect
+
+with dependency and without 
+
+data fetching using axios and useeffect and 
+-------------
+tommorrow 
+
+
+usecontext
+userreduce
+--
+formic library--for 
+---------------------
+-----------------------
+15-11-23
+
+
+usecontext
+userreduce
+--------------
+
+
+16-11-23
+-----
+
+UseRef
+
+---> 
+for not re rendering 
+
+
+usecallback --caching the whole function after optimising using react.memo
+
+usememo---for caching return value
+
+---use ref --> for creating a reference  for dom elements 
+
+--> for acting like a container( interval and clearinterval )
+
+if value change no rerednering and if rerender no value will be changed
+
+
+----custom hooks --
+
+for storing common logic btwn components
+
+setinterval returns an id
+
+-------------
+
+17/11/2023
+
+--with ya
+ npm install -g yarn
+
+yarn add ---> npm install
+
+yarn start--->
+
+
+----with vite--
+
+
+yarn create react-app firstapp
+npx create react-app firstapp
+
+
+
+-----for router installation
+
+
+1>>> yarn add react-router-dom@latest
+
+
+2>>> import { BrowserRouter } from "react-router-dom";
+
+and wrap it in 
+<BrowserRouter>
+
+
+3>>> import { Routes } from "react-router-dom";
+
+template-->
+--------------------------------
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="about" element={<About />} />
+    </Routes>
+  );
+}
+-------------------------------
+
+create a navbar ...
+
+links acts as anchor tags
+
+
+export const NavBar = () => {
+  return (
+    <nav>
+      <Link to="/">Home</Link>
+      <Link to="/about">about us</Link>
+    </nav>
+  );
+};
+
+
+-style it using react component 
+
+--dynamic routes
+
+--use params
+
+----------
+list of values considered to be false
+
+--
+false
+zero
+''
+null
+undefined
+nan
+
+
+-------
+
+short circuit evaluation -
+
+&& and || 
+
+a&&b 
+
+if a is false it will be returned
+else b will be returned
+
+
+-----------------------
+
+20/11-23
+usage of redux in vanilla js and react
+
+vite depkloy
+
+for vite deploy put base in config
+
+for setting homepage as default render page give basename in browserrouter
+
+------------------
+
+21/11/23
+
+
+------------
+selectors in react
+
+react redux
+and redux 
+
+and redux toolkit 
+
+
+--------
+23/11/23
+
+?? is same as ||
+
+
+
+
+
+
+
+

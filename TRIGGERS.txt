@@ -1,0 +1,45 @@
+create or replace TRIGGER RESTRICT_INS
+BEFORE INSERT ON STAFF_MASTER
+BEGIN
+IF (TO_CHAR(SYSDATE,'HH12:MI')  BETWEEN '10:00' AND '12:00' )THEN
+ RAISE_APPLICATION_ERROR(-20001, 'THE TIME IS NOT SUITABLE');
+ END IF;
+
+END;
+
+-------------------------------------------------------------
+
+create or replace TRIGGER STAFF_ISRT
+AFTER INSERT ON STAFF_MASTER
+BEGIN
+DBMS_OUTPUT.PUT_LINE('THAT WAS AN INSERT -----------');
+END;
+-------------------------------------------------------------
+
+-------------------------------------------------------------
+
+CREATE OR REPLACE TRIGGER SAL_REST
+BEFORE UPDATE OF STAFF_SAL ON STAFF_MASTER
+FOR EACH ROW
+BEGIN
+IF (:NEW.STAFF_SAL<:OLD.STAFF_SAL) THEN
+RAISE_APPLICATION_ERROR(-20002, ' NEW SALARY IS LESS  THAN OLD ONE');
+END IF;
+END;
+--------------------------------------------------------------
+
+IF WE USE :NEW OR :OLD WITH TABLE LEVEL DIRECTLY IT WONT WORK
+"NEW or OLD references not allowed in table level triggers"
+*Cause:    The trigger is accessing "new" or "old" values in a table trigger.
+*Action:   Remove any new or old references.
+
+
+SO WE NEED TO USE
+
+'FOR EACH ROW'
+AFTER THE CONDITION STATEMENT
+---------------------------------------------------------------
+
+AND WE SHOULD ONLY USE ' 20000 TO 20999' FOR USER EXCEPTIONS 
+
+---------------------------------------------------------------

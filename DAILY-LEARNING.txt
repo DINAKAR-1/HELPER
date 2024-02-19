@@ -1,0 +1,786 @@
+async await in js 
+
+-we can make any function async 
+- it returns a promise for everything
+-if not it wraps and gives as a promise
+ex: in return {5}
+-it gives a promise wrapping 5 as a promise
+
+
+----------------
+23/11/23
+
+whats the use of ref
+
+
+-----------
+24/11
+
+drop table if exists emp";
+
+
+-------------
+
+
+
+
+threads 
+
+multi threading 
+
+jdbc prooject 
+
+crud application
+
+to do app -- redux
+
+-----
+thread synchronization
+
+virtual threads video
+
+procuder consumer
+----------
+
+news app
+
+blog app study
+
+formik library
+ 
+react table
+-----
+debugging concept 
+
+-------------
+29/11/23
+
+forms --> password matching and if choice is one ,then apply validation
+
+ const validationSchema = Yup.object({
+    email: Yup.string().required("em ledh bro ida"),
+    password: Yup.string().required("em ledh bro ida"),
+    passwordC: Yup.string()
+      .oneOf([Yup.ref("password"), ""], "passes must match")
+      .required("em ledh bro ida"),
+    modeOfChoice: Yup.string().required("em ledh bro ida"),
+    number: Yup.string().when("modeOfChoice", {
+      is: "post",
+      then: Yup.string().required("em ledh bro ida"),
+    }),
+  });
+
+ABOUVE U GET A ERROR FOR YUP CUZ ITS A NEW VERSION 
+SO USE ARROW FUNCTION AFTER 'THEN' IT WILL BE RESOLVED
+
+ then:()=> Yup.string().required("em ledh bro ida"),
+
+----------->
+FOR CHECKBOXES
+
+ checkboxoptions: Yup.array().required("kali undi bro.."),
+FOR DATES
+    datepick: Yup.date().required("kali undi bro..").nullable(),
+
+for emails
+  email: Yup.string().email("invalid format").required("em ledh bro ida"),
+
+
+-------------------------
+2/12/23
+
+react tables:
+win+ . for emoji
+
+rest operator (again)
+
+--->
+let arr=[1,2,3,4,5,6]
+
+let[a, , , ...rest]=arr-->this means it doesnt ignores 2, 3 values and rest will made into an array -->[4,5,6]
+
+always rest makes an array
+
+
+for objects use flower braces///////////////imppp
+
+let {a,b}={a:10,b:20}
+
+SPREAD OPERATOR--
+
+it spreads an array or object there 
+
+
+let arr1=[3,4,5,6]
+let obj1={...arr1}-->it means 
+
+{0:3,1:4,2:5,3:6}--> it makes key value pair of each thing in the array
+
+
+suppose a functioon 
+function sum(v1,v2,v3){
+return v1+v2+v3
+}
+
+so we can pass an array like this 
+
+sum(...arr)
+let arr=[1,2,3]
+
+it makes it sum(1,2,3)
+
+
+think 
+let obj2={
+
+name:"harrru"
+comp:'amaz'}
+
+
+now 
+
+if we want to console log 
+then log(...obj2,name:'din')-->this overrides the name prop in obj2
+
+but if do in reverese ordeer it wont override the given values
+ log(name:'din',...obj2,)---> it prints harryu and amaz
+
+
+RENAMING
+
+---------
+
+const obj={
+shroom:12333
+}
+
+but we can rename by 
+const {shroom:mustang}=obj1
+now we can can shroom by name 'mustang'
+
+NESTED OBJECTS 
+
+---------
+const obj={
+parent:{
+	child:1111
+	},
+}
+
+now we can acces child by 
+const {parent:{child}}=obj
+
+we can log(child)--we get 1111
+
+FOR FUNCTIONS
+------
+
+CONST user={id:0,username:'din'}
+we can pass obj to functions by 
+
+
+function fun({id,name })-->here we are destrucing the passable object to reduce burden 
+{
+log(`hi ${name}`)
+}
+
+---------
+
+REACT -TABLE -PACK
+
+1.FIRST MAKE A COLUMN FILE JS
+MAKE AN ARRAY OF COLUMNS (OBJS)
+CONST COLUMNS=[{},{},{}]
+--->
+2.MAKE A HEADER AND ACCESSOR IN THAT OBJECTS OF ARRAY
+
+=[{Header:'id' ,accessor:'ID'},{Header:'name' ,accessor:'NAME'}] 
+
+3. CREATE A BASIC TABLE FILE AND IMPORT MOCK_DATA AND COLUMNS FILES AND USETABLE
+
+4.NOW USE USETABLE AND PASS COLUMNS AND DATA AS OBJECT 
+
+LIKE
+
+CONST TABLEiNSTANCE= useTable({columns:cols,data:spec_Data})
+no dependency array needed
+
+-----//>>careful column must be columns field name change not allowd
+
+but its recommended to memoize the data and columns so avoid rerender every time
+
+so useMemo and 
+
+const cols=useMemo(()=>COLUMNS,[])
+const spec_data=usememo(()=>Mock_data,[])
+
+
+5.NOW CREATE A TABLE IN RETURN
+
+<TABLE>
+	<THEAD>
+		<TR>
+			<TH>name</TH>
+		</TR>
+	</THEAD>
+
+	<TBODY>
+		<TR>
+			<TD>din</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+
+6.now destruct the useTable const 
+const{
+gettableprops,gettablebodyrops,headergroups,rows,preparerow}=tableinstance
+
+
+learner///////
+return (
+  <table {...getTableProps()}>
+    <thead>
+      {/* The rest of your table structure would typically go here */}
+    </thead>
+  </table>
+);
+
+above ...gettableprops its a func and it returns a object and we are spreding the obj to the table elemnt
+
+header group is an array
+
+-------------
+
+3/12/2023
+
+react tables..continue
+
+
+1.SORTING
+
+1.useSortBy hook 
+
+2.pass it to the usetable hook
+like useTable({},useSortBy)
+
+3.pass coloumn.getsortbytoggleprops  to the getheaderprops in the table heads
+
+4.for checking--> column.issorted or column.issorteddesc
+
+
+2.FORMATING THE DATE
+
+1.install date-fns
+
+2.and import {format} from date-fns
+
+3.add a cell item in obj of date
+
+Cell:({value})=>{return format (new Date(value),'dd/MM/yyyy')}
+
+3.GLOBAL FILTER
+
+1.import a global filter hook and pass it to the useTable prop
+  like useTable({},useGlobalFilter)
+
+2.create a globalfilter component
+
+ it recieves filter ,setfilter and renders a input bar to ui
+
+3. destruct the usetableinstance more by 
+   state,setGlobalFilter
+
+now 
+
+const {globalfilter}=state
+
+4.add the globalfilter componnet to before table comp
+and pass filter as globalfilter and setfilter as setglobalfilter
+ 
+
+
+export const GlobalFilter = ({ filter, setFilter }) => {
+  const [value, setValue] = useState(filter);
+  const onChange = useAsyncDebounce((value) => {
+    setFilter(value || undefined);
+  }, 1000);
+  return (
+    <span>
+      search:{""}
+      <input
+        value={value || ""}
+        onChange={(e) => {
+          setValue(e.target.value);
+          onChange(e.target.value);
+        }}
+      />
+    </span>
+  );
+};
+
+
+4.COLUMN FILTER
+
+
+SAME AS GLOBAL BUT LITTLE CHANGE
+1.import usefilters hook and pass to the usetable
+
+2.create a columnfilter component and change the props to column coz it recives column as prop directly and destruct the props as 
+
+{filtervalue,setfilter}=column
+
+
+but passs column filter before globalfilter -->its a must 
+and in the heads render 'Filter' prop
+
+
+3.add filter prop to the items in array 
+
+like
+{
+ filter:pass the componet we created(columfilter)
+
+}
+
+export const ColumnFiltering = ({ column }) => {
+  const { filterValue, setFilter } = column;
+  return (
+    <span>
+      search:{""}
+      <input
+        value={filterValue || ""}
+        onChange={(e) => setFilter(e.target.value)}
+      />
+    </span>
+  );
+};
+
+
+5/12/23
+-----------
+REACT PRATICAL USAGE ITEMS
+1.REACT ICONS
+
+NPM I REACT-ICONS
+
+NOW IMPORT THE ICONS FROM 
+
+import { FaRavelry, FaReact } from "react-icons/fa";
+import { MdAlarm } from "react-icons/md";
+
+
+NOW USE THEM IN THE APP.JS
+
+return (
+    <>
+      <IconContext.Provider value={{ color: "red", size: "10rem" }}>
+        {/* <Sample /> */}
+        <FaReact />
+        <FaRavelry />
+        <MdAlarm />
+      </IconContext.Provider>
+    </>
+  );
+
+
+
+NOTE: FOR SUPPLYING VALUES LIKE COLOR ,SIZE FOR EACH ICON CAN BE VERY ROUTINE WORK SO 
+USE ICONCONTEXT AND USE ICONCONTEXT.PROVIDER AND PLACETHE  CONTENT WITIN IT 
+AND SUPPPLY THE VALUES AS PROPS TO IT 
+
+
+import { IconContext } from "react-icons";
+
+<IconContext.Provider value={{ color: "red", size: "10rem" }}>
+----
+--
+-
+ </IconContext.Provider>
+
+
+2----------------
+REACT TOASTIFY
+
+1.NPM REACT-TOASTIFY
+
+2.NOW IMPORT { ToastContainer, toast } from "react-toastify";
+
+
+ITS A FUNCTION INVOKES TOAST WHEN FUNCTION IS TRIGGERED ONCLICK OF THE BUTTON 
+
+ <button onClick={notify}>click me</button>
+
+
+NOW IN RETURN USE THE TOAST TO SET MESSAGE 
+
+ const notify = () => {
+    toast("hemloo");
+  };
+
+NOTE: MUST ADD <TOASTCONTAINER/ > IN THE RETURN 
+
+NOTE: FOR CHANGING POSITION OF TOAST WE CAN USE POSITON PROPERTY
+
+  toast("hemloo", { position: toast.POSITION.TOP_CENTER });
+
+IT DOES HAVE PREDEFINED TYPES WITH DEFAULT ICON AND COLOR FOR VARIOUS ACTIONS LIKE
+
+    toast.success("hemloo", { position: toast.POSITION.TOP_CENTER });
+    toast.info("hemloo", { position: toast.POSITION.TOP_CENTER });
+    toast.error("hemloo", { position: toast.POSITION.TOP_CENTER });
+    toast.warning("hemloo", { position: toast.POSITION.TOP_CENTER });
+    toast("hemloo", { position: toast.POSITION.TOP_CENTER });
+
+NOTE: WE CAN ALSO RENDER CUSTOM COMPONENTS IN TE TOAST BY PLACING COMPONENT IN THE TOAST 
+
+ toast.warn(<Sump />, { position: toast.POSITION.TOP_CENTER });
+
+CAN ALSO PASS A TOASTCLOSE FUNCTION TO CLOSE TOAST BY MANUAL
+
+const Sump = ({ closeToast }) => {
+  return (
+    <div>
+      something wnt wrogn!
+      <button onClick={closeToast}>close</button>
+    </div>
+  );
+};
+
+
+REACT MODAL-
+-----------
+
+NPM I REACT-MODAL
+
+
+USE 
+
+<Modal
+        isOpen={modalisOpen}
+        onRequestClose={() => Setmodal(false)} -- FOR CLOSING MODAL ON CLICK ON SURFACE OUT OF MODAL
+        style={{
+          overlay: { backgroundColor: "grey" },
+          content: {
+            color: "red",
+          },
+        }}
+      >
+        <h1>shhs</h1>
+        <button onClick={() => Setmodal(false)}>close</button>
+      </Modal>
+
+NOTE :
+WE NEED TO SET BUTTON TO OPEN AND CLOSE THE MODAL 
+
+WE CAN SPECIFY THE COLOR OF BACKGROUNF AND CONTENTS ALSO
+
+REACT-TOOLTIPS--
+----------------
+npm i react-tooltip--- not this time will use later 
+
+import Tippy from "@tippy.js/react";
+import "tippy.js/dist/tippy.css";
+
+
+now wrap the component we need to have tooltip within tippy
+  <Tippy content="hii all">
+        <button>hover me </button>
+      </Tippy>
+
+it shows tooltip
+
+we can render componets and html componets also in tooltip 
+and also specify the styling also
+
+
+<div style={{ paddingBottom: "200 px" }}>
+        <Tippy content="hii all">
+          <button>hover me </button>
+        </Tippy>
+      </div>
+      <div style={{ paddingBottom: "200 px" }}>
+        <Tippy content={<span style={{ color: "orange" }}> hii supra</span>}>
+          <button>hover me </button>
+        </Tippy>
+      </div>
+      <div style={{ paddingBottom: "200 px" }}>
+        <Tippy content={<Sump />}>
+          <button>hover me </button>
+        </Tippy>
+      </div>
+
+
+
+FOR RUNNING A COMPONET WITHIN TIPPY:
+
+ <div style={{ paddingBottom: "200 px" }}>
+        <Tippy content={<Sump />}>
+          <Addo></Addo>
+        </Tippy>
+      </div>
+USE FORWARD REF FOR THE COMPONENT WE PASS TO THE TIPPY
+
+const Addo = forwardRef((props, ref) => {
+  return (
+    <div ref={ref}>
+      <div>hiii</div>
+      <div>all</div>
+    </div>
+  );
+});
+
+
+NOTE :FOR REMOVE ARROW WHICH DISPLAYED ON TOOLTIP 
+USE  arrow={false}
+
+  <Tippy content="hii all" arrow={false}>
+
+NOTE: CAN ALSO ADD DELAY TO IT 
+   <Tippy content="hii all" arrow={false} delay={1000}>
+NOTE: CAN ALSO ADD PLACEMENT
+        <Tippy content="hii all" arrow={false} delay={1000} placement="right">
+
+REACT-COUNT -UP
+-------------
+
+GIVES A ANIMATED COUNT UP OF NUMBER LIKE 0 - 200 FILLING 
+
+ npm i react-countup 
+
+
+import CountUp from "react-countup";
+
+return (
+    <>
+      <CountUp end={2000} />-- END FOR TELLING WHEN TO STOP
+    </>
+  ); 
+
+WE CAN SPECIFY THE DURATION,START POINT ,AND SUFFIX ,PREFIX ALSO
+
+<h1>
+ <CountUp end={2000} />
+      </h1>
+      <h1>
+        <CountUp start={500} end={2000} duration={5} />
+      </h1>
+      <h1>
+        <CountUp start={500} end={2000} prefix="$" decimals={2} />
+      </h1>
+
+
+
+REACT-IDLE-TIMER
+
+------------
+
+CAN MAKE USE OF WHEN USER GOES IDLEnn
+
+
+import { useEffect, useState } from 'react'
+import { useIdleTimer } from 'react-idle-timer'
+import './styles.css'
+
+export default function App() {
+  const [state, setState] = useState<string>('Active')
+  const [count, setCount] = useState<number>(0)
+  const [remaining, setRemaining] = useState<number>(0)
+
+  const onIdle = () => {
+    setState('Idle')
+  }
+
+  const onActive = () => {
+    setState('Active')
+  }
+
+  const onAction = () => {
+    setCount(count + 1)
+  }
+
+  const { getRemainingTime } = useIdleTimer({
+    onIdle,
+    onActive,
+    onAction,
+    timeout: 10_000,
+    throttle: 500
+  })
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRemaining(Math.ceil(getRemainingTime() / 1000))
+    }, 500)
+
+    return () => {
+      clearInterval(interval)
+    }
+  })
+
+  return (
+    <>
+      <h1>React Idle Timer</h1>
+      <h2>useIdleTimer</h2>
+      <br />
+      <p>Current State: {state}</p>
+      <p>Action Events: {count}</p>
+      <p>{remaining} seconds remaining</p>
+    </>
+  )
+}
+
+-------------------
+REACT-COLOR PICKER
+
+NPM I REACT-COLOR
+
+ <div>
+      <Button onClick={() => setpickerMode(!pickermode)}>
+        {pickermode ? "close the picker" : "pick a color"}
+      </Button>
+      <br />
+      <br />
+      {pickermode && (
+        <>
+          <ChromePicker
+            disableAlpha={true}
+            color={color}
+            onChange={(pickedColor) => setColor(pickedColor.hex)}
+          />
+          <h1>YOU PICKED:{color} </h1>
+        </>
+      )}
+    </div>
+
+----------------
+
+REACT-CREDIT-CARD
+
+
+
+
+export default function App() {
+  const [name, setname] = useState("");
+  const [number, setnumber] = useState("");
+  const [cvc, setcvc] = useState("");
+  const [expiry, setexpiry] = useState("");
+  const [focus, setfocus] = useState("");
+  return (
+    <>
+      <Cards
+        name={name}
+        number={number}
+        cvc={cvc}
+        expiry={expiry}
+        focused={focus}
+      />
+      <br />
+      <form>
+        <input
+          type="tel"
+          name="number"
+          placeholder="Card Number"
+          value={number}
+          onChange={(e) => setnumber(e.target.value)}
+          onFocus={(e) => setfocus(e.target.number)}
+        />
+        <input
+          type="text"
+          name="name"
+          placeholder="Card name"
+          value={name}
+          onChange={(e) => setname(e.target.value)}
+          onFocus={(e) => setfocus(e.target.name)}
+        />
+        <input
+          type="tel"
+          name="expiry"
+          placeholder="Card expiry"
+          value={expiry}
+          onChange={(e) => setexpiry(e.target.value)}
+          onFocus={(e) => setfocus(e.target.expiry)}
+        />
+        <input
+          type="tel"
+          name="cvc"
+          placeholder="Card cvc"
+          value={cvc}
+          onChange={(e) => setcvc(e.target.value)}
+          onFocus={(e) => setfocus(e.target.cvc)}
+        />
+      </form>
+    </>
+  );
+
+
+
+REACT-DATEPICKER
+-------------
+
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+
+ const [selecteddate, setSelecteddate] = useState(null);
+  return (
+    <>
+      <DatePicker
+        selected={selecteddate}
+        onChange={(date) => setSelecteddate(date)}
+        dateFormat="dd/MM/yyyy"
+        isClearable
+        filterDate={(date) => date.getDay() != 6}
+        maxDate={new Date()}
+        showYearDropdown
+        scrollableMonthYearDropdown
+      />
+    </>
+--------------
+
+React player for youtube and other video rendering
+
+import ReactPlayer from "react-player";
+
+
+  return (
+    <div className="App">
+      <ReactPlayer
+        width="240px"
+        height="240px"
+        controls
+        url={"https://www.youtube.com/watch?v=g_VhFh5fx2o"}
+      />
+    </div>
+  );
+
+
+
+REACT-LOADING-SPINNERS
+
+NPM I REACT-SPINNERS
+import { BounceLoader, BeatLoader, BarLoader } from "react-spinners";
+
+
+  <div className="App">
+      {/* <BounceLoader loading /> */}
+      <BarLoader color="red" loading />
+      <BeatLoader size={10} />
+    </div>
+  );
+
+CAN CHANGE COLOR AND SIZE HAS A LOADING PROPS
+
+
+REACT-CHARTS
+
+npm i react-chartjs2 chart.js
+
+refer vscode piechart and line chart code file
+
+
+17/12/23 
+FOR DATE IN REACT 
+
+const currDate = new Date().toLocaleDateString();
+const currTime = new Date().toLocaleTimeString();
+
+Dont forget default case in reducer

@@ -1,0 +1,9 @@
+***
+react code evolution
+
+npx create-react-app booklist -- 
+to create new react app 
+
+npm run -- to run the react app
+
+npm build run -- to have a synced save

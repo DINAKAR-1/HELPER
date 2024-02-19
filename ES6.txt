@@ -1,0 +1,289 @@
+ES6 NOTES----
+
+WHY LET,CONST INSTEAD OF VAR?
+ 
+
+var was the first type
+
+later let was introduced coz
+
+
+var in blocks
+
+{
+a=10
+can be accessed in block 
+
+} 
+
+and also outside of block
+
+but if we use var in function it has a limited scope 
+
+---let resolves this
+LET gives limited scope feature 
+------------
+
+let-- -----------2nd feature----stoppimng hoisting
+
+Hoisting is the default behavior of moving all the declarations at the top of the scope before code execution
+
+ex:
+
+console.log(a)
+
+var a='hello'
+
+--what js does is it compiles and allotes memory but doesnt feed the value to the 'var a' so it makes it 'undefined' until runtime of the initialization line
+so if console it gibves ---- undefined
+
+if we use LET it stops hoisting and wont allow for the usage of the variable before declaring only we use it after, not before
+
+----------3rd feature of let -----------
+if we use var 
+
+var a =10
+
+we can redeclare it and give value 
+var a=100
+
+but with let once declared cant be declared again
+but can assign value again
+
+like let a =10
+let a=10000 
+////this not possible but 
+
+let a =10
+ a=10000 //this is possible
+
+
+--------------
+
+And in loops if we use var it uses same value of i for every time //that is the last value feeded
+
+------------------------
+const
+----------------------
+can be declared once 
+cant assign new value
+similar scoping to let
+-----
+
+but if we use objects with const whie iniitialising 
+we can change the properties of the object but cant assign 
+a new object to it like:
+
+const a ={ name: 'raghu'}
+//can use 
+a.name:'ramu'
+
+//but  below is not possible
+
+a={name:'eron'}
+
+-----------------
+
+but if u want to stop changing the properties also the we can use
+
+Object.freeze()
+
+The Object.freeze() static method freezes an object. Freezing an object prevents extensions and makes existing properties non-writable and non-configurable. A frozen object can no longer be changed: new properties cannot be added, existing properties cannot be removed, their enumerability, configurability, writability, or value cannot be changed, and the object's prototype cannot be re-assigned. freeze() returns the same object that was passed in.
+
+const obj = {
+  prop: 42,
+};
+
+Object.freeze(obj);
+
+obj.prop = 33;
+// Throws an error in strict mode
+
+console.log(obj.prop);
+// Expected output: 42
+
+------template literals------
+
+backticks
+2.feature
+
+
+bio()
+{
+console.log("hemlo")
+}
+
+const greeting=bio'hi im ${userid} in the dark ${times}
+
+//so this way we can write the back ticks with side of a function without givnig arguments
+it takes the text and put it in a array
+like:
+[hi,im,dark,in ,the]
+
+and passes the args as usual
+userid ,times
+
+
+---------
+understand more about this keyword
+
+map,filter,reduce are excellent for iteration
+
+console.table
+
+for arrow function
+
+()=>()
+or
+()=> a*a
+or
+()=>(     {   course:${course}   }    )
+
+------------
+for sorting we can have .sort for arrays
+
+but for objects  we can define that 
+by passing a function to sort
+
+by 
+
+const sortedbyrating=movies.sort((a,b)=>{
+
+if(a.rating>b.rating)
+ return -1
+else
+1
+
+})
+---------------
+
+
+
+(...)spread operator for spreading the elements like
+
+let ex=arr[1,2,3,4]
+if u want to add ot to an array we do like
+let ex1=[1,2,ex]
+
+but with ... operator we get 
+let ex1=[1,2,1,2,3,4]
+
+const array = [1, 2, 3];
+const obj = { ...array }; // { 0: 1, 1: 2, 2: 3 }
+
+
+---------
+
+rest operator (...)
+
+when passing something its usful
+
+it condenses the elemtns to an array
+function(x,...args)
+{
+args gets passed as a array 
+args[]
+
+}
+-------------
+
+--------
+
+destructing
+
+ob1={
+name:'ram',
+id:23,
+vision:'good'
+}
+
+const { var1 , var 2 ,var 3} =ob1
+
+and we can even change the name of variables to use 
+
+const { var1:varuuu1 , var 2:varriii ,var 3} =ob1
+
+so now i can console log this by 
+
+console.log(varuuu1,variiii,var3)
+
+
+---we can even provide default values ---
+
+const { var1:varuuu1='hemlo' , var 2:varriii='hoii' ,var 3} =ob1
+
+------------
+
+class in js and inheritance
+
+class a
+{
+
+constructor (name){
+console.log(name)
+}}
+
+
+now for inheritance
+
+class B extends a{
+
+
+constructor(name,id)
+
+{
+
+///must call parent construvctor super() and pass the required arguments to it to initialise
+
+
+super(name)
+
+
+}
+
+------------------------
+static function 
+
+can only accesed by the class name not the object name
+
+like class A{
+
+static add(){
+}
+
+}
+
+so A.add() //but any objec t of A cant call it like
+
+const obj1=new A('ram',22)
+
+//obj1.add() is illegal
+
+
+---------
+
+getteres and setters 
+
+get add(){
+
+Return()
+
+}
+
+
+
+set add(...args){
+
+this.name=
+}
+--------------
+functions in js can also use 't
+his' keyword !!!!!!!!!!!!!
+
+
+function add(name,id){
+
+this.name=name
+this.id=id
+
+}

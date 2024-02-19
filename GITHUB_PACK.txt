@@ -1,0 +1,55 @@
+1.git log ---> shows all commits
+  1.1 git log -p --> shows previous commits , number you can                      specify
+
+1.1 git 
+
+
+2.rm -rf .git
+
+3.git status
+
+4.git add --a 
+ 4.1 git add .
+
+untracked->unmodified->modified->staged
+
+5.touch err.txt -- creates a new file 
+6.touch .gitignore --> to generate a ignore file in repo
+
+7.IN GITIGNORE FILE -->
+  *.log ---> indicates it should ignore all files ending 
+             with .log
+  dir/--> ignore the 'dir' file 
+  /dir/--> ignore dir in outside and inside of folders 
+
+8.git restore <file> --> to discard changes in working dir
+  8.1. git restore --staged <file> --> to unstage 
+9.git diff -> difference btwn staged and current working directory 
+10.git diff --staged
+11.git commit -a -m "fixed bug...." --> to commit without staging
+12.git mv first.txt first_11.txt --> for renaming 
+13.git rm --cached one.txt --> delete file permanently
+14.git clone url -- to clone into local
+15.git log --pretty=oneline--> shows commit msgs single line
+16.git log --pretty=short --> gives short msg
+17.git log --since=2.days --> gives 2 days back commits
+18.git log --pretty=format:"%h-->>%ae" --> shows in given format
+19.git commit --amend --> amends the changes to a existing commit 
+20.git checkout head one.txt --> restores the file to previous commit
+21.git checkout -- one.txt--> same 
+22.git checkout -f
+23.git remote add 
+24.git remote --> shows the remote repos we added by listing them with                        names we gave
+25.git remote -v -->shows remote for fetching and pushing
+26.git push -u origin (ie. name we  gave to adding remote link ) master(                branch name in remote repo)
+27.git config --global alias.statooos status --> gives alias for commands 
+                                             can use both status , statooos 
+ 
+28.git checkout -b newbranchhh(branch name) --> creating a branch nd switches
+29.git checkout newbrabhchhh  -- switches branch
+30.git merge
+31.git commit --> conflict resolve
+32.git branch -d newbranchhh --> for deleting branch 
+33.git push origin master --> pushes master branch into remote repo
+34.git push -d origin newbranchhhh --> deletes the branch in remote url repo we gave
+35.

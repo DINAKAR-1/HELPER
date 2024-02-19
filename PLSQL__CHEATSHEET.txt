@@ -1,0 +1,51 @@
+ 
+FOR DATE FORMAT CHANGE IN PLSQL
+----------------------------
+ select * from nls_session_parameters
+ where parameter ='NLS_DATE_FORMAT';
+ 
+ alter session set NLS_DATE_FORMAT =
+ 'DD-MM-YYYY';
+ -------------------------------- 
+CREATE PACKAGES IN PLSQL
+------------
+HAS 2 PARTS
+1.DECLARATION
+2.BODY 
+---------------
+DECLARATION
+
+CREATE OR REPLACE PACKAGE MYPAK IS
+MYPROC_1(VAR1 INT);
+MYPROC_2(VAR2 NUMBER);
+END MYPAK;
+
+
+----------------
+
+BODY
+----------
+
+CREATE OR REPLACE PACKAGE MYPAK IS
+
+MYPROC_1(VAR1 INT) IS
+BEGIN
+---
+--
+END;
+
+
+MYPROC_2(VAR2 NUMBER) IS 
+BEGIN
+--
+--
+END;
+END MYPAK;
+-------------
+
+
+ADVANCED PACKAGES
+=-----------
+1.USE FOR DECLARING CONSTANTS
+2.USED FOR OVERLOADING 
+3.USED FOR FORWARD DECLARATION
