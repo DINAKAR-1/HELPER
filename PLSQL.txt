@@ -1,0 +1,181 @@
+SGA - system global area
+clustered and non clustered indexes
+
+
+stored procedures in plsql have greater performance than java file executing in appliation server
+data security
+portability
+
+PL\SQL	-	procedural level\structured query language	--	architecture
+----------------------------------------------------------
+plsql block of statements	-->	procedural level statement executor(forward)	--> sql statement executor
+
+plsql engine 	-	procedural level statement executor
+				parsing	-	dividing into tree structure
+				executing
+				forward**
+				receive
+				executing
+				display
+
+
+		--tightly binded--
+
+sql engine	-	sql statement executor
+				parsing
+				fetching
+				executing
+
+				
+
+3 blocks in plsql
+--------
+1.declaration block(optional)
+2.body
+3.exception block(optional)
+if returns a value it is a function
+if may or not returns a value or group of values then it is a "procedure"
+
+trigger	-  if any event occur it will automatically executes
+eg:if deleting a row then it should be stored in a log file
+
+plsql objects
+-------------
+procedure
+function
+triggers
+cursor
+
+
+anonymous blocks - set of statements with no name(works upto current session)
+
+
+variable - named memory space, holds a value or number of values, scope:Global, local, bind variable., different memory locations for global and local variables
+bind variable - across all the programs in one session, passed during runtime and used as post variables(eg pi).
+
+datatypes - 4
+-------------
+1.scalar datatypes	-	holds a single value, upto 16bytes, (char,int,boolean,date,timestamp)
+2.reference datatypes	-	referenced datatype from other tables (% TYPE)
+3.large object datatypes-	store pdf,images using(types Binary Lob,character lob)
+4.composite datatypes	-	used to store more values (eg:cursor)
+
+
+LOOPS
+-----
+looping and executing same set of statements
+types : for loop,while loop, loop
+	<<-----------------------
+
+1.Loop : if we want to execute set of statements atleast once.
+	 syntax:
+		declare <variables>
+		begin
+			loop
+			------set of statements;
+			counter +-= 1;
+			exit <condition>;
+			end loop;
+		end;
+
+
+2.While : if we iterates the statements as per the given condition and if we dont no how many number of times the statements will executes
+	  syntax:
+		declare <variables>
+		begin
+			while <condition> loop
+			------set of statements;
+			counter +-= 1;
+			--exit <condition>;(optional)
+			end loop;
+		end;
+
+3.For : if we know the the lower and upper bound values for looping.
+	 syntax:
+		declare <variables>
+		begin
+			for i in 1..5 loop	output:1,2,3,4,5
+			-----set of statements;
+			end loop;
+
+			for i in reverse 1..5 loop	output:5,4,3,2,1
+			-----set of statements;
+			end loop;
+		end;
+
+
+
+keywords in loops:
+1.continue
+2.goto <label_name> - using labels
+
+
+SQL statements in PLSQL script
+------------------------------
+select statement are written in script where the values of retrieved columns are stored in declared variables by using "INTO" keyword
+
+we can access any number of rows in a table using for loop - what about more columns?
+it is solved by CURSOR
+
+CURSOR - it is a virtual memory space that displays the rows returned by last sql query
+	 it is dropped when the session is cleared.
+	 if we want to perform any operations row by row in virtual space then cursors are used
+2 types : implicit cursors and explicit cursors
+
+keywords in cursor:
+1.open
+2.fetch
+3.close
+
+attributes of cursor:
+1.%found	-	returns boolean
+2.%notfound	-	returns boolean
+3.%isopen	-	returns boolean
+4.%rowcount	-	number of rows
+
+syntax :
+	declare
+	<variables>
+	cursor <cursor_name> is (query);
+	variable_name <cursor_name>%rowtype;
+
+
+EXCEPTION HANDLING
+------------------
+syntax:
+	declare
+	<variables>;
+	<exception_name> exception;	--	user defined exception
+	begin
+	<set of statements>
+	raise <exception_name>;
+	exception
+		when <exception_name> then <statement>;
+		when <exception_name> then <statement>;
+		when others then <statement>;
+		when <exception_name> then <statement>;	--	for user defined exception
+	end;
+
+2 types:
+pre-defined exceptions
+user-defined exceptions
+
+keywords in Exception handling:
+1.sqlcode
+2.sqlerrm
+3.raise_application_error(code,msg);
+
+PROCEDURES and FUNCTIONS	--	reusability
+------------------------
+PROCEDURES	-	parameters(IN,OUT,<IN/OUT>)
+syntax:
+	create or replace procedure <procedure_name> (parameters - IN <variable_name> <datatype>,OUT <variable_name> <cursor_datatype>(for returning multiple rows)) IS/AS
+
+exec/execute <procedure_name>;	-	for executing procedures
+
+
+
+
+searched case statement
+
+
