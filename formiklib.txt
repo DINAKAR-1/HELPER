@@ -1,0 +1,13 @@
+Formic Library
+--deal with forms
+--managing form data
+--form submission
+--validation and display error messages
+--scalable
+**useFormik hook
+components:
+--useFormik
+--Form
+--Field
+--ErrorMessage
+--FastFeild:Optimized Field ,internally implements shouldComponentUpdate method
