@@ -1,0 +1,129 @@
+27 . Write a query to display number of people in each Department. Output should display
+Department Code, Department Name and Number of People.
+
+ select dept_code,count(staff_name),dept_name from staff_master
+natural join department_master
+ group by dept_name, dept_code;
+
+----------------------------------------
+
+21. Create a query that will display the Staff Name, Department Name, and all the staff
+who work in the same department as a given staff. Give the column as appropriate
+label. 
+
+SELECT  dept_name,staff_name
+FROM  department_master m
+JOIN 
+ (
+   SELECT dept_code,count(dept_code),staff_name
+   FROM staff_master
+   GROUP BY   staff_name,dept_code
+ 
+ ) AS  payment
+ON payment.dept_code =  m.dept_code;
+
+---------------------------------------------
+
+23. Display the Student Code, Student Name, and Department Name for that department
+in which there are maximum number of student are studying. 
+
+SELECT  student_code,student_name,dept_name 
+from student_master sm 
+join 
+department_master m on sm.dept_code=m.dept_code
+where sm.dept_code=
+(
+select dept_code
+from staff_master
+group by dept_code
+order by dept_code desc
+limit 1
+);
+
+-------------------------------------------------
+
+
+ 16 .Display top ten students for a specified department. Details are:
+ Student Code, Student Name, Department Name, Subject1, Subject2,
+ Subject3, Total. 
+
+select s.student_name ,s.dept_code,subject1+subject2+subject3 as "marks"
+from 
+
+student_master s
+ natural join student_marks
+
+group by student_name  , subject1+subject2+subject3,dept_code
+order  by subject1+subject2+subject3 desc
+
+
+
+---------------------
+19. Display the Staff Name, Department Name, and Salary for those staff who are
+getting less than average salary in their own department
+
+select  sm.staff_name 
+from staff_master sm
+where staff_sal<
+(
+select avg(staff_sal)
+from staff_master m
+where sm.staff_code=m.staff_code
+);
+
+----------------------------------------
+
+23. Display the Student Code, Student Name, and Department Name for that department
+in which there are maximum number of student are studying. 
+
+select student_name,student_code,dept_code
+from student_master
+where dept_code=
+(
+select dept_code
+from staff_master
+group by dept_code
+order by count(*) desc
+limit 1
+)
+
+-------------------------------------------
+15. Display Staff Code, Staff Name, and Department Name for those who have taken
+more than one book. 
+select student_name,student_code
+from student_master sm
+where student_code in 
+(
+ select student_code
+ from book_transaction
+ group by student_code
+ having count(*)>1
+)
+
+
+-----------------------
+
+2.Display Staff Code, Staff Name, Department Name, and his manager’s number and
+name. Label the columns Staff#, Staff, Mgr#, Manager.
+
+d1=# select s.staff_code,s.staff_name,m.mgr_code,m.staff_name
+d1-# from staff_master s
+d1-# join staff_master m
+d1-# on s.mgr_code = m
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
