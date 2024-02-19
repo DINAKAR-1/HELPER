@@ -1,0 +1,9 @@
+explore arrays class and comparator 
+
+find java version programatically ---
+
+do experiment with 2d array----
+
+instanceof--- only while using inheritance it gives false-------
+
+run using packages in file 

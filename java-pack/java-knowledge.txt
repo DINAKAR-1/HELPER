@@ -1,0 +1,33 @@
+The Garbage Collector is an integral part of the JVM responsible for automatic memory management. Its primary function is to reclaim memory from objects that are no longer in use and are unreachable by the application.
+
+The Garbage Collector periodically runs in the background to identify and reclaim memory from these unreachable objects, freeing up memory for future object allocations.
+
+The process of garbage collection involves several steps:
+
+Marking: The Garbage Collector starts by traversing the object graph starting from known "root" references (such as static variables, local variables, and method call stacks). It marks all objects that are reachable from the roots.
+
+Sweeping: After marking all reachable objects, the Garbage Collector sweeps through the entire heap, identifying and reclaiming memory from unmarked (unreachable) objects. These unreferenced objects are considered garbage.
+
+Compact (Optional): In some Garbage Collector implementations, an additional step called compaction is performed. This step involves moving the live objects closer together to reduce fragmentation on the heap and improve memory allocation efficiency.
+
+Runtime Data Area:
+
+The Runtime Data Area is the memory space used by the JVM during program execution. It is divided into several 
+
+Method Area: Shared among all threads, it stores class-level data, such as runtime constant pool, field and method data, and method bytecode. It also includes static variables and their values.
+
+Heap: The memory area shared among all threads, used for storing object instances created during runtime. The JVM's Garbage Collector manages the heap to automatically reclaim memory from unused objects.
+
+Java Stack: Each thread has its own Java Stack, which stores method invocation frames. Each frame contains the method's local variables, its parameters, and the return address.
+
+Execution Engine:
+
+The Execution Engine is responsible for executing Java bytecode. It consists of two components:
+
+Interpreter: Initially, the JVM uses the interpreter to execute bytecode line by line. This approach ensures platform independence but can be slower than native execution.
+
+Just-In-Time (JIT) Compiler: To improve performance, the JVM employs a JIT compiler. It analyzes frequently executed bytecode and translates it into native machine code specific to the underlying hardware. This compiled code is stored in memory and reused when needed, leading to faster execution.
+
+
+
+

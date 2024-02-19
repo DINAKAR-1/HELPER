@@ -1,0 +1,13 @@
+literals
+
+diamond operator
+
+loop iinvarient code motion (best practices..)
+
+array class and array copy method
+
+array copy method:
+
+public static void arraycopy(Object src, int srcPos, Object dest, int destPos, int length)//
+
+System.arraycopy(sourcearray,0,dest array,0,source arr length)

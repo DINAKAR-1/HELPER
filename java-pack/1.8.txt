@@ -1,0 +1,18 @@
+tostring for 1d
+
+deepto string for 2d
+
+explore left side auto in vs--task--->> solution cntrl+.
+
+command line args in vscode--task
+
+javac -d .mypack/subclass.java
+
+getting error using .*---task
+
+why coderunner not working for ackages---task--working
+
+
+
+check if package stored in different directiry--task......
+

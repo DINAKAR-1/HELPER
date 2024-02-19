@@ -1,0 +1,38 @@
+test percentile with floating point data and char .....
+
+negetive numbers shifting 
+
+negs in 2s compliment
+
+
+apply bitwise on char data -------
+
+program to  test bitwise xor assignment --------
+
+find precendence of bitwise ----
+
+
+
+
+//associative of equality and relational operators
+
+[logical operators]
+
+[short circuit eval]
+
+
+
+boolean logical and ,, inclusive or ,exclusive or------
+
+
+
+var in java\-------
+
+if not initilise local var , will get error ?----
+
+
+
+
+
+
+

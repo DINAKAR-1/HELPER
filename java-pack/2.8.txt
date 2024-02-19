@@ -1,0 +1,13 @@
+setting main class in a jar file
+page 11
+
+
+demo:package
+
+
+why getting $1 class----
+
+getters and setters automatically in vscode---click cntl+.
+
+
+whats identtiy of object---name is the identity 
