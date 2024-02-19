@@ -1,0 +1,23 @@
+TO COPY INPUT STREAM INTO A PATH 
+
+absolute path :complte path from origin 
+
+relative path : the path from the local folder its residing
+------------------------------------
+FILES.COPY(INP STREAM, PATH, COPYOPTION)
+
+
+////////////
+
+TO CONSTRUCT A PATH
+---------------------
+
+PATH Path= PATHS.GET( the absolute path  +  FILE.SEPARTOR  +PROFILE.getoriginalname)
+
+ex-
+PATH Path= PATHS.GET( saveFile.getAbsolutePath()  +  FILE.SEPARTOR +PROFILE.getoriginalname)
+
+
+////////////
+
+ 
