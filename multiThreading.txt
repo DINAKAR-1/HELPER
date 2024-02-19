@@ -1,0 +1,47 @@
+multiprocessing and multiThreading
+process - heavy weight 
+thread - light weight
+threads uses shared memory
+
+In java multiThreading can be achieved by 
+1.extending the Thread class
+2.implementing the runnable interface
+
+concurrency and parallelism
+
+concurrency - performing one task at a time and managing multiple tasks at same time
+parallelism - performing different tasks at same time
+
+multiThreading achieves concurrency
+
+flow of control in java
+1.without threading
+    -> main() -> func1 -> func2 -> end
+
+2.with threading
+    main    ->
+    func1   ->  -> end
+    func2   ->
+
+
+lifeCycle of a thread
+1.new   -   instance of thread is created not yet started
+2.runnable - after invocation of start() and before it is selected to run by scheduler
+3.running - after thread scheduler has selected it
+4.non runnable - thread alive, not eligible to run.(waiting for io, etc..)
+5.terminated - run() method has exited
+
+Commonly used constructors of thread class
+1.Thread
+2.Thread(String name) - FourthThreadConstructor.java
+3.Thread(Runnable r) - Third.java
+4.Thread(Runnable r, String name) - FifthThreadConstRunnable.java
+
+
+Thread Priorities
+1.Thread.MAX_PRIORITY
+2.Thread.MIN_PRIORITY
+3.Thread.NORM_PRIORITY
+
+Thread Methods
+1.join()    -   waits for a thread to terminate and start execute a new thread
