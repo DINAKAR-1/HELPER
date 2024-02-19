@@ -1,0 +1,143 @@
+PostgreSQL Commands:
+-------------------
+
+\l	--	To List all Databases
+
+\! cls	--	To clear the screen
+
+\q	--	To Exit the psql Command Line
+
+\x	--	Displays the query output in a good format.
+
+drop schema public cascade	--	deletes all the tables in a database.
+
+select current_database();	--	To check the current database
+
+
+---------------
+CREATE DATABASE <database_name>;	--	Create a database
+eg:CREATE DATABASE sakshath;
+
+
+---------------
+DROP DATABASE <database_name>;		--	Drop a database
+eg:DROP DATABASE sakshath;
+
+---------------
+\c <database_name>;		--	Move to other database
+eg:\c sakshath;
+
+
+
+\dt	--	List all the tables in a current database
+\dt+	--	gives the detailed information about the tables present in the current database
+\d+ <table_name>	--	gives the detailed information about a table with all columns and its constraints and datatypes.
+
+---------------
+CREATE TABLE <table_name>(colname datatype constraint,...);		--	Create a table in a database
+eg:CREATE TABLE main(ID INT PRIMARY KEY, NAME VARCHAR(20));
+
+---------------
+INSERT INTO <table_name>(colname,...) VALUES (val1,...);		--	Insert one entry to a table
+eg:INSERT INTO main(ID,NAME) VALUES (1,'HAPPY JOURNEY');
+
+---------------
+SELECT * FROM <table_name>;		--	View all the entries present in table
+eg:SELECT * FROM main;
+
+---------------
+UPDATE <table_name> SET col_1=val_1 where condition;	--	updates the value of a specified row specified by a condition in the where clause.
+eg:UPDATE main SET phno=8374 where id=2;
+
+---------------
+\i '<File_path>'	--	to run the .sql script file directly in psql tool
+eg:\i 'C:\\Users\\CGG\\Documents\\Training\\postgreSQL\\db.sql'
+
+
+---------------
+select <col_name>as"<new name>" from <table_name>
+select <col_name> <new_name> from <table_name>
+select <col_name> as <new_name> from <table_name>	--	using "as" cluase to rename the column name with other new name.
+
+---------------
+select 'Today is ' || current_date;		--	||concatenate operator concatenates the string to a particular method or column_value.
+
+select current_date + interval '1 month';	--	interval with specified value will be added to a current_Date and returns new date.
+
+Last_day in a month;
+--------------------
+select (date_trunc('month',now()) + interval '1 month - 1 day');
+
+select (date_trunc('month',current_date) + interval '1 month - 1 day');
+
+To know the day of a particular date
+------------------------------------
+select to_char(student_dob,'day') from student_master;
+
+age(two dates) -- finds the difference between two dates.
+
+
+
+renaming a table and a column
+---------------------------------------
+alter table staff_master rename to new_staff_master;
+alter table <table_name> rename <column_name> to <new_col-name>
+
+
+to change the datatype of a column
+----------------------------------
+alter table <table_name> alter <column_name> type <new_datatype>;
+
+
+add not null constraint to a column
+-----------------------------------
+alter table <table_name> alter <col_name> set not null;
+
+
+add a column to a table
+-----------------------
+alter table <table_name> add <col_name data_type>,add...;
+
+
+drop a column in a table
+------------------------
+alter table <table_name> drop <col_name>;	(for each column)
+
+
+add primary key and foreign key to a table
+------------------------------------------
+alter table <table_name> add constraint <constraint_name> primary key/foreign key (col_name) [references table_name<col_name>	(for fkey)]
+
+
+how to disable/drop constraint on a column
+------------------------------------------
+alter table <table_name> drop constraint <constraint_name>;
+
+
+create a new table with reference to previous table
+---------------------------------------------------
+create table <table_name> as select <col_name> as <new_name>,... from <ref_table_name>;
+eg: create table suppliers as
+select customerid as suppid,customername as sname,address1 as addr1,address2 as addr2,phone_no as contactno from
+ customer;
+
+
+
+Sequence
+---------
+\ds	--	List all the sequences
+\d <sequence name>	--	describes about the sequence.
+drop sequence <sequence name>
+select nextval('s1');
+select currval('s1');
+select * from s1;
+insert into staff_master (staff_code,staff_name) values (nextval('s1'),'xyz');
+
+
+
+
+
+
+
+
+
