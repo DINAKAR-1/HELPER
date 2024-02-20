@@ -1,0 +1,52 @@
+to do pagination key concept is 
+
+divide the array of posts or whatever...
+
+so I'm having array of 10 things 
+
+now we can do pagination either way 
+
+front end way
+
+we grab all posts 
+
+and we slice them using js function slice 
+
+array.slice(starting, ending)
+
+now the buttons 1 2 3 4
+now we can have a map iterator or forloop to 
+make buttons by diving no of posts /posts per page 
+
+so if no of pages 3 
+
+return 3 buttons
+
+now on evey button click pass the page value of the button to the current page variable 
+
+and we get the first and last index by using current page and page size 
+
+ex if page 3 so index is 3*postsper page ==30 
+
+so last  index 30 and first index is 30 -no of posts per page ==20
+
+key logic is 🗝️ 
+
+slicing the array and display 
+
+
+-------
+now backend logic 
+
+
+now we do the process in backend 
+
+this way is more efficient as load is reduced
+
+now we pass the pagenumber and pagesize to the backend and it gives us the part of array we need 
+
+so we display that 
+
+but it's not quite easy 
+stay tuned ....
+
