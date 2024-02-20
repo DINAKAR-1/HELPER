@@ -1,0 +1,30 @@
+use context 
+
+to pass a common val or func among various childs
+
+so in app.js 
+
+create context and export 
+
+
+export const context=React.context()
+
+now in app.js we have suppose a usestate 
+
+
+const [count,setCount]=useState(0);
+
+now we can pass this same thing to all childs 
+
+by just 
+
+<context.provider>
+
+<Child value={[count,setCount]}>
+
+
+
+now we can access it in child by
+
+
+const [count,setCount]= use context(contxt)
