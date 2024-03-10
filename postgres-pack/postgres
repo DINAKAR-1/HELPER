@@ -1,0 +1,122 @@
+\! cls- for clearing 
+
+\c for changing database
+
+\l list all databases
+
+\d --for alll tables
+
+drop schema public cascade--to droppp all tablues at aa timee
+
+\i <path>-- for running script of sql
+
+check for null blank------u
+
+ALTER DATABASE db RENAME TO newdb; --database rename
+
+
+
+
+\! -- to get back to default cmd
+
+exit -- to come backk to psql shell
+
+
+\d+ table name for desc the table 
+
+
+\d for desc table without length
+
+SELECT date '2030-01-20'or(current_date) + interval '1 month';
+
+for increasing date ,day ,month
+
+ select age('01-01-2030','01-01-2010');  for getting differenece btwn dates
+
+
+SELECT EXTRACT(DAY FROM TIMESTAMP '2016-12-31 13:30:15');--extracting the dayfrom date
+
+d1=# select to_char((current_date::date + interval '1 day'),'day');--- for getting next day in characters
+
+select date_trunc ('hour',now()); --- for returning the trucated hour,minute gives the start of hour
+
+select (date_trunc('month', now()) + interval '1 month - 1 day');-----------  for getting last day
+
+SELECT to_char(current_date,'day');--for getting name of the day
+
+select staff_name,staff_sal, rpad('',cast(staff_sal/1000 as int),'x') from staff_master; ---- for casting into int without cast function not working
+
+
+ SELECT 'TOMORROW'::date + ( 4 + 7 - extract ( dow FROM 'TOMORROW'::date))::int%7;----- works as next_day of orcle
+
+
+d1=# select extract('dow' from current_date);
+ extract
+---------
+       6
+(1 row)
+
+
+date difference in months--
+
+
+  -- Difference between Oct 02, 2011 and Jan 01, 2012 in months
+  SELECT (DATE_PART('year', '2012-01-01'::date) - DATE_PART('year', '2011-10-02'::date)) * 12 +
+              (DATE_PART('month', '2012-01-01'::date) - DATE_PART('month', '2011-10-02'::date));
+
+
+
+  -- Result: 3
+
+
+
+to order by the day of week like monday ,tuesday,wens....
+SELECT staff_code, staff_name, department_name, hiredate
+FROM staff
+ORDER BY EXTRACT(DOW FROM hiredate);
+
+ALTER TABLE customers
+ALTER COLUMN contact_name SET NOT NULL;--- for altering coloumn 
+
+
+alter table drop coloumn const name;
+
+
+
+d1=# alter table staff_master  rename to staff_mas; -- to rename the tables ,coloumns
+
+create synonym -- for '--';
+
+---------------------------
+
+\ds for getting sequemces 
+
+\d 'sequence name' -- for getting details aboit sequence;
+
+d1=# select * from s1; -- for getting last val
+
+
+-----------------------------
+
+COALESCE--- USED FOR IN PLACE OF NVL-- REPLACING NULL WITH SOME GIVEN
+
+select student_code,coalesce(student_address,'88') from student_master;
+
+ONLY MATCHING COLOMN TYPE WILL BE TAKEN INTO ACCOUNT
+
+
+-----------LIMITING THE ROWS --
+
+USE LIMIT 7;
+---------------------------------
+----------------------------
+
+TO CHANGE VARCHAR TO NUMERIC 
+ALTER TABLE staff_master
+ALTER COLUMN staff_sal TYPE NUMERIC USING staff_sal::NUMERIC;
+
+--------------------------------
+
+
+select nextval('s1');
+buhbbg
