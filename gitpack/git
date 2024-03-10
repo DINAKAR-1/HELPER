@@ -1,0 +1,72 @@
+press esc : q! for quit with no save 
+
+press esc: wq for quit with save 
+
+echo "# genisis" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/dinakarkarengula1/genisis.git
+git push -u origin main
+$ git remote add origin https://github.com/dinakarkarengula1/jgsdua.git
+
+ git config --list 
+
+git log -p -2
+
+git add -A
+
+ git add '*.txt'
+
+git checkout 
+
+
+git diff --> all unstag files 
+
+git diff --staged ---> shows files modifcations in stag area 
+
+unastaged/staged vs last  commit 
+
+
+git show --> to show recent commits
+
+
+
+git diff HEAD
+
+btw branches 
+
+git diff brch1 brch2
+-------------------
+
+git log --stat -->for delets , additions
+
+
+
+git add -u --> only adds modified files to stag area not new
+
+git add -p __>shows the modfications 
+
+git diff hash1 hash2  --> for checking diff btwn two commits 
+
+git diff --cached 
+
+git rm -f -> to remove forcely
+
+
+git rm -cached -->to remove from stag area 
+
+git fetch 
+
+git merge
+
+git branch-->for listin brnches
+
+git pull-> works for the first time but doesnt the next 
+
+
+
+so use ,,
+ git fetch --all
+ git reset --hard origin/master
