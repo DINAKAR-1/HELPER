@@ -1,0 +1,76 @@
+we can serialise and deserialize objects in java 
+
+it means we convert the object into byte stream 
+
+by using 
+
+object output stream we can serialise 
+
+import java.io.*;
+
+public class SerializationExample {
+    public static void main(String[] args) {
+        // Serialize object
+        try {
+            Person person = new Person("John", 30);
+            FileOutputStream fileOut = new FileOutputStream("person.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(person);
+            out.close();
+            fileOut.close();
+            System.out.println("Object serialized successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Deserialize object
+        try {
+            FileInputStream fileIn = new FileInputStream("person.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            Person person = (Person) in.readObject();
+            in.close();
+            fileIn.close();
+            System.out.println("Deserialized object:");
+            System.out.println("Name: " + person.getName());
+            System.out.println("Age: " + person.getAge());
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+class Person implements Serializable {
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+}
+
+
+---- don't worry code is easy 
+
+main reason. of serialisation is to convert to stream of bytes so that we can transfer or persit into db
+
+
+transient keyword -------
+
+we can ignore the field by making transient 
+
+private transient int sam=1;
+
+but wait  it doesn't ignore it completely during deserialize rather it gives defal val like 0 false null 
+
+
+but during serialisation it ignores 
+
