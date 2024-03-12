@@ -287,3 +287,9 @@ this.name=name
 this.id=id
 
 }
+
+delete keyword in js 
+let sender packet ;
+delete senderpacket.conpassword
+
+it removes a field from the object and returns a new modified object 
