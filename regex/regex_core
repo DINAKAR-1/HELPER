@@ -1,0 +1,5 @@
+filename = filename.replaceAll("\\s+","_");
+replaceAll("\\s+", "_"): This part of the code replaces all occurrences of whitespace characters (spaces, tabs, etc.) with underscores (_).
+\s is a regular expression pattern that matches any whitespace character.
++ is a quantifier that matches one or more occurrences of the preceding element, in this case, one or more whitespace characters.
+`"_": This is the replacement string, indicating that all matched whitespace characters will be replaced with underscores.
