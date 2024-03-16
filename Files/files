@@ -1,0 +1,2 @@
+for gettting the type of file 
+filetype = filename.substring(filename.lastIndexOf(".") + 1, filename.length());
