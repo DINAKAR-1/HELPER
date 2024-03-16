@@ -23,3 +23,11 @@ java.sql.Date: This class extends java.util.Date and is used to represent SQL DA
 java.sql.Time: This class extends java.util.Date and is used to represent SQL TIME values, without date or timezone information.
 
 java.sql.Timestamp: This class extends java.util.Date and is used to represent SQL TIMESTAMP values, with nanosecond precision.
+
+to convert date to string 
+//////
+public static String getDateString()
+	{
+		String date = new SimpleDateFormat("yyyyMMdd").format(new Date());
+		return date;
+	}
