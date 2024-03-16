@@ -1,1 +1,25 @@
+The java.util.Date class represents a point in time with precision only up to milliseconds. It doesn't include nanoseconds.
+The Timestamp class, on the other hand, extends java.util.Date and adds nanosecond precision, making it more precise than java.util.Date.
+Timestamp is primarily used in the context of JDBC (Java Database Connectivity) for handling SQL TIMESTAMP values.
+ Date utilDate = new Date();
+java.util.Date: Wed Mar 16 11:37:18 UTC 2024
+ Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+Timestamp: 2024-03-16 11:37:18.865
 
+////
+
+java.time package (introduced in Java 8):
+
+java.time.LocalDate: Represents a date without time, such as "2024-03-16".
+java.time.LocalTime: Represents a time without date information, such as "15:30:45".
+java.time.LocalDateTime: Represents a date and time without time zone information, such as "2024-03-16T15:30:45".
+java.time.ZonedDateTime: Represents a date and time with time zone information.
+java.time.Instant: Represents a point in time, similar to java.util.Date, but with nanosecond precision.
+java.time.Duration: Represents a time-based amount of time, such as "5 minutes".
+java.time.Period: Represents a date-based amount of time, such as "2 weeks".
+////////////
+java.sql.Date: This class extends java.util.Date and is used to represent SQL DATE values, without time or timezone information.
+
+java.sql.Time: This class extends java.util.Date and is used to represent SQL TIME values, without date or timezone information.
+
+java.sql.Timestamp: This class extends java.util.Date and is used to represent SQL TIMESTAMP values, with nanosecond precision.
