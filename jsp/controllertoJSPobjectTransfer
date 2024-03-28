@@ -1,0 +1,23 @@
+to send a list from controller to jsp 
+
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        String patientjson = objectMapper.writeValueAsString(patients);
+
+        redirectAttributes.addFlashAttribute("patJson", patientjson);
+
+
+and parse iit in the jsp
+
+      var patientsJson = '<%= request.getAttribute("patJson") %>';
+ 
+      if (patientsJson != "null") {
+
+        console.log(JSON.parse(patientsJson));
+ 
+        var selectedTokenId = document.getElementById("token_no").value;
+
+        var patients = JSON.parse(patientsJson);
+
+        console.log(patients);
