@@ -1,0 +1,52 @@
+      $(document).ready(function () {
+        // Initialize form validation on the myForm form element
+        $("#roleUploadForm").validate({
+          // Specify validation rules
+          rules: {
+            roleName: {
+              required: true,
+              minlength: 5,
+              pattern: "^[a-zA-Z\\s]+$",
+            },
+            description: {
+              required: true,
+              minlength: 5,
+              pattern: "^[a-zA-Z\\s]+$",
+            },
+          },
+          // Specify validation error messages
+          messages: {
+            roleName: {
+              required: "Please enter Role Name",
+              minlength: " Your Role Name must be at least 5 characters long",
+              pattern: " Special characters and numbers are not allowed.",
+            },
+            description: {
+              required: "Please enter Role Description",
+              minlength:
+                " Your  Role Description must be at least 5 characters long",
+              pattern: " Special characters and numbers are not allowed.",
+            },
+          },
+          // Add Bootstrap 4 styling to the error messages
+          errorElement: "span",
+          errorClass: "invalid-feedback",
+          highlight: function (element, errorClass, validClass) {
+            $(element).addClass("is-invalid").removeClass("is-valid");
+          },
+          unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass("is-invalid").addClass("is-valid");
+          },
+
+          submitHandler: function (form) {
+            // Submit the form
+            if (confirm("Are you sure you want to save this role ?")) {
+              form.submit();
+            }
+          },
+        });
+
+note: 
+if used with spring mvc form, then specify the path names in the rules 
+else if normal form is used specify classsess
+it works for every key we press
