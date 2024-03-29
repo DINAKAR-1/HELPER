@@ -1,0 +1,3 @@
+ SELECT last_value from serviceMasterSequenceGenerator;
+select  nextval ('serviceMasterSequenceGenerator');
+alter sequence serviceMasterSequenceGenerator restart with 50;
