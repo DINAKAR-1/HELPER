@@ -1,0 +1,51 @@
+ [5:06 pm] Sakshath Banavath (TSD)
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+      // Get the input element for search
+
+      const searchInput = document.getElementById("searchInput");
+
+
+
+      // Add event listener to the search input
+
+      searchInput.addEventListener("input", function () {
+
+        // Get the search query
+
+        const query = searchInput.value.trim().toLowerCase();
+
+
+
+        // Filter patient details based on the search query
+
+        const patients = document.querySelectorAll("#patientTableBody tr");
+
+        patients.forEach((patient) => {
+
+          const patientName = patient
+
+            .querySelector("td:nth-child(2)")
+
+            .textContent.toLowerCase();
+
+          if (patientName.includes(query)) {
+
+            patient.style.display = "table-row";
+
+          } else {
+
+            patient.style.display = "none";
+
+          }
+
+        });
+
+      });
+
+    });
+
+  </script>
