@@ -10,3 +10,11 @@ function isInViewport(element) {
 
   this gives if the elem is in veiwport and if in view port do the thinh u want 
 like adding class or removingg the class
+
+// Example usage:
+var element = document.getElementById('your-element-id');
+if (isInViewport(element)) {
+    console.log('Element is in the viewport');
+} else {
+    console.log('Element is not in the viewport');
+}
