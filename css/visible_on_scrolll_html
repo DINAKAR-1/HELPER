@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation Example</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+
+    <style>
+      img {
+        transition: opacity 0.3s ease-in;
+        object-fit: cover;
+        opacity: 0; /* Initially hide all images */
+      }
+
+      img.visible {
+        opacity: 1;
+      }
+
+      img:hover {
+        transform: scale(1.1);
+      }
+
+      .db {
+        display: flex;
+        border: solid 5px;
+        margin: 3px;
+        text-align: center;
+        gap: 2px; /* Use gap instead of gap-2 */
+      }
+    </style>
+  </head>
+  <body>
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+    <div class="db border border-5 m-3 text-center d-flex flex-column">
+      <div class="overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1579353977828-2a4eab540b9a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt=""
+          class="imga"
+          height="400px"
+          width="400px"
+        />
+      </div>
+      <div class="overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1579353977828-2a4eab540b9a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt=""
+          class="imga"
+          height="400px"
+          width="400px"
+        />
+      </div>
+      <div class="overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1579353977828-2a4eab540b9a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt=""
+          class="imga"
+          height="400px"
+          width="400px"
+        />
+      </div>
+      <div class="overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1579353977828-2a4eab540b9a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt=""
+          class="imga"
+          height="400px"
+          width="400px"
+        />
+      </div>
+      <div class="overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1579353977828-2a4eab540b9a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt=""
+          class="imga"
+          height="400px"
+          width="400px"
+        />
+      </div>
+      <div class="overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1579353977828-2a4eab540b9a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt=""
+          class="imga"
+          height="400px"
+          width="400px"
+        />
+      </div>
+      <div class="overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1579353977828-2a4eab540b9a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt=""
+          class="imga"
+          height="400px"
+          width="400px"
+        />
+      </div>
+      <div class="overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1579353977828-2a4eab540b9a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt=""
+          class="imga"
+          height="400px"
+          width="400px"
+        />
+      </div>
+
+      <!-- Add more image elements here -->
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var images = document.querySelectorAll(".imga");
+
+        function isInViewport(element) {
+          var rect = element.getBoundingClientRect();
+          return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <=
+              (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <=
+              (window.innerWidth || document.documentElement.clientWidth)
+          );
+        }
+
+        function handleScroll() {
+          images.forEach(function (image) {
+            if (isInViewport(image)) {
+              image.classList.add("visible");
+              console.log("image is visible");
+            } else {
+              console.log("image is not visible");
+            }
+          });
+        }
+
+        window.addEventListener("scroll", handleScroll);
+      });
+    </script>
+  </body>
+</html>
