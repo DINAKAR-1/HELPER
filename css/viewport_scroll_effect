@@ -18,3 +18,38 @@ if (isInViewport(element)) {
 } else {
     console.log('Element is not in the viewport');
 }
+
+
+
+
+-----------------------------
+detailed example
+
+
+function isInViewport(element) {
+    var rect = element.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
+
+function onScroll() {
+    var element = document.getElementById('your-element-id');
+    if (isInViewport(element)) {
+        console.log('Element is in the viewport');
+        // Do something when element is in viewport
+    } else {
+        console.log('Element is not in the viewport');
+        // Do something when element is not in viewport
+    }
+}
+
+window.addEventListener('scroll', onScroll);
+
+// Initial check on page load
+window.addEventListener('load', function() {
+    onScroll();
+});
