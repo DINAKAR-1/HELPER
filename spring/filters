@@ -1,0 +1,3 @@
+use filter for session attribte checking and if no spring security is used check for user attribute in session if persist , forward the chain , else redirrect 
+
+and do filter may rnu many timess due to cdn links of js and css
