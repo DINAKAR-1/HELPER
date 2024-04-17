@@ -1,0 +1,22 @@
+  var shareslist = document.getElementsByClassName("share")
+                                    for (let i = 0; i < shareslist.length; i++) {
+                                      shareslist[i].addEventListener("click", function () {
+                                        console.log("shared");
+                                        var phno = 9014556315;
+
+                                        var message = encodeURIComponent("Check out the blog post: below ")
+
+                                        var whatsappURL = 'https://wa.me/' + phno + "?text=" + message;
+                                        var twitterURL = 'https://twitter.com/intent/tweet?text=' + message;
+                                        var windowWidth = 500;
+                                        var windowHeight = 500;
+
+                                        // Calculate the center position for the new window
+                                        var windowLeft = (window.innerWidth - windowWidth) / 2;
+                                        var windowTop = (window.innerHeight - windowHeight) / 2;
+
+                                        // Open a small window with the specified dimensions
+                                        window.open(twitterURL, '_blank', 'width=' + windowWidth + ', height=' + windowHeight + ', left=' + windowLeft + ', top=' + windowTop);
+
+
+                                      })
