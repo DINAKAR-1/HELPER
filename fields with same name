@@ -1,0 +1,47 @@
+this file shows how we can send fields with same name 
+actually we need to make the fied names unique first 
+then we store the values of each field into a list by grabbing startiung with classname 
+then we send the list of values to the controller as a hidden input field and a genreic name like applicationNumberList
+
+this way we can have validation and send values at same time 
+--------------------------------------------------
+ var appNumber = [];
+      var appTypes=[];
+      //for application numbers
+      $("[name^='applicationNumber']").each(function() {
+        
+        appNumber.push($(this).val());
+      });
+      //for application types
+      $("[name^='applicationType']").each(function() {
+        
+        appTypes.push($(this).val());
+      });
+
+       // Create a hidden input field to store the app numbers field values array
+       var applicationNumber = $("<input>")
+          .attr("type", "hidden")
+          .attr("name", "applicationNumber")
+          .val(appNumber);
+
+        // Create a hidden input field to store the app types field values array
+        var applicationType = $("<input>")
+          .attr("type", "hidden")
+          .attr("name", "applicationType")
+          .val(appTypes);
+
+        // Append the hidden input fields to the form
+        $(form).append(applicationNumber);
+
+        // Append the hidden input fields to the form
+        $(form).append(applicationType);
+
+
+
+        // and in controller we grab by 
+          @RequestParam(name = "applicationType", required = false) List<String> applicationTypes,
+            @RequestParam(name = "applicationNumber", required = false) List<String> applicationNumbers
+--------------------------------------------------------------
+
+refrence jsp file raiseissue.jsp [tfiber]
+
