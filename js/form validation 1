@@ -47,6 +47,7 @@
         });
 
 note: 
-if used with spring mvc form, then specify the path names in the rules 
-else if normal form is used specify classsess
+1.if used with spring mvc form, then specify the path names in the rules 
+2.else if normal form is used specify "names"
+3. the names should be unique else it will validate only for the first fields with same name
 it works for every key we press
