@@ -1,0 +1,6 @@
+for making the text captalize for the fitst letter like
+WordUtils.capitalizeFully(null)        = null
+ WordUtils.capitalizeFully("")          = ""
+ WordUtils.capitalizeFully("i am FINE") = "I Am Fine"
+WordUtils.capitalizeFully(newIssue) 
+-----------------------------------------------------
