@@ -1,0 +1,44 @@
+ <script>
+                        $(document).ready(function () {
+                            $('#selectAll').click(function () {
+                                if (this.checked) {
+                                    $('.application').each(function () {
+                                        this.checked = true;
+                                    })
+                                }
+                                else {
+                                    $('.application').each(function () {
+                                        this.checked = false;
+                                    })
+                                }
+                            })
+                        
+                      
+                            $('.application').click(function () {
+                            if ($('.application:checked').length == $('.application').length) {
+                                $('#selectAll').prop('checked', true);
+                            }
+                            else {
+                                $('#selectAll').prop('checked', false);
+                            }})
+                        })
+                    </script>
+
+-------------------------------------------------------
+
+  jsp code
+
+                                                                               <c:if test="${checkboxes}">
+
+                                                                            <input type="checkbox" id="selectAll">
+                                                                            Select All
+                                                                    </p>
+                                                                </c:if>
+                                                                <c:forEach var="each"
+                                                                    items="${raisedIssue.unlockapplicationList}">
+                                                                    <p>
+                                                                        <c:if test="${checkboxes}">
+
+                                                                            <input type="checkbox" class="application"
+                                                                                value="${each.appType}">
+                                                                        </c:if>
