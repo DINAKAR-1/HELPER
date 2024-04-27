@@ -4,3 +4,12 @@ WordUtils.capitalizeFully(null)        = null
  WordUtils.capitalizeFully("i am FINE") = "I Am Fine"
 WordUtils.capitalizeFully(newIssue) 
 -----------------------------------------------------
+div fade in fade out 
+ <script>
+
+$(document).ready(function () {
+    setTimeout(() => {
+        $('.container').fadeOut();
+    }, 3000);
+})
+                    </script>
