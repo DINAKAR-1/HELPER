@@ -26,3 +26,30 @@
                             });
                         }
                     </script>
+-----------------------------
+            <button onclick="topFunction()" id="myBtn" title="Go to top" class="rounded-circle">
+              <i class="fa fa-arrow-up"></i>
+            </button>
+
+
+------------------------------
+
+         #myBtn {
+              display: none;
+              position: fixed;
+              bottom: 20px;
+              right: 40px;
+              z-index: 99;
+              font-size: 18px;
+              border: none;
+              outline: none;
+              background-color: #0081cf;
+              color: white;
+              cursor: pointer;
+              padding: 10px;
+              border-radius: 4px;
+            }
+
+            #myBtn:hover {
+              background-color: #555;
+            }
