@@ -1,3 +1,4 @@
 coalesc is useed to replace the nulls with some value like 
  COALESCE(salary, 0) AS salary
 now we get 0 inplace of nulls 
+if no col name is given it gives defalt like column1 ,column2
