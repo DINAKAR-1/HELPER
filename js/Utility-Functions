@@ -13,3 +13,21 @@ $(document).ready(function () {
     }, 3000);
 })
                     </script>
+-----------------------
+
+disable copying 
+  document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("selectstart", function (e) {
+          e.preventDefault();
+        });
+
+
+disbale pasting 
+// Prevent pasting
+      document.addEventListener("paste", function (e) {
+        e.preventDefault();
+      });
+
+=------------------------/
+simpler way oncopy="return false;" onpaste="return false;"
+oncontextmenu="return false"; this disables the rigth click 
