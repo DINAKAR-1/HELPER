@@ -1,0 +1,33 @@
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class MyScheduler {
+
+    public static void main(String[] args) {
+        // Create a Timer object
+        Timer timer = new Timer();
+
+        // Create a TimerTask object
+        TimerTask task = new MyTask();
+
+        // Schedule the task to run every 5 seconds
+        timer.scheduleAtFixedRate(task, 0, 5000);
+
+        // After some time (e.g., 30 seconds), cancel the task
+        try {
+            Thread.sleep(30000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        timer.cancel(); // Cancels the Timer and all scheduled tasks
+    }
+}
+
+// Custom TimerTask implementation
+class MyTask extends TimerTask {
+    @Override
+    public void run() {
+        // Task logic goes here
+        System.out.println("Task executed at: " + new java.util.Date());
+    }
+}
