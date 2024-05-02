@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jQuery Validation Plugin Example</title>
+    <!-- Include jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Include jQuery Validation Plugin -->
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <style>
+      .error {
+        color: red;
+      }
+
+      img {
+        object-fit: contain;
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+      }
+      .container {
+        position: relative;
+        width: 100%;
+        height: 700px; /* Adjust as needed */
+      }
+      .container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("../images/dd.jpg");
+        background-size: cover;
+        z-index: -1; /* Ensureackground is behind the content */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <form id="registrationForm">
+      <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required />
+        <input type="text" id="username1" name="username1" required />
+      </div>
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+      <div>
+        <label for="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          minlength="6"
+          required
+        />
+      </div>
+      <div>
+        <label for="confirm_password">Confirm Password:</label>
+        <input
+          type="password"
+          id="confirm_password"
+          name="confirm_password"
+          equalTo="#password"
+          required
+        />
+      </div>
+      <button type="submit">Register</button>
+    </form> -->
+
+    <div>
+      <div class="container">Content</div>
+    </div>
+    <script>
+      $(document).ready(function () {
+        // Validate the registration form
+        $("#registrationForm").validate({
+          rules: {
+            username: {
+              required: true,
+              minlength: 3,
+            },
+            email: {
+              required: true,
+              email: true,
+            },
+            password: {
+              required: true,
+              minlength: 6,
+            },
+            confirm_password: {
+              required: true,
+              equalTo: "#password",
+            },
+          },
+          messages: {
+            username: {
+              required: "Please enter your username",
+              minlength: "Username must be at least 3 characters long",
+            },
+            email: {
+              required: "Please enter your email",
+              email: "Please enter a valid email address",
+            },
+            password: {
+              required: "Please enter your password",
+              minlength: "Password must be at least 6 characters long",
+            },
+            confirm_password: {
+              required: "Please confirm your password",
+              equalTo: "Passwords do not match",
+            },
+          },
+          // Submit handler if the form is valid
+          submitHandler: function (form) {
+            // You can perform your ajax submission here
+            alert("Form submitted successfully!");
+          },
+        });
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("selectstart", function (e) {
+          e.preventDefault();
+        });
+      }); // Prevent pasting
+      document.addEventListener("paste", function (e) {
+        e.preventDefault();
+      });
+    </script>
+  </body>
+</html>
