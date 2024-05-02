@@ -53,7 +53,9 @@ public class OrderItem {
 
 now the many side is owning entity coz it holds the column referencing the one side in one to many 
 
-so this table contains a extra column referencing the sspecifeid col in join column where name =" col in one table " 
+so this table contains a extra column referencing the sspecifeid col in join column where name =" our custom name  "  and by defalt it points to the primary key of the other 
+table 
+so we can specify the col to be referenced by referenced column and name is just a cutsom column name
 
 acts like a foreign key 
 
