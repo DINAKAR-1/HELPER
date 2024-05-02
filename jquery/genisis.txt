@@ -1,0 +1,44 @@
+important jquery trick and uses
+-----------------------
+var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
+
+for ajax call study below function example 
+
+	function getSelectBox(type, val, id) {
+		
+		
+		$.ajaxSetup({
+			beforeSend: function(xhr){xhr.setRequestHeader(header, token);},
+			});
+		
+		//alert("dddddddddd");
+	 if (type == "mandal") {
+		// alert("vvvv");
+		$.post(
+			"${pageContext.request.contextPath}/public/common/getMandals?district_id="
+					+ val, function(data) {
+			//	alert(data);
+				//alert(id);
+				$('#userMandalCode').attr('disabled', false);
+				$("select#" + id).html("<option value=''>--Select Mandal--</option>"+data);
+			});
+		} else if (type == "police") {
+	      $.post(
+			"${pageContext.request.contextPath}/public/common/getPoliceStations?district_id="
+					+ val, function(data) {
+				$("select#" + id).html("<option value=''>--Select PoliceStation--</option>"+data);
+			});
+		} else {
+		$.post(
+			"${pageContext.request.contextPath}/public/common/getVillages?mandal_id="
+					+ val, function(data) {
+				$('#userVillageCode').attr('disabled', false);
+				$("select#" + id).html("<option value=''>--Select Village--</option>"+data);
+			});
+		}
+	}
+
+
+--------------------------------------------------------------
+
