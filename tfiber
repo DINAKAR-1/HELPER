@@ -1,0 +1,86 @@
+tfiber structure
+
+user applications -
+
+underground 
+overground
+mobile tower
+small cell
+cells on mobile
+microcommunication
+wifi services
+
+
+TABLE- tfiber_applicant_services
+
+
+-----------------------------
+
+structure
+
+main
+	-java -java code
+	-resources -for porperty files
+	-webapp- views
+
+
+--------------------
+
+-webapp 
+	-resources
+		   -js and css and boostarp 
+	-WEB-INF
+		-tiles.xml
+		-Views
+			-all jsp files
+-----------------------------------
+
+java 
+	-com
+	     - for meeseva 
+	-in 	
+	   -gov
+		-cgg
+		     
+------------------------
+in cgg
+
+-authentcation
+-common
+-config
+-core
+-encdecmech
+-filters
+-listeners
+-scheduler
+-tfiber
+-utils
+
+-------------------------------------
+utils for common utility fuctions 
+---------------------
+scheduler -for payments and pdf genration
+---------------------
+listeners -for session listener and  servlet context listener
+--------------------------
+
+filter 
+enc dec
+core 
+
+same single file folders
+-----------------
+
+config-contains user principle
+	tiles config
+	security 
+	hikaricp
+	md5encoder
+
+common- 
+contains java files 
+
+
+
+
+
