@@ -1,0 +1,60 @@
+example of order and each order contains orderitems
+
+import javax.persistence.*;
+import java.util.Set;
+
+@Entity
+@Table(name = "Orders")
+public class Order {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "OrderID")
+    private Long orderId;
+
+    @Column(name = "CustomerID")
+    private Long customerId;
+
+    @Column(name = "OrderDate")
+    private Date orderDate;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<OrderItem> orderItems;
+
+    // Getters and setters
+}
+---------------------------------------------------
+import javax.persistence.*;
+
+@Entity
+@Table(name = "OrderItems")
+public class OrderItem {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "OrderItemID")
+    private Long orderItemId;
+
+    @ManyToOne
+    @JoinColumn(name = "OrderID")
+    private Order order;
+
+    @Column(name = "ProductID")
+    private Long productId;
+
+    @Column(name = "Quantity")
+    private Integer quantity;
+
+    @Column(name = "Price")
+    private BigDecimal price;
+
+    // Getters and setters
+}
+
+-----------------------------------------------------------
+
+now the many side is owning entity coz it holds the column referencing the one side in one to many 
+
+so this table contains a extra column referencing the sspecifeid col in join column where name =" col in one table " 
+
+acts like a foreign key 
+
+this is how it works
