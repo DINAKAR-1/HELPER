@@ -1,0 +1,27 @@
+fake zebra-strips
+
+iterate through table rowss and add even odd colors for differebt rows adn speicfy using css
+
+// Get all table rows
+var tableRows = document.querySelectorAll('table tr');
+
+// Initialize counters for even and odd rows
+var evenCount = 0;
+var oddCount = 0;
+
+// Iterate through each table row
+tableRows.forEach(function(row) {
+    // Check if the row is hidden
+    if (row.style.display !== 'none') {
+        // Increment the appropriate counter based on row type
+        if (evenCount % 2 === 0) {
+            // Even row
+            row.style.backgroundColor = 'lightgray'; // Add color for even rows
+            evenCount++;
+        } else {
+            // Odd row
+            row.style.backgroundColor = 'lightblue'; // Add color for odd rows
+            oddCount++;
+        }
+    }
+});
