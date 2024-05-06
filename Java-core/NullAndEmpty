@@ -1,0 +1,4 @@
+String s=null the object is not instantiated , we cant use functions of string on this 
+
+string s2='' this is an object but holding nothing so it can invoke fnctions of string 
+and it is just a string holding nothing
