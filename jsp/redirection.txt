@@ -1,0 +1,30 @@
+redirect from a method to another method passing the paramters 
+we can redirect to a method view and can also pass params without using url parameters 
+traditional way 
+return "redirect:/result?message=hello";
+
+but we can see the paramters in the url so security issue 
+so we send them as flash attributes to the method , but keep in mind to name the flashattrivute so that they dont collude in jsp and show it in jsp 
+
+  redirectAttributes.addFlashAttribute("officerRaisedIssueId",officerRequestId);
+            return new RedirectView("resolveIssue");
+
+and in the method handler we can do 
+----------------------------------------------
+ @RequestMapping("/resolveIssue")
+    public String resolveIssue(@RequestParam(name = "raisedIssueId", required = false) Long officerRaisedIssueId, Model model) {
+        System.out.println("in this method");
+       
+        
+         // Check if officerRaisedIssueId is null (not received as a request parameter)
+    if (officerRaisedIssueId == null) {
+        // Check if it's available as a flash attribute
+          officerRaisedIssueId = (Long) model.asMap().get("officerRaisedIssueId"); 
+          System.out.println(officerRaisedIssueId);
+        
+    }
+
+we can grab the flashattribute by adding model to the method and 
+get by model to map and get val by key 
+
+----------------------------------------------
