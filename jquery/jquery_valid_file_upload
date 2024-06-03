@@ -1,0 +1,226 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="_csrf" content="${_csrf.token}"/>
+  <meta name="_csrf_header" content="${_csrf.headerName}"/>
+  <title>User Role</title>
+ <style>
+
+  .searchbar{
+    background-color:#e2daed;
+  }
+ @media(max-width:768px){
+  .urm{
+   margin-top: 140px; 
+  }
+  .username{
+    margin-bottom: 20px !important; 
+  }
+
+ }
+ </style>
+   
+</head>
+<body>
+  <div class="px-5 urm">
+    <div class="text-center bg-light p-2 mb-3 rounded pt-1"><h2   class="m-0 font-weight-bold">User Role Management</h2></div>
+    <c:if test="${not empty message }">
+    <div class="alert alert-success  alert-dismissible fade show" role="alert"> 
+      ${message}
+    </div>
+        	</c:if>
+    <div class="row align-items-center">
+      <div class="col-12">
+      
+        <form name="editrole" id="editrole" action="/">
+          <div class="form-group d-md-flex row w-100  rounded searchbar p-3" style="margin-left: 1px; padding-left: 0px !important; padding-right: 40px !important;">
+            <div class="col-md-6  d-flex d-md-block justify-content-center mt-2 ">
+              <h5 for="username " class="m-0 text-right username">  Username :
+            </h5>
+            </div>
+           
+            <div class="col-md-6 d-md-block d-flex justify-content-center  p-0">
+              <input type="text" class="form-control w-75" id="username" name="username" placeholder="Enter username"> 
+              <input type="file" class="form-control w-75" id="filee" name="filee" placeholder="Enter filee"> 
+            </div>
+            <!-- <div class="   col-md-4  d-md-flex justify-content-start text-right h-50">
+              <button type="submit" class="btn btn-primary">Edit User</button>
+            </div> -->
+          </div>
+         
+        </form>
+        
+      </div>
+     
+    </div>
+  </div>
+  <div class="px-5 table-responsive d-none" id="data_table">
+    
+    <form action="${pageContext.request.contextPath}/updateUserRole" method="post" id="myForm">
+    <table class="table table-bordered" id="dataTable">
+       <!-- Hidden fields for user name and role ID -->
+      <input type="hidden" id="user_code" name="user_code">
+      <input type="hidden" id="user_name" name="user_name">
+      <input type="hidden" id="prev_role_id" name="prev_role_id">
+      <thead>
+        <tr>
+          <th scope="col">S.No</th>
+          <th scope="col">Username</th>
+          <th scope="col">Current Role</th>
+          <th scope="col">Updated Role</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td><input type="text"   name="table_user_name" id="table_user_name" class="form-control" disabled placeholder="Enter username"></td>
+          <td> 
+            <select class="form-control" name="table_select_dropdown" id="table_select_dropdown" disabled>
+              <option value="" disabled>--select--</option>
+              <c:forEach var="eachrole" items="${roleslist}">
+              <option value="${eachrole.roleId}">${eachrole.roleName}</option>
+            </c:forEach>
+            </select>
+          </td>
+          <td> 
+            <select class="form-control" name="updated_role_id" id="updated_role_id"    >
+              <option value="" selected disabled>--select--</option>
+              <c:forEach var="eachrole" items="${roleslist}">
+              <option value="${eachrole.roleId}">${eachrole.roleName}</option>
+            </c:forEach>
+            </select>
+          </td>
+          <td>
+            <button type="button" class="btn btn-primary" onclick=" submitdetails(event)">Update</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </form>
+  </div>
+  <script>
+    $(document).ready(function () 
+    { 
+      setTimeout(() => {
+        $(".fade").hide();
+      }, 1500);
+
+      const csrfToken = $('meta[name="_csrf"]').attr('content');
+      const csrfHeader = $('meta[name="_csrf_header"]').attr('content');
+      $.validator.addMethod("checkUser", function(value, element) {
+        
+        var isSuccess = true;
+        $.ajax({
+          type: "POST",
+          url: `${pageContext.request.contextPath}/checkUser`,
+          data:  {username:value} ,
+          async: false,
+          beforeSend: function(xhr) {
+            xhr.setRequestHeader(csrfHeader, csrfToken);
+          },
+          success: function(response) { 
+            if (response.userName=="null") {
+              isSuccess= false;
+              $('#data_table').addClass("d-none")
+            }
+            else{
+              $('#data_table').removeClass("d-none")
+              $("#table_user_name").val(response.user.userName);
+              $("#table_select_dropdown").val(response.roleId);
+              //setting values for hidden fields
+              $("#user_code").val(response.user.userCode)
+              $("#user_name").val(response.user.userName)
+              $("#prev_role_id").val(response.roleId);
+              //----------------------------------
+            }
+          }
+        });
+        return isSuccess;
+      }, "User does not exist in the database."); 
+
+
+
+      $.validator.addMethod('filesize', function (value, element, param) {
+    return this.optional(element) || (element.files[0].size <= param)
+}, 'File size must be less than 1 mb');
+      //calling initially 
+      Validation();
+
+    })
+  </script> 
+  <script>
+       var rules={
+        username: {
+          required: true,
+          pattern: "[A-Za-z][A-Za-z0-9 ]*",
+          checkUser:true
+        },
+        filee:{ required: true,
+        extension: "jpeg|jpg|png",
+        filesize: 1048576 ,
+        }      
+      }
+       var messages={
+        username: {
+          required: "Please enter username  ",
+          pattern:
+            "Username should only start with letters , special characters are not allowed",
+          checkUser:
+            "User not found",
+        } 
+              
+}
+
+       function Validation() 
+{  
+// Initialize form validation on the myForm form element 
+$("#editrole").validate(
+  {  
+      // Specify validation rules
+      rules: rules,
+      // Specify validation error messages
+      messages:  messages,
+      
+      // Add Bootstrap 4 styling to the error messages
+      errorElement: "span",
+      errorClass: "invalid-feedback",
+      
+      highlight: function (element, errorClass, validClass) {
+        $(element).addClass("is-invalid").removeClass("is-valid");
+      },
+      unhighlight: function (element, errorClass, validClass) {
+        $(element).removeClass("is-invalid").addClass("is-valid");
+    },
+    submitHandler: function (form) {
+    },
+  });
+
+}
+
+  </script>
+  <script>
+    function submitdetails(e){
+     e.preventDefault();
+     if ($("#updated_role_id").val()==null) {
+      alert("Please select a role");
+      return false;  
+    }
+    if (confirm("Are you sure you want to update the role ?")) {
+      $("#myForm").submit();
+    }
+      return false;
+      
+    }
+  </script>
+  
+ 
+</body>
+</html>
