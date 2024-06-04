@@ -1,0 +1,9 @@
+footerCallback: function( tfoot, data, start, end, display ) 
+                {
+                var api = this.api();
+                $(api.column(3).footer()).html(
+                api.column(3).data().reduce(function ( a, b ) {
+                         return Number(a) + Number(b);
+                    }, 0)
+                );
+                }
