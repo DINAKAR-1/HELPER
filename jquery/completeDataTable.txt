@@ -1,0 +1,512 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="_csrf" content="${_csrf.token}"/>
+  <meta name="_csrf_header" content="${_csrf.headerName}"/>
+  <title>payment reports</title>
+ <!-- <style>
+
+  .searchbar{
+    background-color:#e2daed;
+  }
+ @media(max-width:768px){
+  .urm{
+   margin-top: 140px; 
+  }
+  .username{
+    margin-bottom: 20px !important; 
+  }
+
+ }
+ </style> -->
+ <style>
+    .report-section {
+        display: none;
+    }
+    #combinedReport   {
+        display: block;
+    }
+    .table-bordered th     {
+        border: 2px rgba(0, 0, 0, 0.267) solid !important;
+    }
+    .table-bordered td     {
+        border: 2px rgba(0, 0, 0, 0.251) solid !important;
+    }
+    .content-wrapper{
+        margin-top: 50px;
+    }
+    .dt-buttons > button{
+            margin-right: 10px !important;
+            border-radius: 5px !important; /* Adjust the spacing as needed */
+        }
+    /* styles.css */
+    table.dataTable tfoot th{
+            background-color: #432c98d3 !important; /* Change this to the desired color */
+            color: white !important; /* Text color */
+        }
+
+    .wrapper +.table{
+	display: none;
+}
+ 
+
+    @media(max-width:769px){
+        .content-wrapper{
+        margin-top: 150px;
+    } 
+    }
+</style>
+<!-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/datatables/dataTables.bootstrap4.min.css"> -->
+  <!-- DataTables CSS -->
+  <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css"> -->
+ 
+ 
+
+</head>
+<body >
+    <div class="container">
+        <div class="btn-group my-3">
+            <button class="btn btn-info rounded mx-1 " onclick="showReport('combinedReport')">Combined Report</button>
+            <button class="btn btn-info rounded mx-1" onclick="showReport('departmentWiseReport')">Department Wise Report</button>
+            <button class="btn btn-info rounded mx-1" onclick="showReport('applicationWiseReport')">Application Type Wise Report</button>
+            <button class="btn btn-primary rounded mx-1" onclick="showReport('allReports')">All Reports</button>
+        </div>
+    </div>
+
+    <div class="container table-responsive  mt-4 report-section table table-hover table-striped w-100 " id="combinedReport" >
+        <h2>Department and ApplicationType Wise Payments Report</h2>
+        <table class="table table-bordered  reportCombined" id="reportCombined" style="border: 2px black solid;" >
+            <thead>
+                <tr class="rowCountForTotal">
+                    <th>Department Name</th>
+                    <th>Application Type</th>
+                    <th>Administrative Charges</th>
+                    <th>Admin GST Charges</th>
+                    <th>Total Admin Charges</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="row" items="${combinedPaymentReports}">
+                    <tr>
+                        <td>${row.deptName}</td>
+                        <td>${row.appType}</td>
+                        <td class="text-center">${row.administrativeCharges}</td>
+                        <td class="text-center">${row.adminGstCharges}</td>
+                        <td class="text-center">${row.totalAdminCharges}</td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+            <tfoot>
+                <th>Total</th>
+                <th></th>
+                <th class="text-center "></th>
+                <th class="text-center "></th>
+                <th class="text-center "></th>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="container table-responsive  mt-4 report-section table table-hover table-striped w-100" id="departmentWiseReport">
+        <h2>Department wise Payments Report</h2>
+        <table class="table table-bordered DepartmentWiseReport" id="reportDepartmentWise">
+            <thead>
+                <tr>
+                    <th>Department Name</th>
+                    <th>Administrative Charges</th>
+                    <th>Admin GST Charges</th>
+                    <th>Total Admin Charges</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="row" items="${DepartmentWisePaymentReports}">
+                    <tr>
+                        <td>${row.deptName}</td>
+                        <td class="text-center">${row.administrativeCharges}</td>
+                        <td class="text-center">${row.adminGstCharges}</td>
+                        <td class="text-center">${row.totalAdminCharges}</td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+            <tfoot  >
+                <th>Total</th>
+                <th  class="text-center "></th>
+                <th  class="text-center "></th>
+                <th  class="text-center "></th>
+            </tfoot>
+        </table>
+        
+    </div>
+
+    <div class="container table-responsive  mt-4  report-section table table-hover table-striped w-100" id="applicationWiseReport">
+        <h2>Application Type wise Payments Report</h2>
+        <table class="table table-bordered applicationWiseReport" id="reportApplicationWise">
+            <thead>
+                <tr>
+                    <th>Application Type</th>
+                    <th>Administrative Charges</th>
+                    <th>Admin GST Charges</th>
+                    <th>Total Admin Charges</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="row" items="${ApplicationWisePaymentReports}">
+                    <tr>
+                        <td>${row.appType}</td>
+                        <td class="text-center">${row.administrativeCharges}</td>
+                        <td class="text-center">${row.adminGstCharges}</td>
+                        <td class="text-center">${row.totalAdminCharges}</td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+            <tfoot>
+                <th>Total</th>
+                <th class="text-center "></th>
+                <th class="text-center "></th>
+                <th class="text-center "></th>
+            </tfoot>
+        </table>
+    </div>
+
+    <script>
+        function showReport(reportId) {
+            const reportSections = document.querySelectorAll('.report-section');
+            reportSections.forEach(section => {
+                section.style.display = 'none';
+            });
+
+            if (reportId === 'allReports') {
+                reportSections.forEach(section => {
+                    section.style.display = 'block';
+                });
+            } else {
+                document.getElementById(reportId).style.display = 'block';
+            }
+        }
+    </script>
+    
+ 
+
+
+ 
+ 
+<script>
+    $(document).ready(function() {
+        $('#reportCombined').DataTable({
+         
+        responsive: true,
+        
+        paging: false,
+        processing: true,
+        dom: 'Blftirp',
+        lengthChange: false,
+        fixedHeader: true,
+            paging: false,
+            ordering: true,
+            info: false,
+        buttons: [
+            {
+                extend: 'copyHtml5',
+                footer: true,
+                text: '<i class="fa fa-files-o"></i> copy',
+                titleAttr: 'Copy',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                 extend: 'pdfHtml5',
+                 footer: true,
+                 text: '<i class="fa fa-file-pdf-o"></i> pdf' ,
+                 footer: true,
+                 titleAttr: 'PDF',
+                 extension: ".pdf",
+                 filename: "DepartmentandApplicationWiseReport",
+               
+                 title: "Department and Application Wise Report",
+                 orientation: 'vertical',
+                 customize: function (doc) {
+                //   Add custom header    
+                doc.content[1].margin=[70,0,100,0]
+                doc.content[1].layout="borders"
+                doc.styles.tableHeader.margin=doc.styles.tableBodyOdd.margin=
+                doc.styles.tableBodyEven.margin=[6,6,6,6] 
+                },
+                 
+                 exportOptions: 
+                 {
+                     columns: ':visible'
+                 }
+             },
+            { 
+             extend: 'excelHtml5',
+             footer: true, 
+             text: '<i class="fa fa-file-excel-o"></i> excel',
+             footer: true ,
+             filename: "DepartmentandApplicationWiseReport",
+             title: "Department and Application Wise Report",
+             },
+
+            // {
+            //     extend: 'print',
+            //     text: '<i class="fa fa-print"></i> print',
+            //     exportOptions: {
+            //         columns: ':visible',
+            //     }
+            // },
+
+            // {
+            //     extend: 'colvis',
+            //     postfixButtons: ['colvisRestore'],
+            //     collectionLayout: 'fixed four-column'
+            // }
+
+        ],
+        footerCallback: function( tfoot, data, start, end, display ) 
+                {
+                //first col
+                var api = this.api();
+                $(api.column(2).footer()).html(
+                api.column(2).data().reduce(function ( a, b ) {
+                         return Number(a) + Number(b);
+                    }, 0)
+                );
+                //second col
+                var api = this.api();
+                $(api.column(3).footer()).html(
+                api.column(3).data().reduce(function ( a, b ) {
+                         return Number(a) + Number(b);
+                    }, 0)
+                );
+                //third col
+                var api = this.api();
+                $(api.column(4).footer()).html(
+                api.column(4).data().reduce(function ( a, b ) {
+                         return Number(a) + Number(b);
+                    }, 0)
+                );
+                }
+
+    });
+        $('#reportDepartmentWise').DataTable({
+         
+         responsive: true,
+         
+         paging: false,
+         processing: true,
+         dom: 'Blftirp',
+         lengthChange: false,
+         fixedHeader: true,
+             paging: false,
+             ordering: true,
+             info: false,
+         buttons: [
+             {
+                 extend: 'copyHtml5',
+                 footer: true,
+                 text: '<i class="fa fa-files-o"></i> copy',
+                 titleAttr: 'Copy',
+                 exportOptions: {
+                     columns: ':visible'
+                 }
+             },
+             {
+                 extend: 'pdfHtml5',
+                 footer: true,
+                 text: '<i class="fa fa-file-pdf-o"></i> pdf' ,
+                 titleAttr: 'PDF',
+                 extension: ".pdf",
+                 filename: "DepartmentWisePaymentReport",
+               
+                 title: "Department Wise PaymentReport",
+                 orientation: 'vertical',
+                 customize: function (doc) 
+                 {
+                //   Add custom header    
+                 doc.content[1].margin=[100,0,100,0]
+                 doc.content[1].layout="borders"
+                 doc.styles.tableHeader.margin=doc.styles.tableBodyOdd.margin=
+                 doc.styles.tableBodyEven.margin=[6,6,6,6] 
+                 },
+                 
+                 exportOptions: 
+                 {
+                     columns: ':visible'
+                 }
+             },
+             { 
+             extend: 'excelHtml5', 
+             footer: true,
+             text: '<i class="fa fa-file-excel-o"></i> excel',
+             footer: true ,
+             filename: "DepartmentWisePaymentReport",
+             title: "Department Wise PaymentReport",
+             },
+ 
+             // {
+             //     extend: 'print',
+             //     text: '<i class="fa fa-print"></i> print',
+             //     exportOptions: {
+             //         columns: ':visible',
+             //     }
+             // },
+ 
+             // {
+             //     extend: 'colvis',
+             //     postfixButtons: ['colvisRestore'],
+             //     collectionLayout: 'fixed four-column'
+             // }
+ 
+         ],
+         footerCallback: function( tfoot, data, start, end, display ) 
+                {
+                //first col
+                var api = this.api();
+                $(api.column(1).footer()).html(
+                api.column(1).data().reduce(function ( a, b ) {
+                         return Number(a) + Number(b);
+                    }, 0)
+                );
+                //second col
+                var api = this.api();
+                $(api.column(2).footer()).html(
+                api.column(2).data().reduce(function ( a, b ) {
+                         return Number(a) + Number(b);
+                    }, 0)
+                );
+                //third col
+                var api = this.api();
+                $(api.column(3).footer()).html(
+                api.column(3).data().reduce(function ( a, b ) {
+                         return Number(a) + Number(b);
+                    }, 0)
+                );
+                }
+     });
+        
+        $('#reportApplicationWise').DataTable({
+         
+         responsive: true,
+         
+         paging: false,
+         processing: true,
+         dom: 'Blftirp',
+         lengthChange: false,
+         fixedHeader: true,
+             paging: false,
+             ordering: true,
+             info: false,
+         buttons: [
+             {
+                 extend: 'copyHtml5',
+                 footer: true,
+                 text: '<i class="fa fa-files-o"></i> copy',
+                 titleAttr: 'Copy',
+                 exportOptions: {
+                     columns: ':visible'
+                 }
+             },
+             {
+                 extend: 'pdfHtml5',
+                 footer: true,
+                 text: '<i class="fa fa-file-pdf-o"></i> pdf' ,
+                 titleAttr: 'PDF',
+                 extension: ".pdf",
+                 filename: "ApplicationWisePaymentReport",
+               
+                 title: "Application Wise PaymentReport",
+                 orientation: 'vertical',
+                 customize: function (doc) {
+                //   Add custom header    
+                doc.content[1].margin=[100,0,100,0]
+                doc.content[1].layout="borders"
+                doc.styles.tableHeader.margin=doc.styles.tableBodyOdd.margin=
+                doc.styles.tableBodyEven.margin=[6,6,6,6] 
+                },
+                
+                 
+                 exportOptions: 
+                 {
+                     columns: ':visible'
+                 }
+             },
+             { 
+             extend: 'excelHtml5', 
+             footer: true,
+             text: '<i class="fa fa-file-excel-o"></i> excel',
+             footer: true ,
+             filename: "ApplicationWisePaymentReport",
+             title: "Application Wise PaymentReport",
+             },
+             
+             // {
+             //     extend: 'print',
+             //     text: '<i class="fa fa-print"></i> print',
+             //     exportOptions: {
+             //         columns: ':visible',
+             //     }
+             // },
+ 
+             // {
+             //     extend: 'colvis',
+             //     postfixButtons: ['colvisRestore'],
+             //     collectionLayout: 'fixed four-column'
+             // }
+ 
+         ],
+         footerCallback: function( tfoot, data, start, end, display ) 
+                {
+                //first col
+                var api = this.api();
+                $(api.column(1).footer()).html(
+                api.column(1).data().reduce(function ( a, b ) {
+                         return Number(a) + Number(b);
+                    }, 0)
+                );
+                //second col
+                var api = this.api();
+                $(api.column(2).footer()).html(
+                api.column(2).data().reduce(function ( a, b ) {
+                         return Number(a) + Number(b);
+                    }, 0)
+                );
+                //third col
+                var api = this.api();
+                $(api.column(3).footer()).html(
+                api.column(3).data().reduce(function ( a, b ) {
+                         return Number(a) + Number(b);
+                    }, 0)
+                );
+                }
+ 
+     });
+        
+    });
+</script>
+<!-- <script src="${pageContext.request.contextPath}/resources/datatables/jquery.dataTables.min.js" ></script>
+<script src="${pageContext.request.contextPath}/resources/datatables/dataTables.bootstrap4.min.js" ></script>
+<script src="${pageContext.request.contextPath}/resources/datatables/dataTables.buttons.min.js" ></script>
+<script src="${pageContext.request.contextPath}/resources/datatables/buttons.bootstrap4.min.js" ></script>
+<script src="${pageContext.request.contextPath}/resources/datatables/jszip.min.js" ></script>
+<script src="${pageContext.request.contextPath}/resources/datatables/pdfmake.min.js" ></script>
+<script src="${pageContext.request.contextPath}/resources/datatables/vfs_fonts.js" ></script>
+<script src="${pageContext.request.contextPath}/resources/datatables/buttons.html5.min.js" ></script>
+<script src="${pageContext.request.contextPath}/resources/datatables/buttons.print.min.js" ></script>
+<script src="${pageContext.request.contextPath}/resources/datatables/buttons.colVis.min.js" ></script>
+<script src="${pageContext.request.contextPath}/resources/datatables/dataTables.fixedHeader.min.js" ></script> -->
+
+</body>
+ 
+
+
+
+
+
+ 
+</html>
