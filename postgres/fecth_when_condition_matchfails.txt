@@ -1,0 +1,295 @@
+tsrow paymnet report , display record even if there is no record for certain condition 
+we union all the record below our original query to check for a condition opposite to original 
+and fetch the record 
+
+
+union all
+SELECT 
+  'Small Cell' as app_type, 
+  0 as department_id, 
+  'No Data' as dept_name, 
+  'No Data' as application_submit_date, 
+  0 as administrative_charges, 
+  0 as admin_gst_charges, 
+  0 as total_admin_charges 
+WHERE 
+  NOT EXISTS (
+    SELECT 
+      1 
+    FROM 
+      tfiber_smallcell_reg a 
+    WHERE 
+      a.application_status :: numeric NOT IN (0) 
+      AND a.admin_changres_payment IS TRUE
+
+
+---------------------------------------------------------------------------------
+
+select 
+  app_type, 
+  sum(administrative_charges), 
+  sum(admin_gst_charges), 
+  sum(total_admin_charges) 
+from 
+  (
+    select 
+      'Mobile Tower' as app_type, 
+      a.department_id :: numeric, 
+      d.dept_name, 
+      to_char(created_on, 'dd/mm/yyyy') as application_submit_date, 
+      sum(admin_charges :: numeric) as administrative_charges, 
+      sum(gst_charges :: numeric) as admin_gst_charges, 
+      (
+        sum(admin_charges :: numeric)+ sum(gst_charges :: numeric)
+      ) as total_admin_charges 
+    from 
+      tfiber_mobile_tower_reg a 
+      inner join tfiber_dept_mst d on (
+        a.department_id :: numeric = d.dept_id
+      ) 
+    where 
+      a.application_status :: numeric not in (0) 
+      and admin_changres_payment is true 
+    group by 
+      a.department_id, 
+      d.dept_name, 
+      a.created_on 
+    union all 
+    SELECT 
+      'Mobile Tower' as app_type, 
+      0 as department_id, 
+      'No Data' as dept_name, 
+      'No Data' as application_submit_date, 
+      0 as administrative_charges, 
+      0 as admin_gst_charges, 
+      0 as total_admin_charges 
+    WHERE 
+      NOT EXISTS (
+        SELECT 
+          1 
+        FROM 
+          tfiber_mobile_tower_reg a 
+        WHERE 
+          a.application_status :: numeric NOT IN (0) 
+          AND a.admin_changres_payment IS TRUE
+      )
+union all 
+select 
+  'Underground' as app_type, 
+  a.department_id :: numeric, 
+  d.dept_name, 
+  to_char(created_on, 'dd/mm/yyyy') as application_submit_date, 
+  sum(
+    administrative_charges :: numeric
+  ) as administrative_charges, 
+  sum(gst_charges :: numeric) as admin_gst_charges, 
+  (
+    sum(
+      administrative_charges :: numeric
+    )+ sum(gst_charges :: numeric)
+  ) as total_admin_charges 
+from 
+  tfiber_undergroundregistration a 
+  inner join tfiber_dept_mst d on (
+    a.department_id :: numeric = d.dept_id
+  ) 
+where 
+  a.application_status :: numeric not in (0) 
+  and admin_changres_payment is true 
+group by 
+  a.department_id, 
+  d.dept_name, 
+  a.created_on 
+union all 
+SELECT 
+  'Underground' as app_type, 
+  0 as department_id, 
+  'No Data' as dept_name, 
+  'No Data' as application_submit_date, 
+  0 as administrative_charges, 
+  0 as admin_gst_charges, 
+  0 as total_admin_charges 
+WHERE 
+  NOT EXISTS (
+    SELECT 
+      1 
+    FROM 
+      tfiber_undergroundregistration a 
+    WHERE 
+      a.application_status :: numeric NOT IN (0) 
+      AND a.admin_changres_payment IS TRUE
+  )
+union all 
+select 
+  'Overground' as app_type, 
+  a.department_id :: numeric, 
+  d.dept_name, 
+  to_char(created_on, 'dd/mm/yyyy') as application_submit_date, 
+  sum(admin_charges :: numeric) as administrative_charges, 
+  sum(gst_charges :: numeric) as admin_gst_charges, 
+  (
+    sum(admin_charges :: numeric)+ sum(gst_charges :: numeric)
+  ) as total_admin_charges 
+from 
+  tfiber_overground_reg a 
+  inner join tfiber_dept_mst d on (
+    a.department_id :: numeric = d.dept_id
+  ) 
+where 
+  a.application_status :: numeric not in (0) 
+  and admin_changres_payment is true 
+group by 
+  a.department_id, 
+  d.dept_name, 
+  a.created_on 
+union all 
+SELECT 
+  'Overground' as app_type, 
+  0 as department_id, 
+  'No Data' as dept_name, 
+  'No Data' as application_submit_date, 
+  0 as administrative_charges, 
+  0 as admin_gst_charges, 
+  0 as total_admin_charges 
+WHERE 
+  NOT EXISTS (
+    SELECT 
+      1 
+    FROM 
+      tfiber_overground_reg a 
+    WHERE 
+      a.application_status :: numeric NOT IN (0) 
+      AND a.admin_changres_payment IS TRUE
+  )
+union all 
+select 
+  'WIFI' as app_type, 
+  a.department_id :: numeric, 
+  d.dept_name, 
+  to_char(created_on, 'dd/mm/yyyy') as application_submit_date, 
+  sum(admin_charges :: numeric) as administrative_charges, 
+  sum(gst_charges :: numeric) as admin_gst_charges, 
+  (
+    sum(admin_charges :: numeric)+ sum(gst_charges :: numeric)
+  ) as total_admin_charges 
+from 
+  tfiber_wifi_reg a 
+  inner join tfiber_dept_mst d on (
+    a.department_id :: numeric = d.dept_id
+  ) 
+where 
+  a.application_status :: numeric not in (0) 
+  and admin_changres_payment is true 
+group by 
+  a.department_id, 
+  d.dept_name, 
+  a.created_on 
+union all 
+SELECT 
+  'WIFI' as app_type, 
+  0 as department_id, 
+  'No Data' as dept_name, 
+  'No Data' as application_submit_date, 
+  0 as administrative_charges, 
+  0 as admin_gst_charges, 
+  0 as total_admin_charges 
+WHERE 
+  NOT EXISTS (
+    SELECT 
+      1 
+    FROM 
+      tfiber_wifi_reg a 
+    WHERE 
+      a.application_status :: numeric NOT IN (0) 
+      AND a.admin_changres_payment IS TRUE
+  )
+union all 
+select 
+  'Micro Communications' as app_type, 
+  a.department_id :: numeric, 
+  d.dept_name, 
+  to_char(created_on, 'dd/mm/yyyy') as application_submit_date, 
+  sum(admin_charges :: numeric) as administrative_charges, 
+  sum(gst_charges :: numeric) as admin_gst_charges, 
+  (
+    sum(admin_charges :: numeric)+ sum(gst_charges :: numeric)
+  ) as total_admin_charges 
+from 
+  tfiber_microcomm_reg a 
+  inner join tfiber_dept_mst d on (
+    a.department_id :: numeric = d.dept_id
+  ) 
+where 
+  a.application_status :: numeric not in (0) 
+  and admin_changres_payment is true 
+group by 
+  a.department_id, 
+  d.dept_name, 
+  a.created_on 
+union all 
+SELECT 
+  'Micro Communications' as app_type, 
+  0 as department_id, 
+  'No Data' as dept_name, 
+  'No Data' as application_submit_date, 
+  0 as administrative_charges, 
+  0 as admin_gst_charges, 
+  0 as total_admin_charges 
+WHERE 
+  NOT EXISTS (
+    SELECT 
+      1 
+    FROM 
+      tfiber_microcomm_reg a 
+    WHERE 
+      a.application_status :: numeric NOT IN (0) 
+      AND a.admin_changres_payment IS TRUE
+  )
+union all 
+select 
+  'Small Cell' as app_type, 
+  a.department_id :: numeric, 
+  d.dept_name, 
+  to_char(created_on, 'dd/mm/yyyy') as application_submit_date, 
+  sum(admin_charges :: numeric) as administrative_charges, 
+  sum(gst_charges :: numeric) as admin_gst_charges, 
+  (
+    sum(admin_charges :: numeric)+ sum(gst_charges :: numeric)
+  ) as total_admin_charges 
+from 
+  tfiber_smallcell_reg a 
+  inner join tfiber_dept_mst d on (
+    a.department_id :: numeric = d.dept_id
+  ) 
+where 
+  a.application_status :: numeric not in (0) 
+  and admin_changres_payment is true 
+group by 
+  a.department_id, 
+  d.dept_name, 
+  a.created_on 
+union all
+SELECT 
+  'Small Cell' as app_type, 
+  0 as department_id, 
+  'No Data' as dept_name, 
+  'No Data' as application_submit_date, 
+  0 as administrative_charges, 
+  0 as admin_gst_charges, 
+  0 as total_admin_charges 
+WHERE 
+  NOT EXISTS (
+    SELECT 
+      1 
+    FROM 
+      tfiber_smallcell_reg a 
+    WHERE 
+      a.application_status :: numeric NOT IN (0) 
+      AND a.admin_changres_payment IS TRUE
+  )
+
+  ) a 
+group by 
+  app_type 
+order by 
+  1
