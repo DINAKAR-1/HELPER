@@ -8,3 +8,14 @@ to send a sms or email we need
 5)security key
 
 and hit the send sms method 
+
+and make sure to have 
+# email and sms services
+application.sms.email.service.enable=false
+application.sms.service.enable=false
+application.email.service.enable=false
+application.officer.sms.service.enable=true
+
+set to true in prod
+/////////////////////////
+sms sender has a limit to send sms so it should be recharged frequently  to run 
