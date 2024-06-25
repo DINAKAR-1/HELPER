@@ -1,0 +1,4619 @@
+<%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean"%>
+<%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html"%>
+<%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+<!DOCTYPE logic:notEqual PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+<link rel="icon" href="<%=basePath%>images/tellogofinal.png"
+	type="image/x-icon">
+<script type="text/javascript"
+	src="<%=basePath%>js/common/commonValidations.js"></script>
+
+ <script>
+ function toggleDiv() {
+	    var act_type = document.getElementById("act_type").value;
+	    var tabs = ["SEFNcheckListTab", "SERNcheckListTab", "SENcheckListTab", "BCFcheckListTab", "ABCWcheckListTab"
+	    	, "CPFcheckListTab", "SEPcheckListTab", "SECcheckListTab", "CCFcheckListTab" , "CCRcheckListTab", "ISMWPEFcheckListTab"
+	    	, "ISMWCOFcheckListTab", "RISMCLNcheckListTab", "NMTUcheckListTab", "RMTUcheckListTab", "AMTUcheckListTab", "NBCWcheckListTab"
+	    	, "RBCWcheckListTab", "AISMPEcheckListTab", "AISMCLcheckListTab"];
+	    
+	    if(act_type=="0"){
+	    	alert("Please Select Act");
+	    	return;
+	    }
+	    	
+
+	    tabs.forEach(function(tab) {
+	        var element = document.getElementById(tab);
+	        element.style.display = (tab.startsWith(act_type)) ? "block" : "none";
+	    });
+	}
+ 
+ function showFeeNOC() {
+	 var myWindow;
+	     myWindow = window.open("", "", "width=400,height=210");
+	    
+	    var html = "<HTML>\n<HEAD>\n";
+	     html+= "\n <style type='text/css'> \n";
+	     html +=".formTitle{ background-color: #008073; color: #fff; font-weight: bold; text-align: center; font-size: 15px;}\n";
+	 	html+=".trEven{background-color: #fff;}\n .trOdd{ background-color: #EDF7F0;} .formSubTitle1{ color:  #003366; text-align: center; font-size: 14px;}";
+	 	html += "\n  </style> \n";
+	 	
+	 	
+	 	
+
+	    html += "\n</head>\n<BODY align=center %>\n ";
+	 				
+	 				html += "\n<table width='85%' border='1' align='center' style='background-color: #fff;' cellpadding='0' cellspacing='0'>";
+	 				html += "\n<tr class='formTitle'><td colspan='4'>Fee Structure for Amendment - Shops</td></tr>";
+	 				html += "\n<tr class='formSubTitle1'><td width='15%'><b>S No.</b></td><td width='40%'><b>Employees Between</b></td><td width='15%'><b>Amount</b></td></tr>";
+	 				html += "\n<tr class='trOdd'><td>1</td><td >0 </td><td ><p>&#8377; 100/-</p></td></tr>";
+	 				html += "\n<tr class='trEven'><td>2</td><td >1-5 </td><td ><p>&#8377; 500/-</p></td></tr>";
+	 				html += "\n<tr class='trOdd'><td>3</td><td >6-10 </td><td ><p>&#8377; 1000/-</p></td></tr>";
+	 				html += "\n<tr class='trEven'><td>4</td><td >11- 20 </td><td ><p>&#8377; 2000/-</p></td></tr>";
+	 				html += "\n<tr class='trOdd'><td>5</td><td >21-50 </td><td ><p>&#8377; 5000/-</p></td></tr>";
+	 				html += "\n<tr class='trEven'><td>6</td><td >51-100 </td><td ><p>&#8377; 10,000/-</p></td></tr>";
+	 				html += "\n<tr class='trOdd'><td>7</td><td >100 and above </td><td ><p>&#8377; 10,000/- + 5000 for additional 50 Persons.</p></td></tr>";
+	 				html += "\n</table>";
+	 				html += "\n</BODY>\n</HTML>";
+	 				
+	 				 myWindow.document.write(html);
+	 }
+ 
+ function showFeeSEP() {
+	 var myWindow;
+	     myWindow = window.open("", "", "width=400,height=210");
+	    
+	     var html = "<HTML>\n<HEAD>\n";
+	     html+= "\n <style type='text/css'> \n";
+	     html +=".formTitle{ background-color: #008073; color: #fff; font-weight: bold; text-align: center; font-size: 15px;}\n";
+	 	html+=".trEven{background-color: #fff;}\n .trOdd{ background-color: #EDF7F0;} .formSubTitle1{ color:  #003366; text-align: center; font-size: 14px;}";
+	 	html += "\n  </style> \n";
+	 	
+	    html += "\n</head>\n<BODY align=center %>\n ";
+	 				
+	 				html += "\n<table width='70%' border='1' align='center' style='background-color: #fff;' cellpadding='0' cellspacing='0'>";
+	 				html += "\n<tr class='formTitle'><td colspan='4'>Fee Structure for Amendment - Principal Employer</td></tr>";
+	 				html += "\n<tr class='formSubTitle1'><td width='15%'><b>S No.</b></td><td width='40%'><b>Employees Between</b></td><td width='15%'><b>Amount</b></td></tr>";
+	 				html += "\n<tr class='trOdd'><td>1</td><td >5-20 </td><td ><p>&#8377; 500/-</p></td></tr>";
+	 				html += "\n<tr class='trEven'><td>2</td><td >21-50 </td><td ><p>&#8377; 1,000/-</p></td></tr>";
+	 				html += "\n<tr class='trOdd'><td>3</td><td >51-100 </td><td ><p>&#8377; 2,000/-</p></td></tr>";
+	 				html += "\n<tr class='trEven'><td>4</td><td >101- 200 </td><td ><p>&#8377; 5,000/-</p></td></tr>";
+	 				html += "\n<tr class='trOdd'><td>5</td><td >201-400 </td><td ><p>&#8377; 10,000/-</p></td></tr>";
+	 				html += "\n<tr class='trEven'><td>6</td><td >401 and above </td><td ><p>&#8377; 15,000/-</p></td></tr>";
+	 				html += "\n</table>";
+	 				html += "\n</BODY>\n</HTML>";
+	 				
+	 				 myWindow.document.write(html);
+	 }
+ 
+ function showFeeSEC() {
+	var myWindow;
+	    myWindow = window.open("", "", "width=400,height=200");
+	   
+	   var html = "<HTML>\n<HEAD>\n";
+	    html+= "\n <style type='text/css'> \n";
+	    html +=".formTitle{ background-color: #008073; color: #fff; font-weight: bold; text-align: center; font-size: 15px;}\n";
+		html+=".trEven{background-color: #fff;}\n .trOdd{ background-color: #EDF7F0;} .formSubTitle1{ color:  #003366; text-align: center; font-size: 14px;}";
+		html += "\n  </style> \n";
+		
+		
+		
+
+	   html += "\n</head>\n<BODY align=center %>\n ";
+					
+					html += "\n<table width='85%' border='1' align='center' style='background-color: #fff;' cellpadding='0' cellspacing='0'>";
+					html += "\n<tr class='formTitle'><td colspan='4'>Fee Structure for Amendment - Contractor</td></tr>";
+					html += "\n<tr class='formSubTitle1'><td width='15%'><b>S No.</b></td><td width='40%'><b>Employees Between</b></td><td width='15%'><b>Amount</b></td></tr>";
+					html += "\n<tr class='trOdd'><td>1</td><td >5-20 </td><td width='50%'><p>&#8377; 350/-</p></td></tr>";
+					html += "\n<tr class='trEven'><td>2</td><td >21-50 </td><td width='50%'><p>&#8377; 500/-</p></td></tr>";
+					html += "\n<tr class='trOdd'><td>3</td><td >51-100 </td><td width='50%'><p>&#8377; 1,000/-</p></td></tr>";
+					html += "\n<tr class='trEven'><td>4</td><td >101- 200 </td><td width='50%'><p>&#8377; 2,500/-</p></td></tr>";
+					html += "\n<tr class='trOdd'><td>5</td><td >201-400 </td><td width='50%'><p>&#8377; 5,000/-</p></td></tr>";
+					html += "\n<tr class='trEven'><td>6</td><td >401 and above </td><td width='50%'><p>&#8377; 7,500/-</p></td></tr>";
+					html += "\n</table>";
+					html += "\n</BODY>\n</HTML>";
+					
+					 myWindow.document.write(html);
+	}
+ 
+ function showFeeAISMPE() {
+	 var myWindow;
+	     myWindow = window.open("", "", "width=400,height=210");
+	    
+	     var html = "<HTML>\n<HEAD>\n";
+	     html+= "\n <style type='text/css'> \n";
+	     html +=".formTitle{ background-color: #008073; color: #fff; font-weight: bold; text-align: center; font-size: 15px;}\n";
+	 	html+=".trEven{background-color: #fff;}\n .trOdd{ background-color: #EDF7F0;} .formSubTitle1{ color:  #003366; text-align: center; font-size: 14px;}";
+	 	html += "\n  </style> \n";
+	 	
+	    html += "\n</head>\n<BODY align=center %>\n ";
+	 				
+	 				html += "\n<table width='70%' border='1' align='center' style='background-color: #fff;' cellpadding='0' cellspacing='0'>";
+	 				html += "\n<tr class='formTitle'><td colspan='4'>Fee Structure for Amendment - ISMW Principal Employer</td></tr>";
+	 				html += "\n<tr class='formSubTitle1'><td width='15%'><b>S No.</b></td><td width='40%'><b>Employees Between</b></td><td width='15%'><b>Amount</b></td></tr>";
+	 				html += "\n<tr class='trOdd'><td>1</td><td >5-20 </td><td ><p>&#8377; 500/-</p></td></tr>";
+	 				html += "\n<tr class='trEven'><td>2</td><td >21-50 </td><td ><p>&#8377; 1,000/-</p></td></tr>";
+	 				html += "\n<tr class='trOdd'><td>3</td><td >51-100 </td><td ><p>&#8377; 2,000/-</p></td></tr>";
+	 				html += "\n<tr class='trEven'><td>4</td><td >101- 200 </td><td ><p>&#8377; 5,000/-</p></td></tr>";
+	 				html += "\n<tr class='trOdd'><td>5</td><td >201-400 </td><td ><p>&#8377; 10,000/-</p></td></tr>";
+	 				html += "\n<tr class='trEven'><td>6</td><td >401 and above </td><td ><p>&#8377; 15,000/-</p></td></tr>";
+	 				html += "\n</table>";
+	 				html += "\n</BODY>\n</HTML>";
+	 				
+	 				 myWindow.document.write(html);
+	 }
+ 
+ function showFeeAISMCL() {
+	var myWindow;
+	    myWindow = window.open("", "", "width=400,height=200");
+	   
+	   var html = "<HTML>\n<HEAD>\n";
+	    html+= "\n <style type='text/css'> \n";
+	    html +=".formTitle{ background-color: #008073; color: #fff; font-weight: bold; text-align: center; font-size: 15px;}\n";
+		html+=".trEven{background-color: #fff;}\n .trOdd{ background-color: #EDF7F0;} .formSubTitle1{ color:  #003366; text-align: center; font-size: 14px;}";
+		html += "\n  </style> \n";
+		
+	   html += "\n</head>\n<BODY align=center %>\n ";
+					
+					html += "\n<table width='85%' border='1' align='center' style='background-color: #fff;' cellpadding='0' cellspacing='0'>";
+					html += "\n<tr class='formTitle'><td colspan='4'>Fee Structure for Amendment - ISMW Contractor</td></tr>";
+					html += "\n<tr class='formSubTitle1'><td width='15%'><b>S No.</b></td><td width='40%'><b>Employees Between</b></td><td width='15%'><b>Amount</b></td></tr>";
+					html += "\n<tr class='trOdd'><td>1</td><td >5-20 </td><td width='50%'><p>&#8377; 350/-</p></td></tr>";
+					html += "\n<tr class='trEven'><td>2</td><td >21-50 </td><td width='50%'><p>&#8377; 500/-</p></td></tr>";
+					html += "\n<tr class='trOdd'><td>3</td><td >51-100 </td><td width='50%'><p>&#8377; 1,000/-</p></td></tr>";
+					html += "\n<tr class='trEven'><td>4</td><td >101- 200 </td><td width='50%'><p>&#8377; 2,500/-</p></td></tr>";
+					html += "\n<tr class='trOdd'><td>5</td><td >201-400 </td><td width='50%'><p>&#8377; 5,000/-</p></td></tr>";
+					html += "\n<tr class='trEven'><td>6</td><td >401 and above </td><td width='50%'><p>&#8377; 7,500/-</p></td></tr>";
+					html += "\n</table>";
+					html += "\n</BODY>\n</HTML>";
+					
+					 myWindow.document.write(html);
+	}
+ 
+   </script>
+   
+     <script>
+        $(document).ready(function() {
+			//onchange event on sizefirm2 to change the fee details
+            $('#sizeFirm2').on('change', function() {
+                var selectedRange = $(this).val();
+                if (selectedRange === '0') {
+                    $('.employee-range2').removeClass('hidden');
+                } else {
+                    $('.employee-range2').each(function() {
+                        var range = $(this).data('range');
+                        if (range == selectedRange) {
+                            $(this).removeClass('hidden');
+                        } else {
+                            $(this).addClass('hidden');
+                        }
+                    });
+                }
+            });
+			//----------------------------------------------------
+			//onchange event on sizefirm3 to change the fee details
+            $('#sizeFirm3').on('change', function() {
+                var selectedRange = $(this).val();
+                if (selectedRange === '0') {
+                    $('.employee-range3').removeClass('hidden');
+                } else {
+                    $('.employee-range3').each(function() {
+                        var range = $(this).data('range');
+                        if (range == selectedRange) {
+                            $(this).removeClass('hidden');
+                        } else {
+                            $(this).addClass('hidden');
+                        }
+                    });
+                }
+            });
+			//----------------------------------------------------
+			//onchange event on sizefirm4 to change the fee details
+            $('#sizeFirm4').on('change', function() {
+                var selectedRange = $(this).val();
+                if (selectedRange === '0') {
+                    $('.employee-range4').removeClass('hidden');
+					// $('.employee-range4 td:first-child').show(); // Show the first column
+                } else {
+                    $('.employee-range4').each(function() {
+                        var range = $(this).data('range');
+                        if (range == selectedRange) {
+                            $(this).removeClass('hidden');
+							// $(this).find('td:first-child').hide(); // Hide the first column
+                        } else {
+                            $(this).addClass('hidden');
+                        }
+                    });
+                }
+            });
+			//----------------------------------------------------
+			//onchange event on sizefirm5 to change the fee details
+            $('#sizeFirm5').on('change', function() {
+                var selectedRange = $(this).val();
+                if (selectedRange === '0') {
+                    $('.employee-range5').removeClass('hidden');
+                } else {
+                    $('.employee-range5').each(function() {
+                        var range = $(this).data('range');
+                        if (range == selectedRange) {
+                            $(this).removeClass('hidden');
+                        } else {
+                            $(this).addClass('hidden');
+                        }
+                    });
+                }
+            });
+			//----------------------------------------------------
+			//onchange event on sizeFirm6 to change the fee details
+            $('#sizeFirm6').on('change', function() {
+                var selectedRange = $(this).val();
+                if (selectedRange === '0') {
+					 
+                    $('.employee-range6').removeClass('hidden');
+                } else {
+                    $('.employee-range6').each(function() {
+                        var range = $(this).data('range');
+                        if (range == selectedRange) {
+                            $(this).removeClass('hidden');
+                        } else {
+                            $(this).addClass('hidden');
+                        }
+                    });
+                }
+            });
+			//----------------------------------------------------
+        });
+    </script>
+<style>
+.panel {
+	margin-bottom:20px;
+	background-color:#fff;
+	border:1px solid transparent;
+	border-radius:4px;
+	-webkit-box-shadow:0 1px 1px rgba(0,0,0,0.05);
+	box-shadow:0 1px 1px rgba(0,0,0,0.05)
+}
+.panel-body {
+	padding:15px
+}
+.panel-body:before, .panel-body:after {
+	display:table;
+	content:" "
+}
+.panel-body:after {
+	clear:both
+}
+.panel-body:before, .panel-body:after {
+	display:table;
+	content:" "
+}
+.panel-body:after {
+	clear:both
+}
+.panel>.list-group {
+	margin-bottom:0
+}
+.panel>.list-group .list-group-item {
+	border-width:1px 0
+}
+.panel>.list-group .list-group-item:first-child {
+	border-top-right-radius:0;
+	border-top-left-radius:0
+}
+.panel>.list-group .list-group-item:last-child {
+	border-bottom:0
+}
+.panel-heading+.list-group .list-group-item:first-child {
+	border-top-width:0
+}
+.panel>.table, .panel>.table-responsive>.table {
+	margin-bottom:0
+}
+.panel>.panel-body+.table, .panel>.panel-body+.table-responsive {
+	border-top:1px solid #ddd
+}
+.panel>.table>tbody:first-child th, .panel>.table>tbody:first-child td {
+	border-top:0
+}
+.panel>.table-bordered, .panel>.table-responsive>.table-bordered {
+	border:0
+}
+.panel>.table-bordered>thead>tr>th:first-child, .panel>.table-responsive>.table-bordered>thead>tr>th:first-child, .panel>.table-bordered>tbody>tr>th:first-child, .panel>.table-responsive>.table-bordered>tbody>tr>th:first-child, .panel>.table-bordered>tfoot>tr>th:first-child, .panel>.table-responsive>.table-bordered>tfoot>tr>th:first-child, .panel>.table-bordered>thead>tr>td:first-child, .panel>.table-responsive>.table-bordered>thead>tr>td:first-child, .panel>.table-bordered>tbody>tr>td:first-child, .panel>.table-responsive>.table-bordered>tbody>tr>td:first-child, .panel>.table-bordered>tfoot>tr>td:first-child, .panel>.table-responsive>.table-bordered>tfoot>tr>td:first-child {
+	border-left:0
+}
+.panel>.table-bordered>thead>tr>th:last-child, .panel>.table-responsive>.table-bordered>thead>tr>th:last-child, .panel>.table-bordered>tbody>tr>th:last-child, .panel>.table-responsive>.table-bordered>tbody>tr>th:last-child, .panel>.table-bordered>tfoot>tr>th:last-child, .panel>.table-responsive>.table-bordered>tfoot>tr>th:last-child, .panel>.table-bordered>thead>tr>td:last-child, .panel>.table-responsive>.table-bordered>thead>tr>td:last-child, .panel>.table-bordered>tbody>tr>td:last-child, .panel>.table-responsive>.table-bordered>tbody>tr>td:last-child, .panel>.table-bordered>tfoot>tr>td:last-child, .panel>.table-responsive>.table-bordered>tfoot>tr>td:last-child {
+	border-right:0
+}
+.panel>.table-bordered>thead>tr:last-child>th, .panel>.table-responsive>.table-bordered>thead>tr:last-child>th, .panel>.table-bordered>tbody>tr:last-child>th, .panel>.table-responsive>.table-bordered>tbody>tr:last-child>th, .panel>.table-bordered>tfoot>tr:last-child>th, .panel>.table-responsive>.table-bordered>tfoot>tr:last-child>th, .panel>.table-bordered>thead>tr:last-child>td, .panel>.table-responsive>.table-bordered>thead>tr:last-child>td, .panel>.table-bordered>tbody>tr:last-child>td, .panel>.table-responsive>.table-bordered>tbody>tr:last-child>td, .panel>.table-bordered>tfoot>tr:last-child>td, .panel>.table-responsive>.table-bordered>tfoot>tr:last-child>td {
+	border-bottom:0
+}
+.panel>.table-responsive {
+	margin-bottom:0;
+	border:0
+}
+.panel-heading {
+	padding:15px 15px;
+	margin:0px;
+
+}
+.panel-heading>.dropdown .dropdown-toggle {
+	color:inherit
+}
+.panel-title {
+	margin-top:0;
+	margin-bottom:0;
+	font-size:16px;
+	color:inherit
+}
+.panel-title>a {
+	color:inherit
+}
+.panel-footer {
+	padding:10px 15px;
+	background-color:#f5f5f5;
+	border-top:1px solid #ddd;
+	border-bottom-right-radius:3px;
+	border-bottom-left-radius:3px
+}
+.panel-group .panel {
+	margin-bottom:0;
+	overflow:hidden;
+	border-radius:4px
+}
+.panel-group .panel+.panel {
+	margin-top:1px
+}
+.panel-group .panel-heading {
+	border-bottom:0
+}
+.panel-group .panel-heading+.panel-collapse .panel-body {
+	border-top:1px solid #ddd
+}
+.panel-group .panel-footer {
+	border-top:0
+}
+.panel-group .panel-footer+.panel-collapse .panel-body {
+	border-bottom:1px solid #ddd
+}
+.panel-default {
+	border-color:#ddd
+}
+.panel-default>.panel-heading {
+	color:#333;
+	background-color:#f5f5f5;
+	border-color:#ddd
+}
+.panel-default>.panel-heading+.panel-collapse .panel-body {
+	border-top-color:#ddd
+}
+.panel-default>.panel-footer+.panel-collapse .panel-body {
+	border-bottom-color:#ddd
+}
+.panel-primary {
+	border-color:#428bca
+}
+.panel-primary>.panel-heading {
+	color:#fff;
+	background-color:#428bca;
+	border-color:#428bca
+}
+.panel-primary>.panel-heading+.panel-collapse .panel-body {
+	border-top-color:#428bca
+}
+.panel-primary>.panel-footer+.panel-collapse .panel-body {
+	border-bottom-color:#428bca
+}
+table {
+	max-width:100%;
+	background-color:transparent
+}
+th {
+	text-align:left
+}
+.table {
+	width:100%;
+	margin-bottom:20px
+}
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+	padding:8px;
+	line-height:1.428571429;
+	vertical-align:top;
+	border-top:1px solid #ddd
+}
+.table>thead>tr>th {
+	vertical-align:bottom;
+	border-bottom:2px solid #ddd
+}
+.table>caption+thead>tr:first-child>th, .table>colgroup+thead>tr:first-child>th, .table>thead:first-child>tr:first-child>th, .table>caption+thead>tr:first-child>td, .table>colgroup+thead>tr:first-child>td, .table>thead:first-child>tr:first-child>td {
+	border-top:0
+}
+.table>tbody+tbody {
+	border-top:2px solid #ddd
+}
+.table .table {
+	background-color:#fff
+}
+.table-condensed>thead>tr>th, .table-condensed>tbody>tr>th, .table-condensed>tfoot>tr>th, .table-condensed>thead>tr>td, .table-condensed>tbody>tr>td, .table-condensed>tfoot>tr>td {
+	padding:5px
+}
+.table-bordered {
+	border:1px solid #ddd
+}
+.table-bordered>thead>tr>th, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td {
+	border:1px solid #ddd
+}
+.table-bordered>thead>tr>th, .table-bordered>thead>tr>td {
+	border-bottom-width:2px
+	
+}
+.table-striped>tbody>tr:nth-child(even)>td, .table-striped>tbody>tr:nth-child(even)>th {
+	background: rgba(255,255,255,1)
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th {
+	background: rgba(255,255,255,0.3)
+}
+.table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th {
+	background-color:#f5f5f5
+}
+table col[class*="col-"] {
+	position:static;
+	display:table-column;
+	float:none
+}
+table td[class*="col-"], table th[class*="col-"] {
+	display:table-cell;
+	float:none
+}
+.table>thead>tr>.active, .table>tbody>tr>.active, .table>tfoot>tr>.active, .table>thead>.active>td, .table>tbody>.active>td, .table>tfoot>.active>td, .table>thead>.active>th, .table>tbody>.active>th, .table>tfoot>.active>th {
+	background-color:#f5f5f5
+}
+.table-hover>tbody>tr>.active:hover, .table-hover>tbody>.active:hover>td, .table-hover>tbody>.active:hover>th {
+	background-color:#e8e8e8
+}
+.table>thead>tr>.success, .table>tbody>tr>.success, .table>tfoot>tr>.success, .table>thead>.success>td, .table>tbody>.success>td, .table>tfoot>.success>td, .table>thead>.success>th, .table>tbody>.success>th, .table>tfoot>.success>th {
+	background-color:#dff0d8
+}
+.table-hover>tbody>tr>.success:hover, .table-hover>tbody>.success:hover>td, .table-hover>tbody>.success:hover>th {
+	background-color:#d0e9c6
+}
+.table>thead>tr>.danger, .table>tbody>tr>.danger, .table>tfoot>tr>.danger, .table>thead>.danger>td, .table>tbody>.danger>td, .table>tfoot>.danger>td, .table>thead>.danger>th, .table>tbody>.danger>th, .table>tfoot>.danger>th {
+	background-color:#f2dede
+}
+.table-hover>tbody>tr>.danger:hover, .table-hover>tbody>.danger:hover>td, .table-hover>tbody>.danger:hover>th {
+	background-color:#ebcccc
+}
+.table>thead>tr>.warning, .table>tbody>tr>.warning, .table>tfoot>tr>.warning, .table>thead>.warning>td, .table>tbody>.warning>td, .table>tfoot>.warning>td, .table>thead>.warning>th, .table>tbody>.warning>th, .table>tfoot>.warning>th {
+	background-color:#fcf8e3
+}
+.table-hover>tbody>tr>.warning:hover, .table-hover>tbody>.warning:hover>td, .table-hover>tbody>.warning:hover>th {
+	background-color:#faf2cc
+}
+</style>
+<style>
+        .hidden {
+            display: none ;
+        }
+    </style>
+<script>
+	function printt(){
+		
+		 	// Hide all divs
+		 	document.getElementById('sizeFirm1Wrapper').style.display = 'none';
+            document.getElementById('sizeFirm2Wrapper').style.display = 'none';
+            document.getElementById('sizeFirm3Wrapper').style.display = 'none';
+            document.getElementById('sizeFirm4Wrapper').style.display = 'none';
+            document.getElementById('sizeFirm5Wrapper').style.display = 'none';
+            document.getElementById('sizeFirm6Wrapper').style.display = 'none';
+
+            // Get the selected value
+            var actType = document.getElementById('act_type').value;
+
+            // Show the appropriate div based on the selected value
+            if (actType === 'SEFN' || actType === 'SERN' || actType === 'SEN'  ) {
+				// Trigger the change event programmatically
+				// var event = new Event('change');
+				// document.getElementById('sizeFirm2').dispatchEvent(event);
+				// document.getElementById('sizeFirm2').value = '0';
+				document.getElementById('sizeFirm2Wrapper').style.display = 'table-row';
+
+            } 
+			else if (actType === 'BCF' || actType === 'ABCW'    ) {
+				// Trigger the change event programmatically
+				// var event = new Event('change');
+				// document.getElementById('sizeFirm3').dispatchEvent(event);
+				// document.getElementById('sizeFirm3').value = '0';
+				document.getElementById('sizeFirm3Wrapper').style.display = 'table-row';
+
+            }
+			else if (
+				actType === 'CPF' || actType === 'SEP' || actType === 'CCF' || actType === 'CCR'|| actType === 'SEC' || 
+				actType === 'ISMWPEF' || actType === 'AISMPE' || actType === 'ISMWCOF' || actType === 'RISMCLN'|| actType === 'AISMCL' 
+
+			      ) {
+				// Trigger the change event programmatically
+				// var event = new Event('change');
+				// document.getElementById('sizeFirm4').dispatchEvent(event);
+				// document.getElementById('sizeFirm4').value = '0';
+				document.getElementById('sizeFirm4Wrapper').style.display = 'table-row';
+
+            }
+			else if (actType === 'NMTU' || actType === 'RMTU'|| actType === 'AMTU' ) {
+				// Trigger the change event programmatically
+				// var event = new Event('change');
+				// document.getElementById('sizeFirm5').dispatchEvent(event);
+				// document.getElementById('sizeFirm5').value = '0';
+				document.getElementById('sizeFirm5Wrapper').style.display = 'table-row';
+
+            }
+			else if (actType === 'NBCW' || actType === 'RBCW' ) {
+				// Trigger the change event programmatically
+				// var event = new Event('change');
+				// document.getElementById('sizeFirm6').dispatchEvent(event);
+				// document.getElementById('sizeFirm6').value = '0';
+				document.getElementById('sizeFirm6Wrapper').style.display = 'table-row';
+
+            }
+			else if (actType === "0"  ) {
+				document.getElementById('sizeFirm1Wrapper').style.display = 'table-row';
+            }
+	}
+</script>
+ 
+</head>
+<body>
+				<html:form action="actWiseQuestionnaire.jsp"
+					enctype="multipart/form-data">
+					<html:hidden property="mode" styleId="mode" />
+					<table class="table table-hover table-bordered table-striped" style="width:80%"
+				align="center">
+				<tr>
+					<td  style="background-color: #0059a6; font-size: 15px;color:white;" colspan="4" align="center">
+						<i> Service Wise - Checklist Details </i> </td>
+				</tr>
+				<tr>
+				<td><label for="act">Service Name </label><font color="#a20000" size="3">*</font></td>
+						<td colspan="3"><html:select property="userProperties(act_type)" styleId="act_type" style="width:350px;"  styleClass="form-control" onchange="printt()">
+							<html:option value="0">--Select--</html:option>
+							<html:option value="SEFN">Shops and Establishment Act - Registration</html:option>
+							<html:option value="SERN">Shops and Establishment Act - Annual Fee Payment</html:option>
+							<html:option value="SEN">Shops and Establishment Act - Notice of Change</html:option>
+							<html:option value="BCF">Building and Other Construction Workers Act - Registration</html:option>
+							<html:option value="ABCW">Building and Other Construction Workers Act - Amendment</html:option>
+							<html:option value="CPF">Contract Labour Act (Principal Employer) - Registration</html:option>
+							<html:option value="SEP">Contract Labour Act (Principal Employer) - Amendment</html:option>
+							<html:option value="CCF">Contract Labour Act(Contractor) - Registration</html:option>
+							<html:option value="CCR">Contract Labour Act(Contractor) - Annual Fee Payment</html:option>
+							<html:option value="SEC">Contract Labour Act (Contractor) - Amendment</html:option>
+							<html:option value="ISMWPEF">Interstate Migrant Workman Act (Principal Employer) - Registration</html:option>
+							<html:option value="AISMPE">Interstate Migrant Workman Act (Principal Employer) - Amendment</html:option>
+							<html:option value="ISMWCOF">Inter State Migrant Workman Act (Contractor) - Registration</html:option>
+							<html:option value="RISMCLN">Inter State Migrant Workman Act (Contractor) - Annual Fee Payment</html:option>
+							<html:option value="AISMCL">Interstate Migrant Workman Act (Contractor) - Amendment</html:option>
+							<html:option value="NMTU">Motor Transport Workers Act  - Registration</html:option>
+							<html:option value="RMTU">Motor Transport Workers Act - Annual Fee Payment</html:option>
+							<html:option value="AMTU">Motor Transport Workers Act  - Amendment</html:option>
+							<html:option value="NBCW">Beedi Cigar Workers - Registration</html:option>
+							<html:option value="RBCW">Beedi Cigar Workers - Renewal</html:option>
+						</html:select>
+							</td>
+				</tr>
+				<tr>
+				<td><label for="risk">Risk Category</label></td>
+				<td colspan="3">
+					<html:select property="userProperties(riskCategory)" styleId="riskCategory" onchange="change(1);" style="width:350px;"  styleClass="form-control">
+							<html:option value="0">--Select--</html:option>
+							<html:option value="3">Low</html:option>
+							<html:option value="2">Medium</html:option>
+							<html:option value="1">High</html:option>
+						</html:select>
+				</td>
+				</tr>
+				<tr id="sizeFirm1Wrapper" >
+				<td><label for="size">Size of Firm</label></td>
+				<td colspan="3">
+					<html:select   property="userProperties(sizeFirm1)" styleId="sizeFirm1"  style="width:350px;"  styleClass="form-control">
+							<html:option value="0">--Select--</html:option>
+							 
+							</html:select>
+				</td>
+				</tr>
+			 
+			<tr id="sizeFirm2Wrapper" style="display:none;">
+				<td><label for="size">Size of Firm</label></td>
+				<td colspan="3">
+					<html:select   property="userProperties(sizeFirm2)" styleId="sizeFirm2"  style="width:350px;"  styleClass="form-control">
+							<html:option value="0">--Select--</html:option>
+							<html:option value="1">0</html:option>
+							<html:option value="2">1-5</html:option>
+							<html:option value="3">6-10</html:option>
+							<html:option value="4">11-20</html:option>
+							<html:option value="5">21-50</html:option>
+							<html:option value="6">51-100</html:option>
+							<html:option value="7">>101</html:option>
+						</html:select>
+				</td>
+			</tr>
+			<tr id="sizeFirm3Wrapper" style="display:none;">
+				<td><label for="size">Size of Firm</label></td>
+				<td colspan="3">
+					<html:select   property="userProperties(sizeFirm3)" styleId="sizeFirm3"  style="width:350px;"  styleClass="form-control">
+							<html:option value="0">--Select--</html:option>
+							<html:option value="1">0-100</html:option>
+							<html:option value="2">101-500</html:option>
+							<html:option value="3">>500</html:option>
+							 
+						</html:select>
+				</td>
+			</tr>
+			<tr id="sizeFirm4Wrapper" style="display:none;">
+				<td><label for="size">Size of Firm</label></td>
+				<td colspan="3">
+					<html:select   property="userProperties(sizeFirm4)" styleId="sizeFirm4"  style="width:350px;"  styleClass="form-control">
+							<html:option value="0">--Select--</html:option>
+							<html:option value="1">5-20</html:option>
+							<html:option value="2">21-50</html:option>
+							<html:option value="3">51-100</html:option>
+							<html:option value="4">101-200</html:option>
+							<html:option value="5">201-400</html:option>
+							<html:option value="6">>400</html:option>
+							 
+						</html:select>
+				</td>
+			</tr>
+			<tr id="sizeFirm5Wrapper" style="display:none;">
+				<td><label for="size">Size of Firm</label></td>
+				<td colspan="3">
+					<html:select   property="userProperties(sizeFirm5)" styleId="sizeFirm5"  style="width:350px;"  styleClass="form-control">
+							<html:option value="0">--Select--</html:option>
+							<html:option value="1">0-5</html:option>
+							<html:option value="2">6-25</html:option>
+							<html:option value="3">26-50</html:option>
+							<html:option value="4">51-100</html:option>
+							<html:option value="5">101-250</html:option>
+							<html:option value="6">251-500</html:option>
+							<html:option value="7">501-750</html:option>
+							<html:option value="8">751-1000</html:option>
+							<html:option value="9">>1000</html:option>
+							 
+						</html:select>
+				</td>
+			</tr>
+			<tr id="sizeFirm6Wrapper" style="display:none;">
+				<td><label for="size">Size of Firm</label></td>
+				<td colspan="3">
+					<html:select   property="userProperties(sizeFirm6)" styleId="sizeFirm6"  style="width:350px;"  styleClass="form-control">
+							<html:option value="0">--Select--</html:option>
+							<html:option value="1">0-10</html:option>
+							<html:option value="2">11-20</html:option>
+							<html:option value="3">21-50</html:option>
+							<html:option value="4">51-100</html:option>
+							<html:option value="5">101-250</html:option>
+							<html:option value="6">251-500</html:option>
+							<html:option value="7">>500</html:option>
+							 
+							 
+						</html:select>
+				</td>
+			</tr>
+				 
+				
+				<!-- <tr>
+					<td colspan="4" align="center">
+						<font color="#a20000" >(OR)</font></td>
+				</tr> -->
+					<tr>
+						<td><label for="location_est">Business Location </label>
+						</td>
+						<td colspan="3"><html:select property="userProperties(business_location)" style="width:350px;" styleClass="form-control" styleId="business_location" >
+						<html:option value="0">Telangana</html:option></html:select>
+						</td>
+					</tr>
+					<tr>
+						<td><label for="investor_est">Investor</label>
+						</td>
+						<td colspan="3"><html:select property="userProperties(investor_establishment)" style="width:350px;" styleClass="form-control" styleId="investor_establishment">
+						<html:option value="0">--Select--</html:option>
+							<html:option value="1">Domestic Investor</html:option>
+							<html:option value="2">Foreign Investor</html:option></html:select>
+						</td>
+					</tr>
+					<tr>
+					<td colspan="4" align="center"><button class="btn btn-primary" type="button"
+							onclick="toggleDiv();" style="background-color: #025c7c">
+							Submit <i class="fa fa-arrow-circle-o-right"></i>
+						</button>
+					</td>
+				</tr>
+			</table>
+			
+			<div id="SEFNcheckListTab" style="display: none;">
+
+				<div class="panel panel-primary">
+					<div class="panel-heading" align="center">
+						<h4 class="panel-title">
+							SHOPS AND ESTABLISHMENT ACT 1988- REGISTRATIONS
+						</h4>
+					</div>
+					<div>
+						<div class="panel-body">
+							<table width="100%" class="table table-bordered table-striped"
+								align="center">
+								<tr>
+									<td colspan="2" style="padding: 0px;">
+										<table class="table table-hover table-bordered table-striped"
+											align="center">
+											<tr>
+												<td><left>
+													<h4 style="color: black">
+														Procedure:
+													</h4>
+													</left> 
+													<table class="table table-bordered table-colored"
+														style="width : 100%" align="center">
+														<tbody>
+														<tr>
+														</tr>
+															<tR>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Steps</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Forms</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Documents
+																	to be Attached</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Fee</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Timelines</td>
+															</tR>
+															<tR>
+																<td>Fill the online application & Submit for registration</td><!-- Submit application for registration online -->
+																<td>Online application form "Form I"</td>
+																<td>*Follow Checklist below</td>
+																<td><nobr>
+																		Online fee payment<br /> (As per fee structure given
+																		below)
+																	</nobr><br>
+																</td>
+																<td>System Generates Certificate in form II Immediately</td>
+															</tR>
+															<!-- <tR>
+																<td>Issue of online registration certificate</td>
+																<td>Form II</td>
+																<td>&nbsp;</td>
+																<td>&nbsp;</td>
+																<td>&nbsp;</td>
+															</tR> -->
+
+														</tbody>
+													</table>
+
+													<p>System sends SMS to applicant after Approval.</p>
+													<p>Online application process requires no physical
+														touch point.</p>
+												</td>
+											</tr>
+											<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">
+														Checklist</span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">1</td>
+															<td>Form No-I i.e Application for Registration</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">2</td>
+															<td>Telugu Name Board Photograph of the particular
+																shop or establishment</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">3</td>
+															<td>List of Employees</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">4</td>
+															<td>Copy of Rental deed or sale deed of the
+																particular shop or establishment</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">5</td>
+															<td>I.D. proof of the employer</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">6</td>
+															<td>One passport size photographs of the employer</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">7</td>
+															<td>Certificate of Incorporation</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">8</td>
+															<td>Memorandum of Articles in case of Companies</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+											<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">Fee
+														Details </span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">&nbsp;</td>
+															<td colspan="2"><b>Fees Structure for obtaining
+																	Registration Certificate</b></td>
+															<td>&nbsp;</td>
+														</tr>
+														 
+														<tr class="employee-range2" data-range="1">
+															<td></td>
+															<td width="50%">0 Employees</td>
+															<td width="50%"><p>&#8377; 100/-</p></td>
+														</tr>
+                										 
+														<tr class="employee-range2" data-range="2">
+															<td></td>
+															<td width="50%">1-5 Employees</td>
+															<td width="50%"><p>&#8377; 500/-</p></td>
+														</tr>
+														<tr class="employee-range2" data-range="3">
+															<td></td>
+															<td width="50%">6-10 Employees</td>
+															<td width="50%"><p>&#8377; 1000/-</p></td>
+														</tr>
+														<tr class="employee-range2" data-range="4">
+															<td></td>
+															<td width="50%">11-20 Employees</td>
+															<td width="50%"><p>&#8377; 2000/-</p></td>
+														</tr>
+														<tr class="employee-range2" data-range="5">
+															<td></td>
+															<td width="50%">21-50 Employees</td>
+															<td width="50%"><p>&#8377; 5000/-</p></td>
+														</tr>
+														<tr class="employee-range2" data-range="6">
+															<td></td>
+															<td width="50%">51-100 Employees</td>
+															<td width="50%"><p>&#8377; 10,000/-</p></td>
+														</tr>
+														<tr class="employee-range2" data-range="7">
+															<td></td>
+															<td width="50%">101 and Above Employees</td>
+															<td width="50%"><p>&#8377; 10,000/- + 5000 for additional 50 Persons.</p></td>
+														</tr>
+													<tr>
+															<td colspan="3" style="color:red"><p>Note : No requirement of renewal, only Annual fee to be paid from time to time.</p></td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+											<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">Annual Fee Payment Timelines </span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">&nbsp;</td>
+															<td colspan="2"><b>For Payments </b></td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">1</td>
+															<td width="50%">Between 1st November to 1st December</td>
+															<td>No Penalty</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">2</td>
+															<td width="50%">Between 2nd December to 31st December</td>
+															<td>25% Penalty</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">3</td>
+															<td width="50%">After 31st December</td>
+															<td>50% Penalty</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</table>
+									</td>
+
+								</tr>
+								
+								<tr><td colspan="2">
+								<table class="table table-hover table-bordered table-striped"  align="center"
+					style="width:95%;" id="Feedata">
+					 <tr><td colspan="5"><h4 style="color: black;">Stagewise Approval Process</h4></td></tr>
+							<tr>
+								<th>SlNo</th>
+								<th>Stage</th>
+								<th>Documents Required</th>
+								<th>Fees</th>
+								<th>Timeline</th></tr>
+					 
+					<tr  >
+							<td>1</td>
+							<td>Fill the online application (Form I) & Submit for registration</td>
+							<td><ol><li>Form No-I i.e Application for Registration</li>
+							<li> Telugu Name Board Photograph of the particular shop or establishment</li>
+							<li>List of Employees</li>
+							<li>Copy of Rental deed or sale deed of the particular shop or establishment</li>
+							<li>I.D. proof of the employer</li>
+							<li>One passport size photographs of the employer	</li>
+							<li>Certificate of Incorporation	</li>
+							<li>Memorandum of Articles in case of Companies	</li>
+							</ol></td>
+							<td>
+							 
+							<ol>
+							<li class="employee-range2" data-range="1">0 Employees-  <i class="fa fa-rupee"></i> 100/-</li>
+							<li class="employee-range2" data-range="2">1-5 Employees- <i class="fa fa-rupee"></i>  500/-</li>
+							<li class="employee-range2" data-range="3">6-10 Employees- <i class="fa fa-rupee"></i>  1000/</li>
+							<li class="employee-range2" data-range="4">11-20 Employees- <i class="fa fa-rupee"></i>  2000/-</li>
+							<li class="employee-range2" data-range="5">21-50 Employees- <i class="fa fa-rupee"></i>  5000/-</li>
+							<li class="employee-range2" data-range="6">51-100 Employees- <i class="fa fa-rupee"></i>  10,000/-</li>
+							<li class="employee-range2" data-range="7">101 and Above Employees- <i class="fa fa-rupee"></i>  10,000/- + 5000 for additional 50 Persons.</li>
+							</ol>
+							<br/> *No requirement of renewal, only Annual fee to be paid from time to time.
+							Annual Fee Payment Timelines-<br/>
+
+						<ol><li>For Payments Between 1st November to 1st December- No Penalty</li>
+						<li> Between 2nd December to 31st December- 25% Penalty</li>
+						<li> After 31st December- 50% Penalty</li>
+						</ol>
+							</td>
+							<td>System Generates Certificate in form II Immediately (automatic)</td></tr>
+							 
+					</table>
+								
+								</td></tr>
+								
+								
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="SERNcheckListTab" style="display: none;">
+				<div class="panel panel-primary">
+					<div class="panel-heading" align="center">
+						<h4 class="panel-title">
+							<!--  Shops and
+							Establishments Act   - <font> Renewal </font> -->
+							Shops & Establishments Act-Annual Fee Payment
+						</h4>
+					</div>
+					<div>
+						<div class="panel-body">
+							<table width="100%"
+								class="table table-hover table-bordered"
+								align="center">
+								<tr>
+									<td colspan="2" style="padding: 0px;">
+										<table class="table table-hover table-bordered table-striped"
+											align="center">
+											<tr>
+												<td>Every Shop and Establishments in State of Telangana
+													Should Register under Shops and Establishment Act and pay the Annual Fee subsequently for keeping the Registration Certificate Valid</td>
+											</tr>
+											<tr>
+												<td><left>
+													<h4 style="color: black;">
+														Procedure:
+													</h4>
+													</left>
+
+													<table class="table table-bordered table-colored "
+														style="width : 100%" align="center">
+														<tbody>
+														<tr>
+														</tr>
+															<tR>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Steps</td>
+																<!-- <td align="center"
+																	style="font-weight: bold;font-size: 14px;">Forms</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Documents
+																	to be Attached</td> -->
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Fee</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Timelines</td>
+															</tR>
+															<tR>
+																<!-- <td>Submit</td> -->
+																<td>Enter Registration Number to retrieve the details.Once details are confirmed proceed to pay the Annual Fee.</td>
+																<!-- <td>Online application form "Form III"</td>
+																<td>*Follow Checklist below</td> -->
+																<td><nobr>
+																		Online fee payment<br /> (As per fee structure given
+																		below)
+																	</nobr><br>
+																</td>
+																 <td>System Generates Auto-Renewal Certificate Immediately</td> 
+															</tR>
+															<!-- <tR>
+																<td>Issue </td>
+																<td>Form IV</td>
+																<td>&nbsp;</td>
+																<td>&nbsp;</td>
+															</tR> -->
+
+														</tbody>
+													</table> 
+													<p>System sends SMS to respective applicant on acknowledging Payment of Fee.</p>
+													<!-- <p>In case of any clarifications, the applicant is
+														informed on actions to be taken and start date will be
+														after all the clarifications have been received.</p> -->
+													<p>Online application fee payment does not require any approval.</p></td>
+											</tr>
+											<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">
+														Checklist</span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">1</td>
+															<td>Copy of Registration Certificate</td>
+														</tr>
+													</table></td>
+											</tr>
+
+
+											<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">Fee
+														Details </span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">&nbsp;</td>
+															<td colspan="2"><b>Annual Fee Structure</b></td>
+														</tr>
+														<tr class="employee-range2" data-range="1">
+															<td></td>
+															<td width="50%">0 Employees</td>
+															<td width="50%"><p>&#8377; 100/-</p></td>
+														</tr>
+														<tr class="employee-range2" data-range="2">
+															<td></td>
+															<td width="50%">1-5 Employees</td>
+															<td width="50%"><p>&#8377; 500/-</p></td>
+														</tr>
+														<tr class="employee-range2" data-range="3">
+															<td></td>
+															<td width="50%">6-10 Employees</td>
+															<td width="50%"><p>&#8377; 1000/-</p></td>
+														</tr>
+														<tr class="employee-range2" data-range="4">
+															<td></td>
+															<td width="50%">11-20 Employees</td>
+															<td width="50%"><p>&#8377; 2000/-</p></td>
+														</tr>
+														<tr class="employee-range2" data-range="5">
+															<td></td>
+															<td width="50%">21-50 Employees</td>
+															<td width="50%"><p>&#8377; 5000/-</p></td>
+														</tr>
+														<tr class="employee-range2" data-range="6">
+															<td></td>
+															<td width="50%">51-100 Employees</td>
+															<td width="50%"><p>&#8377; 10,000/-</p></td>
+														</tr>
+														<tr class="employee-range2" data-range="7">
+															<td></td>
+															<td width="50%">101 and Above Employees</td>
+															<td width="50%"><p>&#8377; 10,000/- + 5000 for additional 50 Persons.</p></td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+											<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">Annual Fee Payment Timelines </span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">&nbsp;</td>
+															<td colspan="2"><b>For Payments </b></td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">1</td>
+															<td width="50%">Between 1st November to 1st December</td>
+															<td>No Penalty</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">2</td>
+															<td width="50%">Between 2nd December to 31st December</td>
+															<td>25% Penalty</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">3</td>
+															<td width="50%">After 31st December</td>
+															<td>50% Penalty</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</table></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="SENcheckListTab" style="display: none;">
+				<div class="panel panel-primary">
+					<div class="panel-heading" align="center">
+						<h4 class="panel-title">
+							<!--  Shops and
+							Establishments Act   - <font> Renewal </font> -->
+							SHOPS AND ESTABLISHMENT ACT 1988-AMENDMENT
+						</h4>
+					</div>
+					<div>
+						<div class="panel-body">
+							<table width="100%"
+								class="table table-hover table-bordered table-striped"
+								align="center">
+
+								<tr>
+									<td colspan="2" style="padding: 0px;">
+										<table class="table table-hover table-bordered table-striped"
+											align="center">
+											<tr>
+												<td><left>
+													<h4 style="color: black;">
+														Procedure:
+													</h4>
+													</left> 
+
+													<table class="table table-bordered table-colored"
+														style="width : 100%" align="center">
+														<tbody>
+															<tR>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Steps</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Forms</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Documents
+																	to be Attached</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Fee</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Timelines</td>
+															</tR>
+															<tR>
+																<td>Submit<!--  application for registration online -->
+																</td>
+																<td>Online application form "Form E/VII"</td>
+																<td>*Follow Checklist below</td>
+																<td><nobr>
+																		Online fee payment<br /> (As per fee structure given
+																		below)
+																	</nobr><br></td>
+																<td>30 Days from the date of submission of complete
+																	application as per Citizen's Charter. Deemed
+																	Registration at the end of <b>30 days</b> from date of
+																	application if no adverse orders passed</td>
+															</tR>
+															<tR>
+																<td>Issue <!-- of online registration certificate -->
+																</td>
+																<td>Form E</td>
+																<td>&nbsp;</td>
+																<td>&nbsp;</td>
+															</tR>
+
+														</tbody>
+													</table> 
+													<p>System sends SMS and eMail to respective applicant at each progression.</p>
+													<p>In case of any clarifications, the applicant is
+														informed on actions to be taken and start date will be
+														after all the clarifications have been received.</p>
+													<p>Online application process requires no physical
+														touch point.</p>
+												</td>
+											</tr>
+											<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">
+														Checklist</span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">1</td>
+															<td>Form No-E i.e Application for Notice of Change/
+																Amendment</td>
+														</tr>
+														
+
+													</table>
+												</td>
+											</tr>
+
+											<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">Fee
+														Details </span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">&nbsp;</td>
+															<td colspan="2"><b>Fees Structure for Amendment -Shops
+															</b></td>
+															<td>&nbsp;</td>
+														</tr>
+														 
+														<tr class="employee-range2" data-range="1">
+															<td></td>
+															<td width="50%">0 Employees</td>
+															<td width="50%"><p>&#8377; 100/-</p></td>
+														</tr>
+                										 
+														<tr class="employee-range2" data-range="2">
+															<td></td>
+															<td width="50%">1-5 Employees</td>
+															<td width="50%"><p>&#8377; 500/-</p></td>
+														</tr>
+														<tr class="employee-range2" data-range="3">
+															<td></td>
+															<td width="50%">6-10 Employees</td>
+															<td width="50%"><p>&#8377; 1000/-</p></td>
+														</tr>
+														<tr class="employee-range2" data-range="4">
+															<td></td>
+															<td width="50%">11-20 Employees</td>
+															<td width="50%"><p>&#8377; 2000/-</p></td>
+														</tr>
+														<tr class="employee-range2" data-range="5">
+															<td></td>
+															<td width="50%">21-50 Employees</td>
+															<td width="50%"><p>&#8377; 5000/-</p></td>
+														</tr>
+														<tr class="employee-range2" data-range="6">
+															<td></td>
+															<td width="50%">51-100 Employees</td>
+															<td width="50%"><p>&#8377; 10,000/-</p></td>
+														</tr>
+														<tr class="employee-range2" data-range="7">
+															<td></td>
+															<td width="50%">101 and Above Employees</td>
+															<td width="50%"><p>&#8377; 10,000/- + 5000 for additional 50 Persons.</p></td>
+														</tr>
+													 
+													</table>
+												</td>
+											</tr>
+
+											<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">Fee
+														Details </span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">&nbsp;</td>
+															<td colspan="2"><b>Fees Structure for Amendment</b>
+															</td>
+															<td>&nbsp;</td>
+														</tr>
+														<tr>
+															<td></td>
+															<td width="50%">Fee - When total number of employees
+																is 0</td>
+															<td width="50%"><p>&#8377; 100/-</p>
+															</td>
+														</tr>
+														<tr>
+															<td></td>
+															<td width="50%">Fee - When total number of employees
+																is > 0</td>
+															<td width="50%"><p>&#8377; 200/-</p>
+															</td>
+														</tr>
+														<tr>
+															<td></td>
+															<td width="50%"> Difference of fee for increase in number of employees</td>
+															<td width="50%"><p>&#8377; Applicable difference in fee </p><a onMouseOver ="showFeeNOC();" data-toggle="tooltip" title="Hover to view fee structure"><u>Hover to view Fee Struture</u></a>
+															</td>
+														</tr>
+
+													</table></td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="BCFcheckListTab" style="display: none;">
+
+				<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h4 class="panel-title" align="center">Building and other
+						Constructions Workers (Regulation of Employment and Conditions of
+						Service) Act, 1996</h4>
+				</div>
+				<div id="collapsesix6">
+					<div class="panel-body">
+						<table width="100%"
+							class="table table-hover table-bordered table-striped"
+							align="center">
+							<!-- <tr style="background-color: #ccc;">
+								<td style="width: 20px;">VI.</td>
+								<td>Procedure & Checklist for registration of build and other
+									constructions establishments under Building and other
+									Constructions Workers ( Regulation of Employment and Conditions
+									of Service) Act, 1996</td>
+							</tr> -->
+							<tr>
+								<td colspan="2">
+									 <h4 style="color: black;">Procedures :</h4> 
+									<table class="table table-bordered table-colored"
+										style="width : 100%" align="center">
+										<tbody>
+
+											<tr>
+												<td align="center"
+													style="font-weight: bold;font-size: 14px;">Steps</td>
+												<td align="center"
+													style="font-weight: bold;font-size: 14px;">Forms</td>
+												<td align="center"
+													style="font-weight: bold;font-size: 14px;">Documents
+													to be Attached</td>
+												<td align="center"
+													style="font-weight: bold;font-size: 14px;">Fee</td>
+												<td align="center"
+													style="font-weight: bold;font-size: 14px;">Timelines</td>
+											</tr>
+											<tr>
+												<td>Fill the online application & Submit for registration</td>
+												<td>Online application form - Form-I</td>
+												<td>ID Proof of Employer Establishment, Address Proof<br>
+													*Follow Checklist below</td>
+												<td>Online fee payment<br /> (As per the fee structure
+													given below)</td>
+												<td>15 days from the date of submission of the
+													application as per Citizen's Charter. Deemed Registration
+													at the end of <b>15 days</b> from date of application if no
+													adverse orders passed</td>
+											</tr>
+											<tr>
+												<td>Issue of online registration certificate</td>
+												<td>Form-II</td>
+												<td>&nbsp;</td>
+												<td>&nbsp;</td>
+											</tr>
+
+										</tbody>
+									</table>
+
+									<p>System sends SMS to respective applicant at each progression.</p>
+									<p>In case of any clarifications, the applicant is informed
+										on actions to be taken and start date will be after all the
+										clarifications have been received.</p>
+									<p>Online application process requires no physical touch
+										point.</p>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2" style="padding: 0px;">
+									<table class="table table-hover table-bordered table-striped"
+										align="center">
+										<tr>
+											<td>build and other constructions establishments in
+												State of Telangana Should Register under Building and other
+												Constructions Workers Act <a href="#">cliecl for Act</a>
+											</td>
+										</tr>
+										<tr>
+											<td><span
+												style="text-decoration: underline;font-size: 14px;color: maroon;">
+													Checklist</span> <br>
+												<table width="100%"
+													class="table table-hover table-bordered table-striped">
+													<tr>
+														<td style="width: 10px;">1</td>
+														<td>Form No.I- Application for Registration of
+															establishment employing building workers</td>
+													</tr>
+													<tr>
+														<td style="width: 10px;">2</td>
+														<td>Form No.IV- Notice of Commencement of Building or
+															other construction work.</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+
+										<tr>
+											<td><span
+												style="text-decoration: underline;font-size: 14px;color: maroon;">Fee
+													Details </span> <br>
+												<table width="100%"
+													class="table table-hover table-bordered table-striped">
+													<tr>
+														<td style="width: 10px;">&nbsp;</td>
+														<td width="30%">Fees Structure for obtaining
+															Registration</td>
+														<td>&nbsp;</td>
+													</tr>
+													<tr class="employee-range3" data-range="1">
+														<td></td>
+														<td width="50%">Upto 100 employees -</td>
+														<td width="50%"><p>&#8377; 1000/-</p></td>
+													</tr>
+													<tr class="employee-range3" data-range="2">
+														<td></td>
+														<td width="50%">101 - 500 Employees -</td>
+														<td width="50%"><p>&#8377; 5000/-</p></td>
+													</tr>
+													<tr class="employee-range3" data-range="3">
+														<td></td>
+														<td width="50%">501 and above -</td>
+														<td width="50%"><p>&#8377;  5000/- + 5000 for additional 500 Persons.</p></td>
+													</tr>
+												</table>
+									</table>
+									</td></tr>
+									
+									<tr><td colspan="2">
+										<table class="table table-hover table-bordered table-striped"  align="center"
+					style="width:95%;" id="Feedata">
+					 <tr><td colspan="5"> <h4 style="color: black;">Stagewise Approval Process</h4></td></tr>
+							<tr>
+								<th>SlNo</th>
+								<th>Stage</th>
+								<th>Documents Required</th>
+								<th>Fees</th>
+								<th>Timeline</th></tr>
+					 
+					<tr  >
+							<td>1</td>
+							<td>Fill the online application & Submit for registration (Form I)</td>
+							<td><ol><li>ID Proof of Employer Establishment, Address Proof</li>
+							<li>Form No.I- Application for Registration of establishment employing building workers
+					</li>
+							<li>Form No.IV- Notice of Commencement of Building or other construction work.</li>
+							</ol></td>
+							<td  style="width: 27%">
+							 
+							<ol>
+								<li class="employee-range3" data-range="1">Upto 100 employees-   <i class="fa fa-rupee"></i>1000/- </li>
+								<li class="employee-range3" data-range="2">101 - 500 Employees-    <i class="fa fa-rupee"></i> 5000/- </li>
+								<li class="employee-range3" data-range="3">501 and above -	<i class="fa fa-rupee"></i> 5000/- + 5000 for additional 500 Persons  </li>
+							</ol>
+							</td>
+							<td> </td></tr>
+							<tr><td>2</td>
+					<td>Scrutiny Stage</td>
+					<td></td>
+					<td></td>
+					<td>07 days from the date of application</td>							
+							</tr>
+							<tr><td>3</td>
+					<td>Approval Stage</td>
+					<td></td>
+					<td></td>
+					<td>15 days from the date of submission of the application as per Citizen's Charter. Deemed Registration at the end of 15 days from date of application if no adverse orders passed</td>							
+							</tr>
+							
+							 
+					</table>
+									</td></tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			</div>
+	
+	<div id="CPFcheckListTab" style="display: none;">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h4 class="panel-title" align="center">
+							REGISTRATION OF PRINCIPAL EMPLOYER
+						</h4>
+					</div>
+					<div id="collapseTwo3">
+						<div class="panel-body">
+							<table width="100%"
+								class="table table-hover table-bordered table-striped"
+								align="center">
+								<tr>
+									<td colspan="2" style="padding: 0px;">
+										<table class="table table-hover table-bordered table-striped"
+											align="center">
+											<tr>
+												<td>Every Shop and Establishments in State of Telangana
+													Should Register under Principal Employer under Contract
+													Labour Act <!-- <a href="#">click for Act</a> --></td>
+											</tr>
+											<tr>
+												<td><left>
+													<h4 style="color: black;">
+														Procedure:
+														<!-- for Registration of Principal Employer's
+														Establishment under -->
+													</h4>
+													</left> <!-- <center>
+													<b>
+														<h4>
+															<u>Contract Labour (Regulation and Abolition) Act
+																1970</u>
+														</h4> </b>
+												</center> -->
+													<table class="table table-bordered table-colored"
+														style="width : 100%" align="left">
+														<tbody>
+
+
+															<tR>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Steps</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Forms</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Documents
+																	to be Attached</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Fee</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Timelines</td>
+															</tR>
+															<tR>
+																<td>Submit <!-- application for registration online for
+																principal employer--></td>
+																<td>Online application form "Form I"</td>
+																<td>
+																	<!-- Form- ID Proof of Employer Establishment,
+																Address Proof<br> --> *Follow Checklist below</td>
+																<td><nobr>
+																		Online fee payment<br /> (As per the fee structure
+																		given below)
+																	</nobr><br></td>
+																<td>30 days as from the date of submission of the
+																	application as per Citizen's Charter. Deemed
+																	Registration at the end of <b>30 days</b> from
+																	Application if no adverse orders passed</td>
+															</tR>
+															<tR>
+																<td>Issue <!-- of online registration certificate -->
+																</td>
+																<td>Form II</td>
+																<td>&nbsp;</td>
+																<td>&nbsp;</td>
+															</tR>
+
+														</tbody>
+													</table>
+													<p>System sends SMS to respective applicant at each progression.</p>
+													<p>In case of any clarifications, the applicant is
+														informed on actions to be taken and start date will be
+														after all the clarifications have been received.</p>
+													<p>Online application process requires no physical
+														touch point.</p></td>
+											</tr>
+											<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">
+														Checklist</span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">1</td>
+															<td>Form No-I i.e Application for Registration</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">2</td>
+															<td>List of Contractors including details such as
+																1). Name and address of the contractor, 2). Nature of
+																Work, 3). No.of Contract Labour engaged and <br /> 4).
+																Date of commencement of contract work.</td>
+
+														</tr>
+														<tr>
+															<td style="width: 10px;">3</td>
+															<td>Form No.-VI B i.e. Notice of Commence of
+																Contract Work by the Principal Employer in</td>
+														</tr>
+													</table></td>
+											</tr>
+
+											<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">Fee
+														Details </span> <br>
+
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">&nbsp;</td>
+															<td colspan="2"><b>Fees Structure for obtaining
+																	Registration certificate </b></td>
+															<td>&nbsp;</td>
+														</tr>
+														<tr class="employee-range4" data-range="1">
+															<td></td>
+															<td width="50%">5-20 Employees</td>
+															<td width="50%"><p>&#8377; 500/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range4" data-range="2">
+															<td></td>
+															<td width="50%">21-50 Employees</td>
+															<td width="50%"><p>&#8377; 1,000/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range4" data-range="3">
+															<td></td>
+															<td width="50%">51-100 Employees</td>
+															<td width="50%"><p>&#8377; 2,000/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range4" data-range="4">
+															<td></td>
+															<td width="50%">101- 200 Employees</td>
+															<td width="50%"><p>&#8377; 5,000/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range4" data-range="5">
+															<td></td>
+															<td width="50%">201-400 Employees</td>
+															<td width="50%"><p>&#8377; 10,000/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range4" data-range="6">
+															<td></td>
+															<td width="50%">401 and above Employees</td>
+															<td width="50%"><p>&#8377; 15,000/-</p>
+															</td>
+														</tr>
+
+													</table></td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								<tr>
+								<td colspan="2">
+								<table class="table table-hover table-bordered table-striped"  align="center"
+					style="width:95%;" id="Feedata">
+					 <tr > <td colspan="5"><h4 style="color: black;">Stagewise Approval Process</h4></td></tr>
+							<tr>
+								<th>SlNo</th>
+								<th>Stage</th>
+								<th>Documents Required</th>
+								<th>Fees</th>
+								<th>Timeline</th></tr>
+					 
+					<tr  >
+							<td>1</td>
+							<td>Application Stage</td>
+							<td><ol><li>Form No-I i.e Application for Registration</li>
+							<li>List of Contractors including details such as:<br/>
+					      i) Name and address of the contractor,<br/> ii). Nature of Work,<br/> iii). No.of Contract Labour engaged and<br/>
+					       iv). Date of commencement of contract work.<br/>
+					</li>
+							<li>Form No.-VI B i.e. Notice of Commence of Contract Work by the Principal Employer in</li>
+							</ol></td>
+							<td  style="width: 27%">
+							 
+							<ol>
+							<li class="employee-range4" data-range="1">5-20 Employees- <i class="fa fa-rupee"></i> 500/-</li>
+							<li class="employee-range4" data-range="2">21-50 Employees- <i class="fa fa-rupee"></i> 1,000/- </li>
+							<li class="employee-range4" data-range="3">51-100 Employees- <i class="fa fa-rupee"></i>  2,000/- </li>
+							<li class="employee-range4" data-range="4">101- 200 Employees- <i class="fa fa-rupee"></i>  5,000/- </li>
+							<li class="employee-range4" data-range="5">201-400 Employees- <i class="fa fa-rupee"></i> 10,000/-  </li>
+							<li class="employee-range4" data-range="6">401 and above Employees- <i class="fa fa-rupee"></i> 15,000/-</li>
+						  </ol>
+							</td>
+							<td> </td></tr>
+							<tr><td>2</td>
+					<td>Scrutiny Stage</td>
+					<td></td>
+					<td></td>
+					<td>Within 15 days from the submission of<br/> application</td>							
+							</tr>
+							<tr><td>3</td>
+					<td>Approval Stage</td>
+					<td></td>
+					<td></td>
+					<td>30 days as from the date of submission of the application as per Citizen's Charter. <br/>
+					Deemed Registration at the end of 30 days from Application if no adverse orders passed</td>							
+							</tr>
+							
+							 
+					</table>
+								
+								
+								
+								</td>
+								</tr>
+								
+								
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="CCFcheckListTab" style="display: none;">
+			<div class="panel panel-primary">
+				<div class="panel-heading" align="center">
+					<h4 class="panel-title">
+						<!--  Contract Labour Act (Contractor)  - <font>Licence </font> -->
+						CONTRACT LABOUR ACT CONTRACTOR LICENCE
+					</h4>
+				</div>
+				<div>
+					<div class="panel-body">
+						<table width="100%"
+							class="table table-hover table-bordered table-striped"
+							align="center">
+							<tr>
+								<td colspan="2">
+									<h4 align="left" style="color: black;" >
+										Procedure:
+										<!-- for license of Contractor under Contract Labour Act -->
+									</h4>
+
+									<table class="table table-bordered table-colored"
+										style="width : 100%" align="left">
+										<tbody>
+
+
+											<tR>
+												<td align="center"
+													style="font-weight: bold;font-size: 14px;">Steps</td>
+												<td align="center"
+													style="font-weight: bold;font-size: 14px;">Forms</td>
+												<td align="center"
+													style="font-weight: bold;font-size: 14px;">Documents
+													to be Attached</td>
+												<td align="center"
+													style="font-weight: bold;font-size: 14px;">Fee</td>
+												<td align="center"
+													style="font-weight: bold;font-size: 14px;">Timelines</td>
+											</tR>
+											<tR>
+												<td>1</td>
+												<td>Online application form "Form IV"</td>
+												<td>*Follow Checklist below</td>
+												<td><nobr>
+														Online fee payment<br /> (As per fee structure given
+														below)
+													</nobr><br>
+												</td>
+												<td>30 Days from the date of submission of complete
+													application as per Citizen's Charter. Deemed Registration
+													at the end of <b>30 days</b> from date of application if no
+													adverse orders passed</td>
+											</tR>
+											<tR>
+												<td>2</td>
+												<td>Form VI</td>
+												<td>&nbsp;</td>
+												<td>&nbsp;</td>
+											</tR>
+
+										</tbody>
+									</table>
+
+									<p>System sends SMS to respective applicant at each
+										progression.</p>
+									<p>In case of any clarifications, the applicant is informed
+										on actions to be taken and start date will be after all the
+										clarifications have been received.</p>
+									<p>Online application process requires no physical touch
+										point.</p></td>
+							</tr>
+
+
+
+							<tr>
+								<td colspan="2" style="padding: 0px;">
+									<table class="table table-hover table-bordered table-striped"
+										align="center">
+
+										<tr>
+											<td><span
+												style="text-decoration: underline;font-size: 14px;color: maroon;">
+													Checklist</span> <br>
+												<table width="100%"
+													class="table table-hover table-bordered table-striped">
+													<tr>
+														<td style="width: 10px;">1</td>
+														<td>Form No-IV i.e Application for License</td>
+													</tr>
+													<tr>
+														<td style="width: 10px;">2</td>
+														<td>Copy of Form No.II i.e copy of certificate of
+															Registration granted to the Principal Employer.</td>
+													</tr>
+													<tr>
+														<td style="width: 10px;">3</td>
+														<td>Form No.V- i.e. Certificate by the Principal
+															Employer.</td>
+													</tr>
+													<tr>
+														<td style="width: 10px;">4</td>
+														<td>Form No.VI A- i.e Notice of commencement of
+															contract work by the contractor.</td>
+													</tr>
+													<tr>
+														<td style="width: 10px;">5</td>
+														<td>Copy of agreement or work order entered in
+															between the Principal Employer and contractor</td>
+													</tr>
+													<tr>
+														<td style="width: 10px;">6</td>
+														<td>Joint Undertaking both by Principal Employer and
+															Contractor stating for payment of notified minimum wages<br />
+															to the contract labour engaged by them.</td>
+													</tr>
+
+
+
+												</table></td>
+										</tr>
+
+										<tr>
+
+
+											<!-- changed fees according to latest mail -->
+
+
+											<td><span
+												style="text-decoration: underline;font-size: 14px;color: maroon;">Fee
+													Details </span> <br>
+												<table width="100%"
+													class="table table-hover table-bordered table-striped">
+													<tr>
+														<td style="width: 10px;">&nbsp;</td>
+														<td colspan="2"><b>Fees Structure for obtaining
+																Licence</b></td>
+														<td>&nbsp;</td>
+													</tr>
+													<tr class="employee-range4" data-range="1">
+														<td></td>
+														<td width="50%">5-20 Employees -</td>
+														<td width="50%"><p>&#8377; 350/-</p>
+														</td>
+													</tr>
+													<tr class="employee-range4" data-range="2">
+														<td></td>
+														<td width="50%">21-50 Employees -</td>
+														<td width="50%"><p>&#8377; 500/-</p>
+														</td>
+													</tr>
+													<tr class="employee-range4" data-range="3">
+														<td></td>
+														<td width="50%">51-100 Employees -</td>
+														<td width="50%"><p>&#8377; 1,000/-</p>
+														</td>
+													</tr>
+													<tr class="employee-range4" data-range="4">
+														<td></td>
+														<td width="50%">101- 200 Employees -</td>
+														<td width="50%"><p>&#8377; 2,500/-</p>
+														</td>
+													</tr>
+													<tr class="employee-range4" data-range="5">
+														<td></td>
+														<td width="50%">201-400 Employees -</td>
+														<td width="50%"><p>&#8377; 5,000/-</p>
+														</td>
+													</tr>
+													<tr class="employee-range4" data-range="6">
+														<td></td>
+														<td width="50%">401 and above Employees -</td>
+														<td width="50%"><p>&#8377; 7,500/-</p>
+														</td>
+													</tr>
+													<tr>
+														<td style="width: 10px;"></td>
+														<td colspan="2">Security deposit challan-Every contractor shall deposit an amount of Rs.500/- for each contract labour towards Security Deposit in SBH, where treasury transactions are undertaken.<br /></td>
+													</tr>
+
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							
+							<tr>
+							<td colspan="2">
+								<table class="table table-hover table-bordered table-striped"  align="center"
+					style="width:95%;" id="d">
+					<tr><td colspan="5"><h4 style="color: black;">Stagewise Approval Process</h4></td></tr>
+					 
+							<tr>
+								<th>SlNo</th>
+								<th>Stage</th>
+								<th>Documents Required</th>
+								<th>Fees</th>
+								<th>Timeline</th></tr>
+					 
+					<tr  >
+							<td>1</td>
+							<td>Application Stage</td>
+							<td><ol><li>Form No-IV i.e Application for License</li>
+							<li>Copy of Form No.II i.e copy of certificate of Registration granted to the Principal Employer.</li>
+							<li>Form No.V- i.e. Certificate by the Principal Employer</li>
+							<li>Form No.VI A- i.e Notice of commencement of contract work by the contractor.</li>
+							<li>Copy of agreement or work order entered in between the Principal Employer and contractor</li>
+							<li>Joint Undertaking both by Principal Employer and Contractor stating for payment of notified minimum wages
+								to the contract labour engaged by them.
+							</li>
+							</ol></td>
+							<td>
+							Fees Structure for obtaining Licence	 <br/><br/>
+							<ol>
+							<li class="employee-range4" data-range="1">5-20 Employees- <i class="fa fa-rupee"></i>350/-</li>
+							<li class="employee-range4" data-range="2">21-50 Employees- <i class="fa fa-rupee"></i> 500/-</li>
+							<li class="employee-range4" data-range="3">51-100 Employees- <i class="fa fa-rupee"></i> 1,000/-</li>
+							<li class="employee-range4" data-range="4">101- 200 Employees- <i class="fa fa-rupee"></i> 2,500/-</li>
+							<li class="employee-range4" data-range="5">201-400 Employees- <i class="fa fa-rupee"></i> 5,000/-</li>
+							<li class="employee-range4" data-range="6">401 and above Employees- <i class="fa fa-rupee"></i> 7,500/-</li>
+							</ol>
+							<br/>*Security deposit challan-Every contractor shall deposit an amount of Rs.500/- for each contract labour towards Security Deposit in SBH, where treasury transactions are undertaken.
+							</td>
+							<td></td></tr>
+							<tr  >
+							<td>2</td>
+							<td>Scrutiny Stage</td>
+							<td></td>
+							<td></td>
+							<td>Within 15 days from the submission of application</td>
+							</tr>
+							<tr  >
+							<td>3</td>
+							<td>Approval Stage</td>
+							<td></td>
+							<td></td>
+							<td>30 Days from the date of submission of complete application as per Citizen's Charter. Deemed Registration at the end of 30 days from date of application if no adverse orders passed</td>
+							</tr>
+					</table>
+							</td>
+							</tr>
+							
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="ISMWPEFcheckListTab" style="display: none;">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h4 class="panel-title" align="center">
+							<!-- Contract Labour Act (Principal	Employer) - Registration -->
+							Principal Employer Registration under Interstate Migrant Workman Act, 1979
+						</h4>
+					</div>
+					<div id="collapseTwo3">
+						<div class="panel-body">
+							<table width="100%"
+								class="table table-hover table-bordered table-striped"
+								align="center">
+								<!-- <tr style="background-color: #ccc;">
+								<td style="width: 20px;"></td>
+								<td>Procedure & Checklist for Registration of Principal Employer under
+									Contract Labour Act</td>
+							</tr> -->
+								<tr>
+									<td colspan="2" style="padding: 0px;">
+										<table class="table table-hover table-bordered table-striped"
+											align="center">
+											<tr>
+												<td><left>
+													<h4 style="color: black;">
+														Procedure:
+														<!-- for Registration of Principal Employer's
+														Establishment under -->
+													</h4>
+													</left> <!-- <center>
+													<b>
+														<h4>
+															<u>Contract Labour (Regulation and Abolition) Act
+																1970</u>
+														</h4> </b>
+												</center> -->
+													<table class="table table-bordered table-colored"
+														style="width : 100%" align="left">
+														<tbody>
+
+
+															<tR>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Steps</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Forms</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Documents
+																	to be Attached</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Fee</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Timelines</td>
+															</tR>
+															<tR>
+																<td>Submit <!-- application for registration online for
+																principal employer--></td>
+																<td>Online application form "Form I"</td>
+																<td>
+																	<!-- Form- ID Proof of Employer Establishment,
+																Address Proof<br> --> *Follow Checklist below</td>
+																<td><nobr>
+																		Online fee payment<br /> (As per the fee structure
+																		given below)
+																	</nobr><br></td>
+																<td>30 days from the date of submission of the
+																	application as per Citizen's Charter. Deemed
+																	Registration at the end of <b>30 days</b> from
+																	Application if no adverse orders passed</td>
+															</tR>
+															<!-- <tR>
+																<td>Issue
+																</td>
+																<td>Form II</td>
+																<td>&nbsp;</td>
+																<td>&nbsp;</td>
+															</tR> -->
+
+														</tbody>
+													</table>
+													<p>System sends SMS to respective applicant at each progression.</p>
+													<p>In case of any clarifications, the applicant is
+														informed on actions to be taken and start date will be
+														after all the clarifications have been received.</p>
+													<p>Online application process requires no physical
+														touch point.</p></td>
+											</tr>
+											<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">
+														Checklist</span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">1</td>
+															<td>Form No-I  Application for Registration:  (Enter the data online) </td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">2</td>
+															<td>
+															List of Contractors with details such as <br><br>
+															1). Name and address of the contractor, 2). Nature of Work, 3). No.of Contract Labour engaged, 
+																<br>4). Estimated date of commencement of contract work and date of completion, 5) Phone Number of each contractor.
+															</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">3</td>
+															<td>ID and Address proof of the Principal Employer</td>
+														</tr>
+													</table></td>
+											</tr>
+
+											<tr>
+
+
+												<!-- changed fees according to latest mail - shweta -->
+
+
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">Fee
+														Details </span> <br>
+
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">&nbsp;</td>
+															<td colspan="2"><b>Fees Structure for obtaining
+																	Registration certificates </b></td>
+															<td>&nbsp;</td>
+														</tr>
+														<tr class="employee-range4" data-range="1">
+															<td></td>
+															<td width="50%">5-20 Employees</td>
+															<td width="50%"><p>&#8377; 500/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range4" data-range="2">
+															<td></td>
+															<td width="50%">21-50 Employees</td>
+															<td width="50%"><p>&#8377; 1,000/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range4" data-range="3">
+															<td></td>
+															<td width="50%">51-100 Employees</td>
+															<td width="50%"><p>&#8377; 2,500/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range4" data-range="4">
+															<td></td>
+															<td width="50%">101- 200 Employees</td>
+															<td width="50%"><p>&#8377; 5,000/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range4" data-range="5">
+															<td></td>
+															<td width="50%">201-400 Employees</td>
+															<td width="50%"><p>&#8377; 10,000/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range4" data-range="6">
+															<td></td>
+															<td width="50%">401 and above Employees</td>
+															<td width="50%"><p>&#8377; 15,000/-</p>
+															</td>
+														</tr>
+													</table></td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								<tr><td colspan="2"><table class="table table-hover table-bordered table-striped"  align="center"
+					style="width:95%;" id="Feedata">
+					 <tr><td colspan="5"><h4 style="color: black;">Stagewise Approval Process</h4></td></tr>
+							<tr>
+								<th>SlNo</th>
+								<th>Stage</th>
+								<th>Documents Required</th>
+								<th>Fees</th>
+								<th>Timeline</th></tr>
+					 
+					<tr  >
+							<td>1</td>
+							<td>Submit online application form "Form I"</td>
+							<td><ol><li>Form No-I Application for Registration: (Enter the data online)</li>
+							<li>List of Contractors with details such as <br/>i). Name and address of the contractor,<br/> ii). Nature of Work, <br/>iii). No.of Contract Labour engaged,
+<br/>iv). Estimated date of commencement of contract work and date of completion, <br/> v) Phone Number of each contractor.
+					</li>
+							<li>ID and Address proof of the Principal Employe</li>
+							</ol></td>
+							<td   >
+							 
+							<ol>
+							<li class="employee-range4" data-range="1">5-20 Employees-  <i class="fa fa-rupee"></i> 500/-</li>
+							<li class="employee-range4" data-range="2">21-50 Employees-  <i class="fa fa-rupee"></i> 1,000/- </li>
+							<li class="employee-range4" data-range="3">51-100 Employees-  <i class="fa fa-rupee"></i> 2,500/	   </li>
+							<li class="employee-range4" data-range="4">101- 200 Employees-  <i class="fa fa-rupee"></i> 5,000/-</li>
+							<li class="employee-range4" data-range="5">201-400 Employees-  <i class="fa fa-rupee"></i> 10,000/-</li>
+							<li class="employee-range4" data-range="6">401 and above Employees-  <i class="fa fa-rupee"></i> 15,000/-</li>
+							</ol>
+							</td>
+							<td> </td></tr>
+							<tr><td>2</td>
+					<td>Scrutiny Stage</td>
+					<td></td>
+					<td></td>
+					<td>Within 15 days from the submission of application</td>							
+							</tr>
+							<tr><td>3</td>
+					<td>Approval Stage</td>
+					<td></td>
+					<td></td>
+					<td> 30 Days from the date of submission of complete application as per Citizen's Charter. Deemed Registration at the end of 30 days from date of application if no adverse orders passed</td>							
+							</tr>
+							
+							 
+					</table> </td></tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="ISMWCOFcheckListTab" style="display: none;">
+			<div class="panel panel-primary">
+				<div class="panel-heading" align="center">
+					<h4 class="panel-title">
+						<!--  Contract Labour Act (Contractor)  - <font>Licence </font> -->
+						Licence to a Contractor for Employing migrant workers under Inter State Migrant Workman Act, 1979
+					</h4>
+				</div>
+				<div>
+					<div class="panel-body">
+						<table width="100%"
+							class="table table-hover table-bordered table-striped"
+							align="center">
+
+							<tr>
+								<td colspan="2">
+									<h4 align="left" style="color: black;">
+										Procedure:
+										<!-- for license of Contractor under Contract Labour Act -->
+									</h4>
+
+									<table class="table table-bordered table-colored"
+										style="width : 100%" align="left">
+										<tbody>
+
+
+											<tR>
+												<td align="center"
+													style="font-weight: bold;font-size: 14px;">Steps</td>
+												<td align="center"
+													style="font-weight: bold;font-size: 14px;">Forms</td>
+												<td align="center"
+													style="font-weight: bold;font-size: 14px;">Documents
+													to be Attached</td>
+												<td align="center"
+													style="font-weight: bold;font-size: 14px;">Fee</td>
+												<td align="center"
+													style="font-weight: bold;font-size: 14px;">Timelines</td>
+											</tR>
+											<tR>
+												<td>1</td>
+												<td>Online application form "Form V"</td>
+												<td>*Follow Checklist below</td>
+												<td><nobr>
+														Online fee payment<br /> (As per fee structure given
+														below)
+													</nobr><br>
+												</td>
+												<td>30 Days from the date of submission of complete
+													application as per Citizen's Charter. Deemed Registration
+													at the end of <b>30 days</b> from date of application if no
+													adverse orders passed</td>
+											</tR>
+											<!-- <tR>
+												<td>2</td>
+												<td>Form VI</td>
+												<td>&nbsp;</td>
+												<td>&nbsp;</td>
+											</tR> -->
+
+										</tbody>
+									</table>
+
+									<p>System sends SMS to respective applicant at each
+										progression.</p>
+									<p>In case of any clarifications, the applicant is informed
+										on actions to be taken and start date will be after all the
+										clarifications have been received.</p>
+									<p>Online application process requires no physical touch
+										point.</p></td>
+							</tr>
+
+
+
+							<tr>
+								<td colspan="2" style="padding: 0px;">
+									<table class="table table-hover table-bordered table-striped"
+										align="center">
+
+										<tr>
+											<td><span
+												style="text-decoration: underline;font-size: 14px;color: maroon;">
+													Checklist</span> <br>
+												<table width="100%"
+													class="table table-hover table-bordered table-striped">
+													<tr>
+														<td style="width: 10px;">1</td>
+														<td>Form No.V Application for Licence : Enter the data online</td>
+													</tr>
+													<tr>
+														<td style="width: 10px;">2</td>
+														<td>Form No.II (Copy of Certificate of Registration granted to the Principal Employer)</td>
+													</tr>
+													<tr>
+														<td style="width: 10px;">3</td>
+														<td>Form No.VI  issued by the Principal Employer.</td>
+													</tr>
+													<tr>
+														<td style="width: 10px;">4</td>
+														<td>Estimated date of Commencement and  Completionof Contract work.</td>
+													</tr>
+													<tr>
+														<td style="width: 10px;">5</td>
+														<td>Copy of agreement or work order entered in between the Principal Employer and contractor</td>
+													</tr>
+													<tr>
+														<td style="width: 10px;">6</td>
+														<td>Joint Undertaking both by Principal Employer and Contractor stating for payment of notified minimum wages to the contract labour engaged by them.</td>
+													</tr>
+
+
+
+												</table></td>
+										</tr>
+
+										<tr>
+
+
+											<!-- changed fees according to latest mail -->
+
+
+											<td><span
+												style="text-decoration: underline;font-size: 14px;color: maroon;">Fee
+													Details </span> <br>
+												<table width="100%"
+													class="table table-hover table-bordered table-striped">
+													<tr>
+														<td style="width: 10px;">&nbsp;</td>
+														<td colspan="2"><b>Fees Structure for obtaining
+																Licence</b></td>
+														<td>&nbsp;</td>
+													</tr>
+													<tr class="employee-range4" data-range="1">
+														<td></td>
+														<td width="50%">5-20 Employees -</td>
+														<td width="50%"><p>&#8377; 250/-</p>
+														</td>
+													</tr>
+													<tr class="employee-range4" data-range="2">
+														<td></td>
+														<td width="50%">21-50 Employees -</td>
+														<td width="50%"><p>&#8377; 500/-</p>
+														</td>
+													</tr>
+													<tr class="employee-range4" data-range="3">
+														<td></td>
+														<td width="50%">51-100 Employees -</td>
+														<td width="50%"><p>&#8377; 1,000/-</p>
+														</td>
+													</tr>
+													<tr class="employee-range4" data-range="4">
+														<td></td>
+														<td width="50%">101- 200 Employees -</td>
+														<td width="50%"><p>&#8377; 2,000/-</p>
+														</td>
+													</tr>
+													<tr class="employee-range4" data-range="5">
+														<td></td>
+														<td width="50%">201-400 Employees -</td>
+														<td width="50%"><p>&#8377; 5,000/-</p>
+														</td>
+													</tr>
+													<tr class="employee-range4" data-range="6">
+														<td></td>
+														<td width="50%">401 and above Employees -</td>
+														<td width="50%"><p>&#8377; 10,000/-</p>
+														</td>
+													</tr>
+													<tr>
+														<td style="width: 10px;"></td>
+														<td colspan="2">Security deposit challan-Every contractor shall deposit an amount of Rs.1400/- for each contract labour towards Security Deposit in SBH, where treasury transactions are undertaken.<br /></td>
+													</tr>
+
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							
+							
+							
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="NMTUcheckListTab" style="display: none;">
+
+				<div class="panel panel-primary">
+					<div class="panel-heading" align="center">
+						<h4 class="panel-title">
+							<!-- Shops and Establishments Act - <font>Registration </font> -->
+							MOTOR TRANSPORT WORKERS ACT 1961-REGISTRATIONS
+						</h4>
+					</div>
+					<div>
+						<div class="panel-body">
+							<table width="100%" class="table table-bordered table-striped"
+								align="center">
+								<tr>
+									<td colspan="2" style="padding: 0px;">
+										<table class="table table-hover table-bordered table-striped"
+											align="center">
+											<tr>
+												<td><left>
+													<h4 style="color: black; ">Procedure:</h4>
+													</left>
+													<table class="table table-bordered table-colored"
+														style="width : 100%" align="center">
+														<tbody>
+															<tR>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Steps</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Forms</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Documents
+																	to be Attached</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Fee</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Timelines</td>
+															</tR>
+
+															<tR>
+																<td>Fill the online application & Submit for
+																	registration</td>
+																<!-- Submit application for registration online -->
+																<td>Online application form "Form I"</td>
+																<td>*Follow Checklist below</td>
+																<td><nobr>
+																		Online fee payment<br /> (As per fee structure given
+																		below)
+																	</nobr><br></td>
+																<td>30 Days from the date of submission of complete
+																	application as per Citizen's Charter. Deemed
+																	Registration at the end of <b>30 days</b> from date of
+																	application if no adverse orders passed</td>
+															</tR>
+														</tbody>
+													</table>
+
+													<p>System sends SMS to respective applicant at each
+														progression.</p>
+													<p>In case of any clarifications, the applicant is
+														informed on actions to be taken and start date will be
+														after all the clarifications have been received.</p>
+													<p>Online application process requires no physical
+														touch point.</p></td>
+											</tr>
+											<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">
+														Checklist</span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">1</td>
+															<td>Form No-I  Application for Registration ; Data to be entered online</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">2</td>
+															<td>Permit obtained for first vehicle from Road Transport Authority</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">3</td>
+															<td>I.D. and address proof of the employer</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">4</td>
+															<td>Details of Routes the vehicles will be operating such as Source, Destination, Kms, etc, if more than Five Routes upload in a separate document</td>
+														</tr>
+													</table></td>
+											</tr>
+
+											<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">Fee
+														Details </span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">&nbsp;</td>
+															<td colspan="2"><b>Fees Structure for obtaining
+																	Registration Certificate</b>
+															</td>
+															<td>&nbsp;</td>
+														</tr>
+														<tr class="employee-range5" data-range="1">
+															<td></td>
+															<td width="50%">Upto 5 Workers</td>
+															<td width="50%"><p>&#8377; 750/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range5" data-range="2">
+															<td></td>
+															<td width="50%">6-25 Workers</td>
+															<td width="50%"><p>&#8377; 1500/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range5" data-range="3">
+															<td></td>
+															<td width="50%">26-50 Workers</td>
+															<td width="50%"><p>&#8377; 4000/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range5" data-range="4">
+															<td></td>
+															<td width="50%">51-100 Workers</td>
+															<td width="50%"><p>&#8377; 5000/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range5" data-range="5">
+															<td></td>
+															<td width="50%">101-250 Workers</td>
+															<td width="50%"><p>&#8377; 7500/-</p>
+															</td>
+														</tr>
+
+														<tr class="employee-range5" data-range="6">
+															<td></td>
+															<td width="50%">251-500 Workers</td>
+															<td width="50%"><p>&#8377; 10,000/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range5" data-range="7">
+															<td></td>
+															<td width="50%">501-750 Workers</td>
+															<td width="50%"><p>&#8377; 15,000/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range5" data-range="8">
+															<td></td>
+															<td width="50%">751-1000 Workers</td>
+															<td width="50%"><p>&#8377; 20,000/-</p>
+															</td>
+														</tr>
+
+														<tr class="employee-range5" data-range="9">
+															<td></td>
+															<td width="50%">1001 and Above Workers</td>
+															<td width="50%"><p>&#8377; 25,000/-</p>
+															</td>
+														</tr>
+													</table></td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="NBCWcheckListTab" style="display:none;">
+
+				<div class="panel panel-primary">
+					<div class="panel-heading" align="center">
+						<h4 class="panel-title">
+							Registration and issue of certificate under Beedi and Cigar (Conditions of employment) Act,1966
+						</h4>
+					</div>
+					<div>
+						<div class="panel-body">
+							<table width="100%" class="table table-bordered table-striped"
+								align="center">
+								<tr>
+									<td colspan="2" style="padding: 0px;">
+										<table class="table table-hover table-bordered table-striped"
+											align="center">
+											<tr>
+												<td><left>
+													<h4 style="color: black;">Procedure:</h4>
+													</left>
+													<table class="table table-bordered table-colored"
+														style="width : 100%" align="center">
+														<tbody>
+															<tR>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Steps</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Forms</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Documents
+																	to be Attached</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Fee</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Timelines</td>
+															</tR>
+
+															<tR>
+																<td>Fill the online application & Submit for
+																	Registration</td>
+																<!-- Submit application for registration online -->
+																<td>Online application form "Form I"</td>
+																<td>*Follow Checklist below</td>
+																<td><nobr>
+																		Online fee payment<br /> (As per fee structure given
+																		below)
+																	</nobr><br></td>
+																<td>30 Days from the date of submission of complete
+																	application as per Citizen's Charter. Deemed
+																	Registration at the end of <b>30 days</b> from date of
+																	application if no adverse orders passed</td>
+															</tR>
+														</tbody>
+													</table>
+
+													<p>System sends SMS to respective applicant at each
+														progression.</p>
+													<p>In case of any clarifications, the applicant is
+														informed on actions to be taken and start date will be
+														after all the clarifications have been received.</p>
+													<p>Online application process requires no physical
+														touch point.</p></td>
+											</tr>
+											<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">
+														Checklist</span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">1</td>
+															<td>Form No-I  Application for Registration ; Data to be entered online</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">2</td>
+															<td>List of employees</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">3</td>
+															<td>Copy of rental deed or sale deed of the establishment</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">4</td>
+															<td>I.D. proof of the employer</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">5</td>
+															<td>Two passport size photographs of the employer</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">6</td>
+															<td>Plans of the Premises</td>
+														</tr>
+													</table></td>
+											</tr>
+
+											<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">Fee
+														Details </span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															
+															<td colspan="4"><b>Fees Structure for obtaining
+																	Registration Certificate</b>
+															</td>
+															
+														</tr>
+														<tr>
+															<td style="width: 10px;"><b></b></td>
+															<td><b>Employees</b></td>
+															<td><b>Fee for Industrial premises in which power driven machinery is used (In Rs.)</b></td>
+															<td><b>Fee for Industrial Premises in which power driven machinery is not used (In Rs.)</b>	</td>
+														</tr>
+														<tr class="employee-range6" data-range="1">
+															<td></td>
+															<td width="50%">Upto 10 Employees</td>
+															<td width="25%"><p>&#8377; 250/-</p></td>
+															<td width="25%"><p>&#8377; 100/-</p></td>
+														</tr>
+														<tr class="employee-range6" data-range="2">
+															<td></td>
+															<td width="50%">11-20 Employees</td>
+															<td width="25%"><p>&#8377; 400/-</p></td>
+															<td width="25%"><p>&#8377; 250/-</p></td>
+														</tr>
+														<tr class="employee-range6" data-range="3">
+															<td></td>
+															<td width="50%">21-50 Employees</td>
+															<td width="25%"><p>&#8377; 1000/-</p></td>
+															<td width="25%"><p>&#8377; 600/-</p></td>
+														</tr>
+														<tr class="employee-range6" data-range="4">
+															<td></td>
+															<td width="50%">51-100 Employees</td>
+															<td width="25%"><p>&#8377; 2000/-</p></td>
+															<td width="25%"><p>&#8377; 1500/-</p></td>
+														</tr>
+														<tr class="employee-range6" data-range="5">
+															<td></td>
+															<td width="50%">101-250 Employees</td>
+															<td width="25%"><p>&#8377; 4000/-</p></td>
+															<td width="25%"><p>&#8377; 3000/-</p></td>
+														</tr>
+														<tr class="employee-range6" data-range="6">
+															<td></td>
+															<td width="50%">251-500 Employees</td>
+															<td width="25%"><p>&#8377; 7500/-</p></td>
+															<td width="25%"><p>&#8377; 7000/-</p></td>
+														</tr>
+														<tr class="employee-range6" data-range="7">
+															<td></td>
+															<td width="50%">Above 500 Employees</td>
+															<td width="25%"><p>&#8377; 15000/-</p></td>
+															<td width="25%"><p>&#8377; 12000/-</p></td>
+														</tr>
+														
+													</table></td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="CCRcheckListTab" style="display: none;">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h4 class="panel-title" align="center">
+						<!-- Contract
+							Labour Act (Contractor)   - <font>Renewal</font>  -->
+						AUTO RENEWAL OF LICENCE OF CONTRACTOR
+					</h4>
+				</div>
+				<div id="collapsefour4">
+					<div class="panel-body">
+						<table width="100%"
+							class="table table-hover table-bordered table-striped"
+							align="center">
+							<tr>
+								<td colspan="2">
+
+
+									<h4 align="left" style="color: black;">
+										Procedure:
+										<!-- for license of Contractor under Contract
+											Labour Act -->
+									</h4>
+
+
+									<table class="table table-bordered table-colored"
+										style="width : 100%" align="center">
+										<tbody>
+
+
+											<tR>
+												<td align="center"
+													style="font-weight: bold;font-size: 14px;">Steps</td>
+												<td align="center"
+													style="font-weight: bold;font-size: 14px;">Forms</td>
+												<td align="center"
+													style="font-weight: bold;font-size: 14px;">Documents
+													to be Attached</td>
+												<td align="center"
+													style="font-weight: bold;font-size: 14px;">Fee</td>
+												<td align="center"
+													style="font-weight: bold;font-size: 14px;">Timelines</td>
+											</tR>
+											<tR>
+												<td>Submit <!-- application online in form-VII available
+													online -->
+												</td>
+												<td>Online application form "Form VII"</td>
+												<td>*Follow Checklist below</td>
+												<td><nobr>
+														Online fee payment<br />(As per fee payment given below)
+													</nobr><br>
+												</td>
+												<td>System Generates Auto-Renewal Certificate in form VII Immediately</td>
+											</tR>
+											<tR>
+												<td>Issue <!-- of online license -->
+												</td>
+												<td>Form VI</td>
+												<td>none</td>
+												<td>&nbsp;</td>
+											</tR>
+
+										</tbody>
+									</table>
+
+									<p>System sends SMS and eMail to respective applicant at each progression.</p>
+									<p>In case of any clarifications, the applicant is informed
+										on actions to be taken and start date will be after all the
+										clarifications have been received.</p>
+									<p>Online application process requires no physical touch
+										point.</p>
+								</td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="padding: 0px;">
+									<table class="table table-hover table-bordered table-striped"
+										align="center">
+
+										<tr>
+											<td><span
+												style="text-decoration: underline;font-size: 14px;color: maroon;">
+													Steps to follow Auto-Renewal of Licence</span> <br>
+												<table width="100%"
+													class="table table-hover table-bordered table-striped">
+													<tr>
+														<td style="width: 10px;">1</td>
+														<td> Enter your exisitng licence number </td>
+													</tr>
+													<tr>
+														<td style="width: 10px;">2</td>
+														<td>Validte the details of the licence, if they are found correct</td>
+													</tr>
+													<!-- <tr>
+														<td style="width: 10px;">3</td>
+														<td>Renewal fees challan</td>
+													</tr> -->
+													<tr>
+														<td style="width: 10px;">3</td>
+														<td> Verifiy the Annual Fee payable.</td>
+													</tr>
+													<tr>
+														<td style="width: 10px;">4</td>
+														<td> Proceed to pay the Annual fee </td>
+													</tr>
+													<tr>
+														<td style="width: 10px;">5</td>
+														<td> Acknoledgement and auto -renewal certificate will be generated immediately </td>
+													</tr>
+													<tr>
+														<td style="width: 10px;">6</td>
+														<td> Print both and preserve them for your reference </td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table></td>
+							</tr>
+							<tr>
+
+								<td colspan="2"><span
+									style="text-decoration: underline;font-size: 14px;color: maroon;">Fee
+										Details </span> <br>
+									<table width="100%"
+										class="table table-hover table-bordered table-striped">
+										<tr>
+											<td style="width: 10px;">&nbsp;</td>
+											<td colspan="2"><b>Fees Structure for obtaining
+													Auto-Renewal certificate of Licence</b>
+											</td>
+											<td>&nbsp;</td>
+										</tr>
+										<tr class="employee-range4" data-range="1">
+											<td></td>
+											<td width="50%">5-20 Employees -</td>
+											<td width="50%"><p>&#8377; 350/-</p>
+											</td>
+										</tr>
+										<tr class="employee-range4" data-range="2">
+											<td></td>
+											<td width="50%">21-50 Employees -</td>
+											<td width="50%"><p>&#8377; 500/-</p>
+											</td>
+										</tr>
+										<tr class="employee-range4" data-range="3">
+											<td></td>
+											<td width="50%">51-100 Employees -</td>
+											<td width="50%"><p>&#8377; 1,000/-</p>
+											</td>
+										</tr>
+										<tr class="employee-range4" data-range="4">
+											<td></td>
+											<td width="50%">101- 200 Employees -</td>
+											<td width="50%"><p>&#8377; 2,500/-</p>
+											</td>
+										</tr>
+										<tr class="employee-range4" data-range="5">
+											<td></td>
+											<td width="50%">201-400 Employees -</td>
+											<td width="50%"><p>&#8377; 5,000/-</p>
+											</td>
+										</tr>
+										<tr class="employee-range4" data-range="6">
+											<td></td>
+											<td width="50%">401 and above Employees -</td>
+											<td width="50%"><p>&#8377; 7,500/-</p>
+											</td>
+										</tr>
+										
+										
+										
+
+									</table></td>
+							</tr>
+							<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">Annual Fee Payment Timelines </span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">&nbsp;</td>
+															<td colspan="2"><b>For Payments </b></td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">1</td>
+															<td width="50%">Earlier than 30 days before the expiry of the current license validity.</td>
+															<td>No Penalty</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">2</td>
+															<td width="50%">Less than / After 30 days before the expiry of the current license validity.</td>
+															<td>25% Penalty</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="ABCWcheckListTab" style="display: none;">
+				<div class="panel panel-primary">
+					<div class="panel-heading" align="center">
+						<h4 class="panel-title">
+							
+							Building and other Constructions Workers Act, 1996-AMENDMENT
+						</h4>
+					</div>
+					<div>
+						<div class="panel-body">
+							<table width="100%"
+								class="table table-hover table-bordered table-striped"
+								align="center">
+
+								<tr>
+									<td colspan="2" style="padding: 0px;">
+										<table class="table table-hover table-bordered table-striped"
+											align="center">
+											<tr>
+												<td><left>
+													<h4 style="color: black;">
+														Procedure:
+													</h4>
+													</left> 
+
+													<table class="table table-bordered table-colored"
+										style="width : 100%" align="center">
+										<tbody>
+
+											<tr>
+												<td align="center"
+													style="font-weight: bold;font-size: 14px;">Steps</td>
+												<td align="center"
+													style="font-weight: bold;font-size: 14px;">Forms</td>
+												<td align="center"
+													style="font-weight: bold;font-size: 14px;">Documents
+													to be Attached</td>
+												<td align="center"
+													style="font-weight: bold;font-size: 14px;">Fee</td>
+												<td align="center"
+													style="font-weight: bold;font-size: 14px;">Timelines</td>
+											</tr>
+											<tr>
+												<td>Submit</td>
+												<td>Online application form - Form-I</td>
+												<td>ID Proof of Employer Establishment, Address Proof<br>
+													*Follow Checklist below</td>
+												<td>Online fee payment<br /> (As per the fee structure
+													given below)</td>
+												<td>15 days from the date of submission of the
+													application as per Citizen's Charter. Deemed Registration
+													at the end of <b>15 days</b> from date of application if no
+													adverse orders passed</td>
+											</tr>
+											<tr>
+												<td>Issue</td>
+												<td>Form-II</td>
+												<td>&nbsp;</td>
+												<td>&nbsp;</td>
+											</tr>
+
+										</tbody>
+									</table>
+													<p>System sends SMS to respective applicant at each
+														progression.</p>
+													<p>In case of any clarifications, the applicant is
+														informed on actions to be taken and start date will be
+														after all the clarifications have been received.</p>
+													<p>Online application process requires no physical
+														touch point.</p>
+												</td>
+											</tr>
+											<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">
+														Checklist</span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">1</td>
+															<td>Application for 
+																Amendment</td>
+																
+														</tr>
+														<tr><td style="width: 10px;">2</td>
+															<td>Total number of Employees Proof Attachment</td></tr>
+														
+
+													</table>
+												</td>
+											</tr>
+											<tr>
+											<td><span
+												style="text-decoration: underline;font-size: 14px;color: maroon;">Difference of  Fee
+													Payable </span> <br>
+												 <table width="100%"
+													class="table table-hover table-bordered table-striped">
+													<tr>
+														<td style="width: 10px;">&nbsp;</td>
+														<td width="30%">Fees Structure for Amendment</td>
+														<td>&nbsp;</td>
+													</tr>
+													<tr class="employee-range3" data-range="1">
+														<td></td>
+														<td width="50%">Upto 100 employees -</td>
+														<td width="50%"><p>&#8377; 1000/-</p></td>
+													</tr>
+													<tr class="employee-range3" data-range="2">
+														<td></td>
+														<td width="50%">101 - 500 Employees -</td>
+														<td width="50%"><p>&#8377; 5000/-</p></td>
+													</tr>
+													<tr class="employee-range3" data-range="3">
+														<td></td>
+														<td width="50%">501 and above -</td>
+														<td width="50%"><p>&#8377;  5000/- + 5000 for additional 500 Persons.</p></td>
+													</tr>
+												</table> 
+
+										</table>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="SEPcheckListTab" style="display: none;">
+				<div class="panel panel-primary">
+					<div class="panel-heading" align="center">
+						<h4 class="panel-title">
+							<!--  Shops and
+							Establishments Act   - <font> Renewal </font> -->
+							CONTRACT LABOUR ACT (PRINCIPAL EMPLOYER)-AMENDMENT
+						</h4>
+					</div>
+					<div>
+						<div class="panel-body">
+							<table width="100%"
+								class="table table-hover table-bordered table-striped"
+								align="center">
+
+								<tr>
+									<td colspan="2" style="padding: 0px;">
+										<table class="table table-hover table-bordered table-striped"
+											align="center">
+											<tr>
+												<td><left>
+													<h4 style="color: black;">
+														Procedure:
+													</h4>
+													</left> 
+
+													<table class="table table-bordered table-colored"
+														style="width : 100%" align="center">
+														<tbody>
+															<tR>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Steps</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Forms</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Documents
+																	to be Attached</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Fee</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Timelines</td>
+															</tR>
+															<tR>
+																<td>Submit<!--  application for registration online -->
+																</td>
+																<td>Online application form </td>
+																<td>*Follow Checklist below</td>
+																<td><nobr>
+																		<!-- Online fee payment<br /> (As per fee structure given
+																		below) -->No Fee
+																	</nobr><br></td>
+																<td>30 Days from the date of submission of complete
+																	application as per Citizen's Charter. Deemed
+																	Registration at the end of <b>30 days</b> from date of
+																	application if no adverse orders passed</td>
+															</tR>
+															<tR>
+																<td>Issue <!-- of online registration certificate -->
+																</td>
+																<td>Online Application Form</td>
+																<td>&nbsp;</td>
+																<td>&nbsp;</td>
+															</tR>
+
+														</tbody>
+													</table>
+													<p>System sends SMS to respective applicant at each
+														progression.</p>
+													<p>In case of any clarifications, the applicant is
+														informed on actions to be taken and start date will be
+														after all the clarifications have been received.</p>
+													<p>Online application process requires no physical
+														touch point.</p>
+												</td>
+											</tr>
+											<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">
+														Checklist</span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">1</td>
+															<td>Application for Notice of Change/
+																Amendment</td>
+														</tr>
+														
+
+													</table>
+												</td>
+											</tr>
+
+											<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">Fee
+														Details </span> <br>
+
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">&nbsp;</td>
+															<td colspan="2"><b>Fee Structure for Amendment - Principal Employer </b></td>
+															<td>&nbsp;</td>
+														</tr>
+														<tr class="employee-range4" data-range="1">
+															<td></td>
+															<td width="50%">5-20 Employees</td>
+															<td width="50%"><p>&#8377; 500/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range4" data-range="2">
+															<td></td>
+															<td width="50%">21-50 Employees</td>
+															<td width="50%"><p>&#8377; 1,000/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range4" data-range="3">
+															<td></td>
+															<td width="50%">51-100 Employees</td>
+															<td width="50%"><p>&#8377; 2,000/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range4" data-range="4">
+															<td></td>
+															<td width="50%">101- 200 Employees</td>
+															<td width="50%"><p>&#8377; 5,000/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range4" data-range="5">
+															<td></td>
+															<td width="50%">201-400 Employees</td>
+															<td width="50%"><p>&#8377; 10,000/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range4" data-range="6">
+															<td></td>
+															<td width="50%">401 and above Employees</td>
+															<td width="50%"><p>&#8377; 15,000/-</p>
+															</td>
+														</tr>
+
+													</table></td>
+											</tr>
+
+											<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">Fee
+														Details </span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">&nbsp;</td>
+															<td colspan="2"><b>Fees Structure for Amendment</b>
+															</td>
+															<td>&nbsp;</td>
+														</tr>
+														<tr>
+															<td></td>
+															<td width="50%"> Difference of fee for increase in number of employees</td>
+															<td width="50%"><p>&#8377; Applicable difference in fee </p><a onMouseOver ="showFeeSEP();" data-toggle="tooltip" title="Hover to view fee structure"><u>Hover to view Fee Struture</u></a>
+															</td>
+														</tr>
+
+													</table></td>
+											</tr>
+
+										</table>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="SECcheckListTab" style="display: none;">
+				<div class="panel panel-primary">
+					<div class="panel-heading" align="center">
+						<h4 class="panel-title">
+							<!--  Shops and
+							Establishments Act   - <font> Renewal </font> -->
+							CONTRACT LABOUR ACT (CONTRACTOR)-AMENDMENT
+						</h4>
+					</div>
+					<div>
+						<div class="panel-body">
+							<table width="100%"
+								class="table table-hover table-bordered table-striped"
+								align="center">
+								<!-- <tr style="background-color: #ccc;">
+								<td style="width: 20px;">&nbsp;</td>
+								<td>Procedure & Checklist for Renewal under Shops and Establishments
+									Act</td>
+							</tr> -->
+
+								<tr>
+									<td colspan="2" style="padding: 0px;">
+										<table class="table table-hover table-bordered table-striped"
+											align="center">
+											<tr>
+												<td><left>
+													<h4 style="color: black;">
+														Procedure:
+													</h4>
+													</left> 
+													<table class="table table-bordered table-colored"
+														style="width : 100%" align="center">
+														<tbody>
+															<tR>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Steps</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Forms</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Documents
+																	to be Attached</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Fee</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Timelines</td>
+															</tR>
+															<tR>
+																<td>Submit<!--  application for registration online -->
+																</td>
+																<td>Online application form </td>
+																<td>*Follow Checklist below</td>
+																<td><nobr>
+																		Online fee payment<br /> (As per fee structure given
+																		below)
+																	</nobr><br></td>
+																<td>30 Days from the date of submission of complete
+																	application as per Citizen's Charter. Deemed
+																	Registration at the end of <b>30 days</b> from date of
+																	application if no adverse orders passed</td>
+															</tR>
+															<tR>
+																<td>Issue <!-- of online registration certificate -->
+																</td>
+																<td>Online Application Form</td>
+																<td>&nbsp;</td>
+																<td>&nbsp;</td>
+															</tR>
+
+														</tbody>
+													</table> 
+													<p>System sends SMS to respective applicant at each
+														progression.</p>
+													<p>In case of any clarifications, the applicant is
+														informed on actions to be taken and start date will be
+														after all the clarifications have been received.</p>
+													<p>Online application process requires no physical
+														touch point.</p>
+												</td>
+											</tr>
+											<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">
+														Checklist</span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">1</td>
+															<td>Application for Notice of Change/
+																Amendment</td>
+														</tr>
+
+													</table>
+												</td>
+											</tr>
+
+											<tr>
+
+												<td colspan="2"><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">Fee
+														Details </span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">&nbsp;</td>
+															<td colspan="2"><b>Fee Structure for Amendment - Contractor</b>
+															</td>
+															<td>&nbsp;</td>
+														</tr>
+														<tr class="employee-range4" data-range="1">
+															<td></td>
+															<td width="50%">5-20 Employees -</td>
+															<td width="50%"><p>&#8377; 350/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range4" data-range="2">
+															<td></td>
+															<td width="50%">21-50 Employees -</td>
+															<td width="50%"><p>&#8377; 500/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range4" data-range="3">
+															<td></td>
+															<td width="50%">51-100 Employees -</td>
+															<td width="50%"><p>&#8377; 1,000/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range4" data-range="4">
+															<td></td>
+															<td width="50%">101- 200 Employees -</td>
+															<td width="50%"><p>&#8377; 2,500/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range4" data-range="5">
+															<td></td>
+															<td width="50%">201-400 Employees -</td>
+															<td width="50%"><p>&#8377; 5,000/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range4" data-range="6">
+															<td></td>
+															<td width="50%">401 and above Employees -</td>
+															<td width="50%"><p>&#8377; 7,500/-</p>
+															</td>
+														</tr>
+														
+														
+														
+				
+													</table></td>
+											</tr>
+
+
+											<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">Fee
+														Details </span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">&nbsp;</td>
+															<td colspan="2"><b>Fees Structure for Amendment</b>
+															</td>
+															<td>&nbsp;</td>
+														</tr>
+														<tr>
+															<td>1</td>
+															<td width="50%"> Amendment Fees
+																</td>
+															<td width="50%"><p>&#8377; 60/-</p>
+															</td>
+														</tr>
+														<tr>
+															<td>2</td>
+															<td width="50%"> Difference of fee for increase in number of employees</td>
+															<td width="50%"><p>&#8377; Applicable difference in fee </p><a onMouseOver ="showFeeSEC();" data-toggle="tooltip" title="Hover to view fee structure"><u>Hover to view Fee Struture</u></a>
+															</td>
+														</tr>
+														<tr>
+															<td>3</td>
+															<td width="50%"> Security deposit per employee</td>
+															<td width="50%"><p>&#8377; 500/-</p>
+															</td>
+														</tr>
+														<tr>
+														<td colspan="3"><font color="red"><b>Note:Every contractor shall deposit an amount of Rs.500/- for each contract labour towards Security Deposit in SBH, where treasury transactions are undertaken.
+														</b></font></td>
+														</tr>
+
+													</table></td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="RISMCLNcheckListTab" style="display: none;">
+			<div class="panel panel-primary">
+				<div class="panel-heading" align="center">
+					<h4 class="panel-title">
+						Auto Renewal of Licence to a Contractor for Employing migrant workers under Inter State Migrant Workman Act, 1979
+					</h4>
+				</div>
+				<div>
+					<div class="panel-body">
+						<table width="100%"
+							class="table table-hover table-bordered table-striped"
+							align="center">
+
+							<tr>
+								<td colspan="2">
+									<h4 align="left" style="color: black;">
+										Procedure:
+										<!-- for license of Contractor under Contract Labour Act -->
+									</h4>
+
+									<table class="table table-bordered table-colored"
+										style="width : 100%" align="left">
+										<tbody>
+
+
+											<tR>
+												<td align="center"
+													style="font-weight: bold;font-size: 14px;">Steps</td>
+												<td align="center"
+													style="font-weight: bold;font-size: 14px;">Forms</td>
+												<td align="center"
+													style="font-weight: bold;font-size: 14px;">Documents
+													to be Attached</td>
+												<td align="center"
+													style="font-weight: bold;font-size: 14px;">Fee</td>
+												<td align="center"
+													style="font-weight: bold;font-size: 14px;">Timelines</td>
+											</tR>
+											<tR>
+												<td>1</td>
+												<td>Online application form "Form V"</td>
+												<td>*Follow Checklist below</td>
+												<td><nobr>
+														Online fee payment<br /> (As per fee structure given
+														below)
+													</nobr><br>
+												</td>
+												<td>System Generates Auto-Renewal Certificate in form VII Immediately</td>
+											</tR>
+											<!-- <tR>
+												<td>2</td>
+												<td>Form VI</td>
+												<td>&nbsp;</td>
+												<td>&nbsp;</td>
+											</tR> -->
+
+										</tbody>
+									</table>
+
+									<p>System sends SMS to respective applicant at each
+										progression.</p>
+									<p>In case of any clarifications, the applicant is informed
+										on actions to be taken and start date will be after all the
+										clarifications have been received.</p>
+									<p>Online application process requires no physical touch
+										point.</p></td>
+							</tr>
+
+
+
+							<tr>
+								<td colspan="2" style="padding: 0px;">
+									<table class="table table-hover table-bordered table-striped"
+										align="center">
+
+										<tr>
+											<td><span
+												style="text-decoration: underline;font-size: 14px;color: maroon;">
+													Steps to follow Auto-Renewal of Licence</span> <br>
+												<table width="100%"
+													class="table table-hover table-bordered table-striped">
+													<tr>
+														<td style="width: 10px;">1</td>
+														<td> Enter your exisitng licence number </td>
+													</tr>
+													<tr>
+														<td style="width: 10px;">2</td>
+														<td>Validte the details of the licence, if they are found correct</td>
+													</tr>
+													<!-- <tr>
+														<td style="width: 10px;">3</td>
+														<td>Renewal fees challan</td>
+													</tr> -->
+													<tr>
+														<td style="width: 10px;">3</td>
+														<td> Verifiy the Annual Fee payable.</td>
+													</tr>
+													<tr>
+														<td style="width: 10px;">4</td>
+														<td> Proceed to pay the Annual fee </td>
+													</tr>
+													<tr>
+														<td style="width: 10px;">5</td>
+														<td> Acknoledgement and auto -renewal certificate will be generated immediately </td>
+													</tr>
+													<tr>
+														<td style="width: 10px;">6</td>
+														<td> Print both and preserve them for your reference </td>
+													</tr>
+
+
+												</table>
+											</td>
+										</tr>
+
+										<tr>
+
+
+											<!-- changed fees according to latest mail -->
+
+
+											<td><span
+												style="text-decoration: underline;font-size: 14px;color: maroon;">Fee
+													Details </span> <br>
+												<table width="100%"
+													class="table table-hover table-bordered table-striped">
+													<tr>
+														<td style="width: 10px;">&nbsp;</td>
+														<td colspan="2"><b>Fees Structure for obtaining
+																Licence</b></td>
+														<td>&nbsp;</td>
+													</tr>
+													<tr class="employee-range4" data-range="1">
+														<td></td>
+														<td width="50%">5-20 Employees -</td>
+														<td width="50%"><p>&#8377; 250/-</p>
+														</td>
+													</tr>
+													<tr class="employee-range4" data-range="2">
+														<td></td>
+														<td width="50%">21-50 Employees -</td>
+														<td width="50%"><p>&#8377; 500/-</p>
+														</td>
+													</tr>
+													<tr class="employee-range4" data-range="3">
+														<td></td>
+														<td width="50%">51-100 Employees -</td>
+														<td width="50%"><p>&#8377; 1,000/-</p>
+														</td>
+													</tr>
+													<tr class="employee-range4" data-range="4">
+														<td></td>
+														<td width="50%">101- 200 Employees -</td>
+														<td width="50%"><p>&#8377; 2,000/-</p>
+														</td>
+													</tr>
+													<tr class="employee-range4" data-range="5">
+														<td></td>
+														<td width="50%">201-400 Employees -</td>
+														<td width="50%"><p>&#8377; 5,000/-</p>
+														</td>
+													</tr>
+													<tr class="employee-range4" data-range="6">
+														<td></td>
+														<td width="50%">401 and above Employees -</td>
+														<td width="50%"><p>&#8377; 10,000/-</p>
+														</td>
+													</tr>
+
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">Annual Fee Payment Timelines </span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">&nbsp;</td>
+															<td colspan="2"><b>For Payments </b></td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">1</td>
+															<td width="50%">Earlier than 30 days before the expiry of the current license validity.</td>
+															<td>No Penalty</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">2</td>
+															<td width="50%">Less than / After 30 days before the expiry of the current license validity.</td>
+															<td>25% Penalty</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="RMTUcheckListTab" style="display: none;">
+
+				<div class="panel panel-primary">
+					<div class="panel-heading" align="center">
+						<h4 class="panel-title">
+							<!-- Shops and Establishments Act - <font>Registration </font> -->
+							MOTOR TRANSPORT WORKERS ACT 1961 - AUTO RENEWAL
+						</h4>
+					</div>
+					<div>
+						<div class="panel-body">
+							<table width="100%" class="table table-bordered table-striped"
+								align="center">
+								<tr>
+									<td colspan="2" style="padding: 0px;">
+										<table class="table table-hover table-bordered table-striped"
+											align="center">
+											<tr>
+												<td><left>
+													<h4 style="color: black;">Procedure:</h4>
+													</left>
+													<table class="table table-bordered table-colored"
+														style="width : 100%" align="center">
+														<tbody>
+															<tR>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Steps</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Forms</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Documents
+																	to be Attached</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Fee</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Timelines</td>
+															</tR>
+
+															<tR>
+																<td>Fill the online application & Submit for
+																	registration</td>
+																<!-- Submit application for registration online -->
+																<td>Online application form "Form I"</td>
+																<td>*Follow Checklist below</td>
+																<td><nobr>
+																		Online fee payment<br /> (As per fee structure given
+																		below)
+																	</nobr><br></td>
+																<td>System Generates Auto-Renewal Certificate Immediately</td>
+															</tR>
+														</tbody>
+													</table>
+
+													<p>System sends SMS to respective applicant at each
+														progression.</p>
+													<p>In case of any clarifications, the applicant is
+														informed on actions to be taken and start date will be
+														after all the clarifications have been received.</p>
+													<p>Online application process requires no physical
+														touch point.</p></td>
+											</tr>
+											<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">
+														Checklist</span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">1</td>
+															<td>Form No-I  Application for Registration ; Data to be entered online</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">2</td>
+															<td>Permit obtained for first vehicle from Road Transport Authority</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">3</td>
+															<td>I.D. and address proof of the employer</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">4</td>
+															<td>Details of Routes the vehicles will be operating such as Source, Destination, Kms, etc, if more than Five Routes upload in a separate document</td>
+														</tr>
+													</table></td>
+											</tr>
+											<tr>
+													<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">
+														Note</span> <br>
+													<table width="100%"	class="table table-hover table-bordered table-striped">
+														<tr>
+															<td>I</td>
+															<td width="50%">If the Registration certificate is valid upto 31.12.2017 and if the amendment is required for 2017.</td>
+															<td width="50%"><b>First</b> need to amend then apply for renewal for 2018.
+															</td>
+														</tr>
+														<tr>
+															<td>II</td>
+															<td width="50%">If the Registration certificate is valid upto 31.12.2017 and if the amendment is required for 2018.</td>
+															<td width="50%"><b>First apply</b> for renewal for 2018 and then amend.
+															</td>
+														</tr>
+													</table></td>
+											</tr>
+											<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">Fee
+														Details </span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">&nbsp;</td>
+															<td colspan="2"><b>Fees Structure for obtaining
+																	Registration Certificate</b>
+															</td>
+															<td>&nbsp;</td>
+														</tr>
+														<tr class="employee-range5" data-range="1">
+															<td></td>
+															<td width="50%">Upto 5 Workers</td>
+															<td width="50%"><p>&#8377; 750/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range5" data-range="2">
+															<td></td>
+															<td width="50%">6-25 Workers</td>
+															<td width="50%"><p>&#8377; 1500/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range5" data-range="3">
+															<td></td>
+															<td width="50%">26-50 Workers</td>
+															<td width="50%"><p>&#8377; 4000/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range5" data-range="4">
+															<td></td>
+															<td width="50%">51-100 Workers</td>
+															<td width="50%"><p>&#8377; 5000/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range5" data-range="5">
+															<td></td>
+															<td width="50%">101-250 Workers</td>
+															<td width="50%"><p>&#8377; 7500/-</p>
+															</td>
+														</tr>
+
+														<tr class="employee-range5" data-range="6">
+															<td></td>
+															<td width="50%">251-500 Workers</td>
+															<td width="50%"><p>&#8377; 10,000/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range5" data-range="7">
+															<td></td>
+															<td width="50%">501-750 Workers</td>
+															<td width="50%"><p>&#8377; 15,000/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range5" data-range="8">
+															<td></td>
+															<td width="50%">751-1000 Workers</td>
+															<td width="50%"><p>&#8377; 20,000/-</p>
+															</td>
+														</tr>
+
+														<tr class="employee-range5" data-range="9">
+															<td></td>
+															<td width="50%">1001 and Above Workers</td>
+															<td width="50%"><p>&#8377; 25,000/-</p>
+															</td>
+														</tr>
+													</table></td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">Annual Fee Payment Timelines </span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">&nbsp;</td>
+															<td colspan="2"><b>For Payments </b></td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">1</td>
+															<td width="50%">Between 1st November to 1st December</td>
+															<td>No Penalty</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">2</td>
+															<td width="50%">Between 2nd December to 31st December</td>
+															<td>25% Penalty</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">3</td>
+															<td width="50%">After 31st December</td>
+															<td>50% Penalty</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="AMTUcheckListTab" style="display: none;">
+				<div class="panel panel-primary">
+					<div class="panel-heading" align="center">
+						<h4 class="panel-title">
+							<!-- Shops and Establishments Act - <font>Registration </font> -->
+							MOTOR TRANSPORT WORKERS ACT 1961-AMENDMENT
+						</h4>
+					</div>
+					<div>
+						<div class="panel-body">
+							<table width="100%" class="table table-bordered table-striped"
+								align="center">
+								<tr>
+									<td colspan="2" style="padding: 0px;">
+										<table class="table table-hover table-bordered table-striped"
+											align="center">
+											<tr>
+												<td><left>
+													<h4 style="color: black;">Procedure:</h4>
+													</left>
+													<table class="table table-bordered table-colored"
+														style="width : 100%" align="center">
+														<tbody>
+															<tR>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Steps</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Forms</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Documents
+																	to be Attached</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Fee</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Timelines</td>
+															</tR>
+
+															<tR>
+																<td>Fill the online application & Submit </td>
+																<!-- Submit application for registration online -->
+																<td>Online application form </td>
+																<td>*Follow Checklist below</td>
+																<td><nobr>
+																		Online fee payment<br /> (As per fee structure given
+																		below)
+																	</nobr><br></td>
+																<td>30 Days from the date of submission of complete
+																	application as per Citizen's Charter. Deemed
+																	Registration at the end of <b>30 days</b> from date of
+																	application if no adverse orders passed</td>
+															</tR>
+														</tbody>
+													</table>
+
+													<p>System sends SMS to respective applicant at each
+														progression.</p>
+													<p>In case of any clarifications, the applicant is
+														informed on actions to be taken and start date will be
+														after all the clarifications have been received.</p>
+													<p>Online application process requires no physical
+														touch point.</p></td>
+											</tr>
+											<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">
+														Checklist</span> <br>
+													<table width="100%"	class="table table-hover table-bordered table-striped">
+														<tr>
+															<td>1</td>
+															<td width="50%">Prescribed Ammendment Fee</td>
+															<td width="50%"><p>&#8377; 5/-</p>
+															</td>
+														</tr>
+														<tr>
+															<td>2</td>
+															<td width="50%">Slab difference will be charged wherever applicable </td>
+															<td width="50%"><p>As per G.O MS No. 80, dt. 30-01-2016</p>
+															</td>
+														</tr>
+													</table></td>
+											</tr>
+											<tr>
+													<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">
+														Note</span> <br>
+													<table width="100%"	class="table table-hover table-bordered table-striped">
+														<tr>
+															<td>I</td>
+															<td width="50%">If the Registration certificate is valid upto 31.12.2017 and if the amendment is required for 2017.</td>
+															<td width="50%"><b>First</b> need to amend then apply for renewal for 2018.
+															</td>
+														</tr>
+														<tr>
+															<td>II</td>
+															<td width="50%">If the Registration certificate is valid upto 31.12.2017 and if the amendment is required for 2018.</td>
+															<td width="50%"><b>First apply</b> for renewal for 2018 and then amend.
+															</td>
+														</tr>
+													</table></td>
+											</tr>
+
+											<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">Fee
+														Details </span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<!-- <tr>
+															<td style="width: 10px;">&nbsp;</td>
+															<td colspan="2"><b>Fees Structure for obtaining
+																	Registration Certificate</b>
+															</td>
+															<td>&nbsp;</td>
+														</tr> -->
+														<tr class="employee-range5" data-range="1">
+															<td></td>
+															<td width="50%">Upto 5 Workers</td>
+															<td width="50%"><p>&#8377; 750/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range5" data-range="2">
+															<td></td>
+															<td width="50%">6-25 Workers</td>
+															<td width="50%"><p>&#8377; 1500/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range5" data-range="3">
+															<td></td>
+															<td width="50%">26-50 Workers</td>
+															<td width="50%"><p>&#8377; 4000/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range5" data-range="4">
+															<td></td>
+															<td width="50%">51-100 Workers</td>
+															<td width="50%"><p>&#8377; 5000/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range5" data-range="5">
+															<td></td>
+															<td width="50%">101-250 Workers</td>
+															<td width="50%"><p>&#8377; 7500/-</p>
+															</td>
+														</tr>
+
+														<tr class="employee-range5" data-range="6">
+															<td></td>
+															<td width="50%">251-500 Workers</td>
+															<td width="50%"><p>&#8377; 10,000/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range5" data-range="7">
+															<td></td>
+															<td width="50%">501-750 Workers</td>
+															<td width="50%"><p>&#8377; 15,000/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range5" data-range="8">
+															<td></td>
+															<td width="50%">751-1000 Workers</td>
+															<td width="50%"><p>&#8377; 20,000/-</p>
+															</td>
+														</tr>
+
+														<tr class="employee-range5" data-range="9">
+															<td></td>
+															<td width="50%">1001 and Above Workers</td>
+															<td width="50%"><p>&#8377; 25,000/-</p>
+															</td>
+														</tr>
+													</table></td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="RBCWcheckListTab" style="display: none;">
+
+				<div class="panel panel-primary">
+					<div class="panel-heading" align="center">
+						<h4 class="panel-title">
+							Renewal and issue of certificate under Beedi and Cigar (Conditions of employment) Act,1966
+						</h4>
+					</div>
+					<div>
+						<div class="panel-body">
+							<table width="100%" class="table table-bordered table-striped"
+								align="center">
+								<tr>
+									<td colspan="2" style="padding: 0px;">
+										<table class="table table-hover table-bordered table-striped"
+											align="center">
+											<tr>
+												<td><left>
+													<h4 style="color: black">Procedure:</h4>
+													</left>
+													<table class="table table-bordered table-colored"
+														style="width : 100%" align="center">
+														<tbody>
+															<tR>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Steps</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Forms</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Documents
+																	to be Attached</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Fee</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Timelines</td>
+															</tR>
+
+															<tR>
+																<td>Fill the online application & Submit for
+																	Renewal</td>
+																<!-- Submit application for registration online -->
+																<td>Online application form "Form I"</td>
+																<td>*Follow Checklist below</td>
+																<td><nobr>
+																		Online fee payment<br /> (As per fee structure given
+																		below)
+																	</nobr><br></td>
+																<td>30 Days from the date of submission of complete
+																	application as per Citizen's Charter. Deemed
+																	Registration at the end of <b>30 days</b> from date of
+																	application if no adverse orders passed</td>
+															</tR>
+														</tbody>
+													</table>
+
+													<p>System sends SMS to respective applicant at each
+														progression.</p>
+													<p>In case of any clarifications, the applicant is
+														informed on actions to be taken and start date will be
+														after all the clarifications have been received.</p>
+													<p>Online application process requires no physical
+														touch point.</p></td>
+											</tr>
+											<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">
+														Checklist</span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">1</td>
+															<td>Form No-I  Application for Renewal ; Data to be entered online</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">2</td>
+															<td>List of employees</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">3</td>
+															<td>Copy of rental deed or sale deed of the establishment</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">4</td>
+															<td>I.D. proof of the employer</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">5</td>
+															<td>Two passport size photographs of the employer</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">6</td>
+															<td>Plans of the Premises</td>
+														</tr>
+													</table></td>
+											</tr>
+
+											<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">Fee
+														Details </span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															
+															<td colspan="4"><b>Fees Structure for obtaining
+																	Renewal Certificate</b>
+															</td>
+															
+														</tr>
+														<tr>
+															<td style="width: 10px;"><b></b></td>
+															<td><b>Employees</b></td>
+															<td><b>Fee for Industrial premises in which power driven machinery is used (In Rs.)</b></td>
+															<td><b>Fee for Industrial Premises in which power driven machinery is not used (In Rs.)</b>	</td>
+														</tr>
+														<tr class="employee-range6" data-range="1">
+															<td></td>
+															<td width="50%">Upto 10 Employees</td>
+															<td width="25%"><p>&#8377; 250/-</p></td>
+															<td width="25%"><p>&#8377; 100/-</p></td>
+														</tr>
+														<tr class="employee-range6" data-range="2">
+															<td></td>
+															<td width="50%">11-20 Employees</td>
+															<td width="25%"><p>&#8377; 400/-</p></td>
+															<td width="25%"><p>&#8377; 250/-</p></td>
+														</tr>
+														<tr class="employee-range6" data-range="3">
+															<td></td>
+															<td width="50%">21-50 Employees</td>
+															<td width="25%"><p>&#8377; 1000/-</p></td>
+															<td width="25%"><p>&#8377; 600/-</p></td>
+														</tr>
+														<tr class="employee-range6" data-range="4">
+															<td></td>
+															<td width="50%">51-100 Employees</td>
+															<td width="25%"><p>&#8377; 2000/-</p></td>
+															<td width="25%"><p>&#8377; 1500/-</p></td>
+														</tr>
+														<tr class="employee-range6" data-range="5">
+															<td></td>
+															<td width="50%">101-250 Employees</td>
+															<td width="25%"><p>&#8377; 4000/-</p></td>
+															<td width="25%"><p>&#8377; 3000/-</p></td>
+														</tr>
+														<tr class="employee-range6" data-range="6">
+															<td></td>
+															<td width="50%">251-500 Employees</td>
+															<td width="25%"><p>&#8377; 7500/-</p></td>
+															<td width="25%"><p>&#8377; 7000/-</p></td>
+														</tr>
+														<tr class="employee-range6" data-range="7">
+															<td></td>
+															<td width="50%">Above 500 Employees</td>
+															<td width="25%"><p>&#8377; 15000/-</p></td>
+															<td width="25%"><p>&#8377; 12000/-</p></td>
+														</tr>
+														
+													</table></td>
+											</tr>
+											<tr>
+												<td align="center">
+												<font color="red">Note:Applications received after 2nd March of the financial year will be renewed with 25% penalty
+												</font>
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">Renewal Fee Payment Timelines </span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">&nbsp;</td>
+															<td colspan="2"><b>For Payments </b></td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">1</td>
+															<td width="50%">Between 1st February to 1st March</td>
+															<td>No Penalty</td>
+														</tr>
+														<tr>
+															<td style="width: 10px;">3</td>
+															<td width="50%">After 1st March</td>
+															<td>25% Penalty</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="AISMPEcheckListTab" style="display: none;">
+				<div class="panel panel-primary">
+					<div class="panel-heading" align="center">
+						<h4 class="panel-title">
+							Principal Employer Interstate Migrant Workman Act, 1979 - Amendment
+						</h4>
+					</div>
+					<div>
+						<div class="panel-body">
+							<table width="100%"
+								class="table table-hover table-bordered table-striped"
+								align="center">
+
+								<tr>
+									<td colspan="2" style="padding: 0px;">
+										<table class="table table-hover table-bordered table-striped"
+											align="center">
+											<tr>
+												<td><left>
+													<h4 style="color: black;">
+														Procedure:
+													</h4>
+													</left> 
+
+													<table class="table table-bordered table-colored"
+														style="width : 100%" align="center">
+														<tbody>
+															<tR>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Steps</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Forms</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Documents
+																	to be Attached</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Fee</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Timelines</td>
+															</tR>
+															<tR>
+																<td>Submit<!--  application for registration online -->
+																</td>
+																<td>Online application form </td>
+																<td>*Follow Checklist below</td>
+																<td><nobr>
+																		<!-- Online fee payment<br /> (As per fee structure given
+																		below) -->No Fee
+																	</nobr><br></td>
+																<td>30 Days from the date of submission of complete
+																	application as per Citizen's Charter. Deemed
+																	Registration at the end of <b>30 days</b> from date of
+																	application if no adverse orders passed</td>
+															</tR>
+															<tR>
+																<td>Issue <!-- of online registration certificate -->
+																</td>
+																<td>Online Application Form</td>
+																<td>&nbsp;</td>
+																<td>&nbsp;</td>
+															</tR>
+
+														</tbody>
+													</table>
+													<p>System sends SMS to respective applicant at each
+														progression.</p>
+													<p>In case of any clarifications, the applicant is
+														informed on actions to be taken and start date will be
+														after all the clarifications have been received.</p>
+													<p>Online application process requires no physical
+														touch point.</p>
+												</td>
+											</tr>
+											<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">
+														Checklist</span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">1</td>
+															<td>Application for Notice of Change/
+																Amendment</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+
+											<tr>
+
+
+												<!-- changed fees according to latest mail - shweta -->
+
+
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">Fee
+														Details </span> <br>
+
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">&nbsp;</td>
+															<td colspan="2"><b>Fee Structure for Amendment - ISMW Principal Employer</b></td>
+															<td>&nbsp;</td>
+														</tr>
+														<tr class="employee-range4" data-range="1">
+															<td></td>
+															<td width="50%">5-20 Employees</td>
+															<td width="50%"><p>&#8377; 500/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range4" data-range="2">
+															<td></td>
+															<td width="50%">21-50 Employees</td>
+															<td width="50%"><p>&#8377; 1,000/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range4" data-range="3">
+															<td></td>
+															<td width="50%">51-100 Employees</td>
+															<td width="50%"><p>&#8377; 2,500/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range4" data-range="4">
+															<td></td>
+															<td width="50%">101- 200 Employees</td>
+															<td width="50%"><p>&#8377; 5,000/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range4" data-range="5">
+															<td></td>
+															<td width="50%">201-400 Employees</td>
+															<td width="50%"><p>&#8377; 10,000/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range4" data-range="6">
+															<td></td>
+															<td width="50%">401 and above Employees</td>
+															<td width="50%"><p>&#8377; 15,000/-</p>
+															</td>
+														</tr>
+													</table></td>
+											</tr>
+
+											<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">Fee
+														Details </span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">&nbsp;</td>
+															<td colspan="2"><b>Fees Structure for Amendment</b>
+															</td>
+															<td>&nbsp;</td>
+														</tr>
+														<tr>
+															<td></td>
+															<td width="50%"> Difference of fee for increase in number of employees</td>
+															<td width="50%"><p>&#8377; Applicable difference in fee </p><a onMouseOver ="showFeeAISMPE();" data-toggle="tooltip" title="Hover to view fee structure"><u>Hover to view Fee Struture</u></a>
+															</td>
+														</tr>
+
+													</table></td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="AISMCLcheckListTab" style="display: none;">
+				<div class="panel panel-primary">
+					<div class="panel-heading" align="center">
+						<h4 class="panel-title">
+							<!--  Shops and
+							Establishments Act   - <font> Renewal </font> -->
+							INTER STATE MIGRANT WORKMAN ACT,1979 (CONTRACTOR)-AMENDMENT
+						</h4>
+					</div>
+					<div>
+						<div class="panel-body">
+							<table width="100%"
+								class="table table-hover table-bordered table-striped"
+								align="center">
+								<!-- <tr style="background-color: #ccc;">
+								<td style="width: 20px;">&nbsp;</td>
+								<td>Procedure & Checklist for Renewal under Shops and Establishments
+									Act</td>
+							</tr> -->
+
+								<tr>
+									<td colspan="2" style="padding: 0px;">
+										<table class="table table-hover table-bordered table-striped"
+											align="center">
+											<!-- <tr>
+											<td>For changing or amendment of data under Shop and Establishments in State of Telangana
+												Should Register under Shops and Establishment Act <!-- <a
+												href="#">click for Act</a> </td>
+										</tr> -->
+											<tr>
+												<td><left>
+													<h4 style="color: black;">
+														Procedure:
+													</h4>
+													</left> 
+													<table class="table table-bordered table-colored"
+														style="width : 100%" align="center">
+														<tbody>
+															<tR>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Steps</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Forms</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Documents
+																	to be Attached</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Fee</td>
+																<td align="center"
+																	style="font-weight: bold;font-size: 14px;">Timelines</td>
+															</tR>
+															<tR>
+																<td>Submit<!--  application for registration online -->
+																</td>
+																<td>Online application form </td>
+																<td>*Follow Checklist below</td>
+																<td><nobr>
+																		Online fee payment<br /> (As per fee structure given
+																		below)
+																	</nobr><br></td>
+																<td>30 Days from the date of submission of complete
+																	application as per Citizen's Charter. Deemed
+																	Registration at the end of <b>30 days</b> from date of
+																	application if no adverse orders passed</td>
+															</tR>
+															<tR>
+																<td>Issue <!-- of online registration certificate -->
+																</td>
+																<td>Online Application Form</td>
+																<td>&nbsp;</td>
+																<td>&nbsp;</td>
+															</tR>
+
+														</tbody>
+													</table>
+													<p>System sends SMS to respective applicant at each
+														progression.</p>
+													<p>In case of any clarifications, the applicant is
+														informed on actions to be taken and start date will be
+														after all the clarifications have been received.</p>
+													<p>Online application process requires no physical
+														touch point.</p>
+												</td>
+											</tr>
+											<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">
+														Checklist</span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">1</td>
+															<td>Application for Notice of Change/
+																Amendment</td>
+														</tr>
+
+													</table>
+												</td>
+											</tr>
+
+											<tr>
+
+
+												<!-- changed fees according to latest mail -->
+	
+	
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">Fee
+														Details </span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">&nbsp;</td>
+															<td colspan="2"><b>Fee Structure for Amendment - ISMW Contractor
+															</b></td>
+															<td>&nbsp;</td>
+														</tr>
+														<tr class="employee-range4" data-range="1">
+															<td></td>
+															<td width="50%">5-20 Employees -</td>
+															<td width="50%"><p>&#8377; 350/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range4" data-range="2">
+															<td></td>
+															<td width="50%">21-50 Employees -</td>
+															<td width="50%"><p>&#8377; 500/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range4" data-range="3">
+															<td></td>
+															<td width="50%">51-100 Employees -</td>
+															<td width="50%"><p>&#8377; 1,000/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range4" data-range="4">
+															<td></td>
+															<td width="50%">101- 200 Employees -</td>
+															<td width="50%"><p>&#8377; 2,500/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range4" data-range="5">
+															<td></td>
+															<td width="50%">201-400 Employees -</td>
+															<td width="50%"><p>&#8377; 5,000/-</p>
+															</td>
+														</tr>
+														<tr class="employee-range4" data-range="6">
+															<td></td>
+															<td width="50%">401 and above Employees -</td>
+															<td width="50%"><p>&#8377; 7,500/-</p>
+															</td>
+														</tr>
+														 
+	
+													</table>
+												</td>
+											</tr>
+
+											<tr>
+												<td><span
+													style="text-decoration: underline;font-size: 14px;color: maroon;">Fee
+														Details </span> <br>
+													<table width="100%"
+														class="table table-hover table-bordered table-striped">
+														<tr>
+															<td style="width: 10px;">&nbsp;</td>
+															<td colspan="2"><b>Fees Structure for Amendment</b>
+															</td>
+															<td>&nbsp;</td>
+														</tr>
+														<tr>
+															<td>1</td>
+															<td width="50%"> Amendment Fees
+																</td>
+															<td width="50%"><p>&#8377; 60/-</p>
+															</td>
+														</tr>
+														<tr>
+															<td>2</td>
+															<td width="50%"> Difference of fee for increase in number of employees</td>
+															<td width="50%"><p>&#8377; Applicable difference in fee </p><a onMouseOver ="showFeeAISMCL();" data-toggle="tooltip" title="Hover to view fee structure"><u>Hover to view Fee Struture</u></a>
+															</td>
+														</tr>
+														<tr>
+															<td>3</td>
+															<td width="50%"> Security deposit per employee</td>
+															<td width="50%"><p>&#8377; 1400/-</p>
+															</td>
+														</tr>
+														<tr>
+														<td colspan="3"><font color="red"><b>Note:Every contractor shall deposit an amount of Rs.1400/- for each contract labour towards Security Deposit in SBI, where treasury transactions are undertaken.
+														</b></font></td>
+														</tr>
+
+													</table></td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+</html:form>
+</body>
+</html>
