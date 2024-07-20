@@ -1,0 +1,70 @@
+<script>
+ 
+		$.validator.addMethod("notZero", function(value, element) {
+                 return value !== "0";
+            }, "Please select a valid department");
+
+		$("#tfiberUGApplications").validate({
+			rules: {
+				updatedDepartment: {
+					required: true,
+					notZero:true
+				},
+				updatedDistrict: {
+					required: true,
+					notZero:true 
+				}
+			},
+			messages: {
+				updatedDepartment: {
+					required: "Please select a department",
+					notZero: "Please select a department",
+                         
+				},
+				updatedDistrict: {
+					required: "Please select a district",
+					notZero: "Please select a district",
+                         
+				}
+			},
+			 // Add Bootstrap 4 styling to the error messages
+		  errorElement: "span",
+          errorClass: "invalid-feedback",
+          highlight: function (element, errorClass, validClass) {
+            $(element).addClass("is-invalid").removeClass("is-valid");
+			$(element).focus(); // Focus on the element with an error
+          },
+          unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass("is-invalid").addClass("is-valid");
+          },
+			submitHandler: function(form) {
+                    if (submitInfo('${SCApplicationDetail.applicant_id}')) {
+                        form.submit();
+                    } else {
+                        return false;
+                    }
+					 
+                }
+			
+		});
+	 
+</script>
+
+//css//
+<style>
+	/* Custom styles for validation */
+.invalid-feedback {
+    display: block; /* Ensure error message is displayed */
+    color: #dc3545; /* Bootstrap's danger color */
+    font-size: 0.875em; /* Slightly smaller font size for error messages */
+}
+
+.is-invalid {
+    border-color: #dc3545 !important; /* Highlight border color for invalid input */
+}
+
+.is-valid {
+    border-color: #28a745 !important; /* Bootstrap's success color for valid input */
+}
+
+</style>
