@@ -51,3 +51,6 @@ note:
 2.else if normal form is used specify "names"
 3. the names should be unique else it will validate only for the first fields with same name
 it works for every key we press
+problems :
+check jquery should be loaded before validation 
+if stiill persist then remove documnet.ready {}
