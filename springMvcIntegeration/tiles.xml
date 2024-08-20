@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+    <!-- Define a base layout -->
+    <definition name="baseLayout" template="/jsp/spring/layout.jsp">
+    </definition>
+    <!-- Define a specific page layout extending the base layout -->
+    <definition name="home" extends="baseLayout">
+        <put-attribute name="cont" value="/jsp/spring/default.jsp"/>
+        <put-attribute name="cont2" value="/jsp/spring/default2.jsp"/>
+    </definition>
+
+    <!-- Define other page layouts as needed -->
+    <definition name="testPage" template="/WEB-INF/springPages/exampleView.jsp">
+
+    </definition>
+
+    <!-- Add more definitions as necessary -->
+
+</tiles-definitions>
