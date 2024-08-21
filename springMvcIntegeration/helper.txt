@@ -1,0 +1,1 @@
+change the imports of struts and replace them with the mvc usable ones or jsp ones 
