@@ -1,0 +1,28 @@
+align left 
+align right 
+align center 
+align justified
+chunk is smallest 
+pharse is medium 
+para is top level 
+//-------------
+PdfPTable table = new PdfPTable(6);
+//pass col numbers 
+PdfPCell cell; //  each pdf cell
+//custom widths 
+ table = new PdfPTable(6);
+ float widths[] = { 4,3,5,3,3,4 };
+ table.setWidths(widths);
+ table.addCell(cell);
+
+
+ color size align weight 
+ paragraph = new Paragraph(" ", FontFactory.getFont(FontFactory.TIMES_ROMAN,13, Font.BOLD, BaseColor.BLACK));
+				paragraph.setAlignment(Element.ALIGN_CENTER);
+
+
+//add spacing by 
+ document.add(new Paragraph("\n"));
+
+// add new line in phrase
+Chunk c5 = new Chunk("To \r\n",FontFactory.getFont(FontFactory.TIMES_ROMAN,12, Font.BOLD, BaseColor.BLACK));
