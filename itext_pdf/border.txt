@@ -1,0 +1,20 @@
+for borders for all pages 
+  // Apply border to all pages
+            writer.setPageEvent(new PdfPageEventHelper() {
+                @Override
+                public void onEndPage(PdfWriter writer, Document document) {
+                    PdfContentByte canvas = writer.getDirectContent();
+                    canvas.setLineWidth(2); // Set border width
+                    Rectangle pageSize = document.getPageSize();
+                    float margin = 10; // Margin from the edge of the page
+
+                    // Draw the border rectangle
+                    canvas.rectangle(
+                        margin, // x-coordinate of the bottom-left corner
+                        margin, // y-coordinate of the bottom-left corner
+                        pageSize.getWidth() - 2 * margin, // width of the rectangle
+                        pageSize.getHeight() - 2 * margin // height of the rectangle
+                    );
+                    canvas.stroke(); // Apply the border
+                }
+            });
