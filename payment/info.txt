@@ -1,0 +1,41 @@
+https://chatgpt.com/share/66ebb0fe-5ff8-8009-b07b-95b93325789b -->system design 
+
+
+payment 
+----------
+
+Two steps ->
+1)hit mtmakepayment post controller with appid and remarks  and grab the url of pg 
+2)return meeseva pg page 
+
+basic ::hit a post controller process logic return payment page 
+
+
+step1)::--->
+
+for mobile tower--->
+
+->input ->appid and remarks 
+
+->check if payment status is open for payments ?
+
+->if yes, then generate payment sequence number 
+
+->save the record for this using appid and dept typ)e and seq no and put status as pending (we still didnt amde payment so )
+
+->using the related method (PanchayathrajRuralPaymentAction) we grab 
+  the payment gateway url and checksum and charges as a model form 
+
+->set some params for jsp to use from model and return the payment gate way page 			
+  (return "meeSevaFeePaymentPage")
+
+----------
+inside of model generated in PanchayathrajRuralPaymentAction .method 
+-->responseReceivingUrl
+   paymentGateway_url
+   departmentalTransID
+   JSONObject(consist of amount ,merchant id )
+   json convert to string json and encrypted base 64 mime
+   checksum 
+   
+
