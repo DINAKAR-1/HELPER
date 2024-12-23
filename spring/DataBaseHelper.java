@@ -9,6 +9,9 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+//in this we config datasource as wired coz it will have the config set by hicari cp file and we get 
+//entity with config already and we can use it to get connection and use 
+//and use try wit resource to eliminate auto close of connections 
 @Component
 public class DatabaseHelper {
     @Autowired
