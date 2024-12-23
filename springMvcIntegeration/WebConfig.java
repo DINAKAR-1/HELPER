@@ -3,7 +3,6 @@ package in.gov.cgg.strutsSpringIntegration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -12,12 +11,10 @@ import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
-import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
-
+import org.springframework.web.servlet.view.tiles3.TilesViewResolver; 
 @SuppressWarnings("deprecation")
 @Configuration
 @EnableWebMvc
@@ -68,7 +65,7 @@ public class WebConfig extends WebMvcConfigurerAdapter
 			ctx.setServletContext(container);
 			ServletRegistration.Dynamic servlet = container.addServlet("dispatcher", new DispatcherServlet(ctx));
 			servlet.setLoadOnStartup(1);
-			servlet.addMapping("*.go");
+			servlet.addMapping("*.go"); 
 			/*
 			 * MultipartConfigElement multipartConfig = new MultipartConfigElement("/tmp");
 			 * servlet.setMultipartConfig(multipartConfig); FilterRegistration.Dynamic
@@ -78,15 +75,25 @@ public class WebConfig extends WebMvcConfigurerAdapter
 			 */
 		}
 
-
+ 
 	  
 	  @Override
 	    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		  registry.addResourceHandler("/gos/**").addResourceLocations("/gos/","/content/gos");
+		  registry.addResourceHandler("/content/**").addResourceLocations("/content/");
 		  registry.addResourceHandler("/images/**").addResourceLocations("/images/");
 	        registry.addResourceHandler("/css/**").addResourceLocations("/css/");
 	        registry.addResourceHandler("/js/**").addResourceLocations("/js/");
 	        registry.addResourceHandler("/fonts/**").addResourceLocations("/fonts/");
 	        registry.addResourceHandler("/code.jquery.com/**").addResourceLocations("/code.jquery.com/");
+	        registry.addResourceHandler("/img/**").addResourceLocations("/img/");
+	        registry.addResourceHandler("/javascriptDatePicker/**").addResourceLocations("/javascriptDatePicker/");
+	        registry.addResourceHandler("/datatable/**").addResourceLocations("/datatable/");
+	        registry.addResourceHandler("/datepicker/**").addResourceLocations("/datepicker/");
+	       
+	        registry.addResourceHandler("/downloads/**").addResourceLocations("/downloads/");
+	        registry.addResourceHandler("/fonts/**").addResourceLocations("/fonts/");
+	        registry.addResourceHandler("/pdffiles/**").addResourceLocations("/pdffiles/");
 	       
 	    }
 	  @Bean
@@ -103,4 +110,9 @@ public class WebConfig extends WebMvcConfigurerAdapter
 			TilesViewResolver viewResolver = new TilesViewResolver();
 			registry.viewResolver(viewResolver);
 		}
+	   // Configure the MultipartResolver to handle file uploads
+    // @Bean
+    // public MultipartResolver multipartResolver() {
+    //     return new StandardServletMultipartResolver();
+    // }
 }

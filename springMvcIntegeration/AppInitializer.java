@@ -12,7 +12,6 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
-
 import javax.persistence.EntityManagerFactory;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -48,10 +47,9 @@ public class AppInitializer implements WebApplicationInitializer
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
         context.setConfigLocation("in.gov.cgg.*"); // Package where your Spring configuration is located
         // Register the dispatcher servlet
-
         ServletRegistration.Dynamic dispatcherServlet = container.addServlet("dispatcher", new DispatcherServlet(context));
         dispatcherServlet.setLoadOnStartup(1);
-        dispatcherServlet.addMapping("/"); // Map to root URL or any specific URL pattern
+        dispatcherServlet.addMapping("*.go"); // Map to root URL or any specific URL pattern
         // Optionally, add more servlets, filters, listeners, etc.
     }
 
@@ -69,6 +67,7 @@ public class AppInitializer implements WebApplicationInitializer
         factory.setPackagesToScan("in.gov.cgg");
         factory.setPersistenceUnitName("TSBOILERS");
 
+
         // factory.setPersistenceUnitName("tsswfms");
         Properties properties = new Properties();
         properties.setProperty("show_sql", "true");
@@ -78,7 +77,9 @@ public class AppInitializer implements WebApplicationInitializer
         factory.setDataSource(dataSource());
 
         return factory;
+
     }
+
 
     @Bean
     public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory)
@@ -87,6 +88,7 @@ public class AppInitializer implements WebApplicationInitializer
         transactionManager.setEntityManagerFactory(entityManagerFactory);
         return transactionManager;
     }
+
 
     @Bean
     public JdbcTemplate jdbcTemplateConnection()
