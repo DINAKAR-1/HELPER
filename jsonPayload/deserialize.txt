@@ -1,0 +1,35 @@
+@JsonDeserialize(using = PersonalitiesDetailsDeserializer.class)
+    private List<PersonalitiesDetailsModel> personalities_details;
+//in entity class 
+----------------------------------------------------------------------
+
+//if we  recieve json string then use it to deserialize in to entity 
+public class CoProductionDetailsDeserializer extends JsonDeserializer<List<CoProductionDetailsModel>> {
+
+    private final ObjectMapper objectMapper = new ObjectMapper();  // To handle deserialization
+
+    @Override
+    public List<CoProductionDetailsModel> deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+        // Handle case where the field might be null or missing
+        if (p.currentToken() == null) {
+            return new ArrayList<>();
+        }
+        // If the token is an empty string, treat it as an empty list
+        if (p.getText().equals("")) {
+            return new ArrayList<>();
+        }
+        // If the token is a start array or a start object, we can assume it's already a JSON object or array
+        if (p.isExpectedStartArrayToken() || p.isExpectedStartObjectToken()) {
+            return objectMapper.readValue(p, objectMapper.getTypeFactory().constructCollectionType(List.class, CoProductionDetailsModel.class));
+        }
+
+        // If it's a simple string, attempt to parse as a JSON array
+        String value = p.getText().trim();
+        if (value.startsWith("[") && value.endsWith("]")) {
+            return objectMapper.readValue(value, objectMapper.getTypeFactory().constructCollectionType(List.class, CoProductionDetailsModel.class));
+        }
+
+        // You can throw an exception here if the string format is unexpected
+        throw new JsonProcessingException("Unexpected format for PersonDetail list") {};
+    }
+}
