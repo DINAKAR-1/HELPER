@@ -1,3 +1,9 @@
+
+note:
+
+jquery should be only 1 and load at first 
+and next validation jquery should load 
+
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 
