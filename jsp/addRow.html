@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic Row Add/Remove with Unique IDs</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 60%;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h2>Dynamic Row Add/Remove</h2>
+
+    <form action="#" method="post">
+        <table id="itemTable">
+            <thead>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Quantity</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- Rows will be added here -->
+            </tbody>
+        </table>
+
+        <br>
+        <button type="button" onclick="addRow()">Add Row</button>
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <!-- Template for a new row -->
+    <template id="row-template">
+        <tr>
+            <td><input type="text" class="item-name" required></td>
+            <td><input type="number" class="item-qty" required></td>
+            <td><button type="button" onclick="removeRow(this)">Remove</button></td>
+        </tr>
+    </template>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            addRow(); // Add the first row on page load
+        });
+        function addRow() {
+            const template = document.getElementById("row-template");
+            const clone = template.content.cloneNode(true);
+            document.getElementById("tableBody").appendChild(clone);
+            updateRowNames();
+        }
+
+        function removeRow(button) {
+            button.closest("tr").remove();
+            updateRowNames();
+        }
+
+        function updateRowNames() {
+            const rows = document.querySelectorAll("#tableBody tr");
+            rows.forEach((row, index) => {
+                const nameInput = row.querySelector(".item-name");
+                const qtyInput = row.querySelector(".item-qty");
+
+                nameInput.name = `itemNames[${index}]`;
+                nameInput.id = `itemName_${index}`;
+
+                qtyInput.name = `itemQtys[${index}]`;
+                qtyInput.id = `itemQty_${index}`;
+            });
+        }
+    </script>
+</body>
+</html>
