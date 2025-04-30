@@ -2,3 +2,6 @@ common files
 1.add row concept
 https://demo8.cgg.gov.in/apsec/ulbWiseASDVoterEntry
 appointment of counting agent gp - augement version
+
+preview of images 
+-voter slip 
