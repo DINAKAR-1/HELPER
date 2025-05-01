@@ -2,10 +2,10 @@ common files
 1.add row concept
 https://demo8.cgg.gov.in/apsec/ulbWiseASDVoterEntry
 appointment of counting agent gp - augement version
-
+-------------------------------------------------
 preview of images 
 -voter slip 
-
+--------------------------------------
 
 ARRAY VALIDDATION
 
@@ -49,3 +49,70 @@ function getOrders() {
 		}
 
 	}
+----------------------------------------------------------------------
+<!-- Time -->
+.time-picker-container {
+    position: relative;
+}
+
+/* Hide the time picker by default with animation */
+.time-picker {
+    display: none;
+    position: absolute;
+    top: 40px; /* Adjust this value according to your layout */
+    background: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Show the time picker with animation */
+.time-picker.show {
+    display: block;
+    opacity: 1;
+}
+
+/* Style the selects and button */
+.time-picker select {
+    margin-right: 5px;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.time-picker button {
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+								<div class="d-flex flex-row col-md-6">
+							<div class="col-md-5">
+								Time<b style="color: red;">*</b>
+							</div>
+							<div class="col-md-7 time-picker-container">
+								<form:input path="time" id="time"
+									class="form-control" type="text" placeholder="hh:mm"
+									style="background-color: white;" />
+								<div class="time-picker" id="timePicker2">
+									<select id="hour2" style="width: 35px; align: center;"></select><b>:</b>
+									<select id="minute2" style="width: 45px; align: center;"></select>
+
+									<select id="period2">
+										<option value="AM" style="padding: 5px;">AM</option>
+										<option value="PM" style="padding: 5px;">PM</option>
+										<option value="Noon" style="padding: 5px;">Noon</option>
+									</select>
+									<button type="button" class="btn btn-primary btn-sm"
+										id="setTimeButton2">Set</button>
+								</div>
+							</div>
+						</div>
+ document.getElementById('time').addEventListener('focus', function () {
+     initializeTimePicker('hour2', 'minute2', 'period2', 'time', 'timePicker2', 'setTimeButton2');
+ });
+common js function initializeTimePicker(hourId, minutesId, periodId, inputId, divId, btnId) {
+
+
+------------------------------------------------------------------------
