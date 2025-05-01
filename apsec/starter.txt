@@ -5,3 +5,47 @@ appointment of counting agent gp - augement version
 
 preview of images 
 -voter slip 
+
+
+ARRAY VALIDDATION
+
+function getOrders() {
+
+		var mandatoryMsg = "Please Provide : ";
+		var flag = true;
+		
+		var eId = "electionType-phase-districtId-revenueDivisionId-mandalId-ulgType-ulgName";/* -trainingDate-hour_id-secondId-am_pm-place */
+
+		var eName = "Election Type-Phase-District-Division-Election Mandal-ULB Type-ULB Name";/* -Date-Time Hours-Time Seconds-Time AM/PM-Place */
+
+		var id = [];
+		var name = [];
+		id = eId.split("-");
+		name = eName.split("-");
+
+		for ( var x = 0; x < id.length; x++) {
+		
+			if(id[x]!="secondId"){
+				var value = $("#" + id[x]).val();
+				if (!value || value.trim() == "" || value == "0" || Number(value) == 0) {
+					mandatoryMsg += "\n - " + name[x];
+					flag = false;
+				}
+			}else{
+				var value = $("#" + id[x]).val();
+				if (!value || value.trim() == "" || value == "0") {
+					mandatoryMsg += "\n - " + name[x];
+					flag = false;
+				}
+			}
+		}
+		
+		if (flag) {
+            $("#loading").html("Loading Please wait...........................");
+		 document.getElementById('appointmentPollingPersonnelId').submit();
+		} else {
+			alert(mandatoryMsg);
+			return false;
+		}
+
+	}
