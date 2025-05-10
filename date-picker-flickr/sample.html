@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flatpickr Date Picker Example</title>
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 50px;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+            width: 250px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Flatpickr Date Picker</h2>
+    <input type="text" id="datepicker" placeholder="Select a date" />
+
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        flatpickr("#datepicker", {
+            dateFormat: "Y-m-d", // e.g., 2025-05-10
+            defaultDate: "today",
+            minDate: "2020-01-01",
+            maxDate: "2030-12-31",
+            disableMobile: true // force desktop version on mobile
+        });
+    </script>
+
+</body>
+</html>

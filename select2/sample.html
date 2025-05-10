@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select2 Advanced Features</title>
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        select {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Select2 Advanced Features</h1>
+
+    <!-- ✅ 1. Searchable Dropdown -->
+    <div class="section">
+        <h2>Searchable Dropdown</h2>
+        <select id="searchable" style="width: 400px;">
+            <option></option>
+            <option value="AL">Alabama</option>
+            <option value="CA">California</option>
+            <option value="NY">New York</option>
+            <option value="TX">Texas</option>
+        </select>
+    </div>
+
+    <!-- ✅ 2. Max Selection Limit -->
+    <div class="section">
+        <h2>Max Selection Limit (3)</h2>
+        <select id="limited" multiple style="width: 400px;">
+            <option value="apple">Apple</option>
+            <option value="banana">Banana</option>
+            <option value="orange">Orange</option>
+            <option value="grape">Grape</option>
+            <option value="melon">Melon</option>
+        </select>
+    </div>
+
+    <!-- ✅ 3. Tagging (User Input) -->
+    <div class="section">
+        <h2>Tagging (User-defined values)</h2>
+        <select id="tagging" multiple style="width: 400px;">
+            <option value="JavaScript">JavaScript</option>
+            <option value="Python">Python</option>
+        </select>
+    </div>
+
+    <!-- ✅ 4. AJAX Loading -->
+    <div class="section">
+        <h2>AJAX Data (GitHub users)</h2>
+        <select id="ajax" style="width: 400px;"></select>
+    </div>
+
+    <!-- ✅ 5. Localization (Spanish) -->
+    <div class="section">
+        <h2>Localization (Spanish)</h2>
+        <select id="localization" style="width: 400px;">
+            <option></option>
+            <option value="1">Opción uno</option>
+            <option value="2">Opción dos</option>
+        </select>
+    </div>
+
+    <!-- ✅ 6. Custom Templates (Icons) -->
+    <div class="section">
+        <h2>Custom Option Templates (Icons)</h2>
+        <select id="custom-template" style="width: 400px;">
+            <option></option>
+            <option value="home" data-icon="fa-home">Home</option>
+            <option value="user" data-icon="fa-user">User</option>
+            <option value="cog" data-icon="fa-cog">Settings</option>
+        </select>
+    </div>
+
+    <!-- ✅ 7. Enable/Disable Toggle -->
+    <div class="section">
+        <h2>Enable / Disable Dropdown</h2>
+        <button id="toggle-enable">Toggle Enable/Disable</button>
+        <br><br>
+        <select id="toggle-select" style="width: 400px;">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+    </div>
+
+    <!-- JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/i18n/es.js"></script>
+    <script>
+        $(document).ready(function () {
+            // 1. Searchable
+            $('#searchable').select2({
+                placeholder: 'Search and select...',
+                allowClear: true
+            });
+
+            // 2. Limit selections
+            $('#limited').select2({
+                maximumSelectionLength: 3
+            });
+
+            // 3. Tagging
+            $('#tagging').select2({
+                tags: true,
+                tokenSeparators: [',', ' '],
+                placeholder: "Add or select tags"
+            });
+
+            // 4. AJAX
+            $('#ajax').select2({
+                placeholder: 'Search GitHub users',
+                minimumInputLength: 2,
+                ajax: {
+                    url: 'https://api.github.com/search/users',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            q: params.term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: data.items.map(function (user) {
+                                return { id: user.login, text: user.login };
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            // 5. Localization
+            $('#localization').select2({
+                placeholder: "Seleccione una opción",
+                language: "es",
+                allowClear: true
+            });
+
+            // 6. Custom templates with icons
+            function formatWithIcons(option) {
+                if (!option.id) return option.text;
+                var icon = $(option.element).data('icon');
+                if (!icon) return option.text;
+                return $(`<span><i class="fa ${icon}"></i> ${option.text}</span>`);
+            }
+            $('#custom-template').select2({
+                placeholder: "Select an option",
+                templateResult: formatWithIcons,
+                templateSelection: formatWithIcons,
+                allowClear: true
+            });
+
+            // 7. Enable/Disable
+            let isDisabled = false;
+            $('#toggle-enable').click(function () {
+                isDisabled = !isDisabled;
+                $('#toggle-select').prop('disabled', isDisabled);
+            });
+            $('#toggle-select').select2({
+                placeholder: "Choose one"
+            });
+        });
+    </script>
+
+</body>
+</html>
