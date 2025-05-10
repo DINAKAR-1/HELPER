@@ -3,15 +3,15 @@ important jquery trick and uses
 var token = $("meta[name='_csrf']").attr("content");
 var header = $("meta[name='_csrf_header']").attr("content");
 
-for ajax call study below function example 
+for ajax call study below function example
 
 	function getSelectBox(type, val, id) {
-		
-		
+
+		//make it common
 		$.ajaxSetup({
 			beforeSend: function(xhr){xhr.setRequestHeader(header, token);},
 			});
-		
+
 		//alert("dddddddddd");
 	 if (type == "mandal") {
 		// alert("vvvv");

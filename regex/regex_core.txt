@@ -5,20 +5,20 @@ replaceAll("\\s+", "_"): This part of the code replaces all occurrences of white
 `"_": This is the replacement string, indicating that all matched whitespace characters will be replaced with underscores.
 
 
-function checklengthForDigits(input) { 
+function checklengthForDigits(input) {
  // Remove all non-digit characters
- input.value = input.value.replace(/[^0-9]/g, ''); 
+ input.value = input.value.replace(/[^0-9]/g, '');
     // Limit input to maximum 5 digits
     if (input.value.length > 5) {
         input.value = input.value.slice(0, 5);
 }
 }
-function checkLengthForAlphabets(input) {  
+function checkLengthForAlphabets(input) {
     // Remove all non-alphabet characters
 	input.value = input.value
 	.replace(/[^a-zA-Z ]/g, '') // Allow only letters and spaces
 	.replace(/\s+/g, ' ')       // Collapse multiple spaces into one
-     
+
     // Limit input to maximum 25 characters
     if (input.value.length > 25) {
         input.value = input.value.slice(0, 25);
@@ -26,12 +26,16 @@ function checkLengthForAlphabets(input) {
 }
 function limitTeluguWordLength(input) {
 	console.log(input.value);
-	
+
 	input.value = input.value
 	.replace(/[^a-zA-Z\u0C00-\u0C7F ]/g, '')  // Remove unwanted characters
 	.replace(/\s+/g, ' ')                     // Replace multiple spaces with a single space
- 
+
     // Limit input to maximum 25 digits
     if (input.value.length > 25) {
         input.value = input.value.slice(0, 25);
 }
+
+1."[A-Za-z][A-Za-z0-9 ]*",
+only char no space no special char , no  numbers
+

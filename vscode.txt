@@ -1,3 +1,0 @@
-for folder structure side by side if folders emepty 
-Explorer: Compact Folders
-  untick if u want them to unfold
