@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamic Form with Data Attributes</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 70%;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #aaa;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f5f5f5;
+    }
+    button {
+      padding: 6px 12px;
+      margin-right: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h2>User Table with Dynamic Rows</h2>
+<table id="userTable">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody id="tableBody">
+    <tr data-row="1">
+      <td class="row-index">1</td>
+      <td><input type="text" data-field="name" placeholder="Enter name" /></td>
+      <td><input type="number" data-field="age" placeholder="Enter age" /></td>
+      <td>
+        <button class="cloneBtn">Clone</button>
+        <button class="deleteBtn">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<button onclick="logRowAge(2)">Log Age of Row 2</button>
+
+<script>
+  let rowCounter = 1;
+
+  // Event delegation for clone and delete
+  document.addEventListener("click", function (e) {
+    const tableBody = document.getElementById("tableBody");
+
+    if (e.target.classList.contains("cloneBtn")) {
+      const currentRow = e.target.closest("tr");
+      const clone = currentRow.cloneNode(true);
+
+      rowCounter++;
+      clone.dataset.row = rowCounter;
+
+      // Clear inputs
+      clone.querySelectorAll("input").forEach(input => input.value = "");
+
+      tableBody.appendChild(clone);
+      renumberRows();
+    }
+
+    if (e.target.classList.contains("deleteBtn")) {
+      const row = e.target.closest("tr");
+      row.remove();
+      renumberRows();
+    }
+  });
+
+  function renumberRows() {
+    const rows = document.querySelectorAll("#tableBody tr");
+    rows.forEach((row, index) => {
+      row.dataset.row = index + 1;
+      row.querySelector(".row-index").textContent = index + 1;
+    });
+  }
+
+  function logRowAge(rowNumber) {
+    const row = document.querySelector(`tr[data-row="${rowNumber}"]`);
+    if (row) {
+      const age = row.querySelector('[data-field="age"]').value;
+      console.log(`Row ${rowNumber} age: ${age}`);
+    } else {
+      console.warn(`Row ${rowNumber} not found.`);
+    }
+  }
+</script>
+
+</body>
+</html>
