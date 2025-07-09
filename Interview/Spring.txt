@@ -1,0 +1,15 @@
+What is application.properties vs application.yml?
+
+What is Spring Boot and how is it different from Spring Framework?
+
+What is application.properties vs application.yml?
+
+How does Spring Boot handle dependency injection?
+
+What’s the purpose of @ConfigurationProperties and @EnableConfigurationProperties?
+
+How do you load custom config files?
+
+What is the difference between CrudRepository, JpaRepository, and PagingAndSortingRepository?
+
+
