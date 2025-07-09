@@ -12,4 +12,25 @@ How do you load custom config files?
 
 What is the difference between CrudRepository, JpaRepository, and PagingAndSortingRepository?
 
+How is pagination and sorting handled?
+
+How do you use custom queries with @Query?
+
+What is the N+1 problem and how do you fix it?
+
+What is @Cacheable, @CacheEvict, and @CachePut?
+
+How do you configure a caching provider like EhCache or Redis?
+
+What is circular dependency and how do you fix it?
+
+How do you resolve memory leaks with HikariCP?
+
+What is Log Aggregation? Explain ELK stack.
+
+How do you monitor your application using Prometheus + Grafana?
+
+What is circuit breaker? How is Hystrix or Resilience4J used?
+
+How do you do service discovery using Eureka?
 
