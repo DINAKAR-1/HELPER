@@ -10,7 +10,7 @@ What’s the purpose of @ConfigurationProperties and @EnableConfigurationPropert
 
 How do you load custom config files?
 
-What is the difference between CrudRepository, JpaRepository, and PagingAndSortingRepository?
+*** What is the difference between CrudRepository, JpaRepository, and PagingAndSortingRepository?
 
 How is pagination and sorting handled?
 
