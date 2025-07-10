@@ -34,3 +34,10 @@ What is circuit breaker? How is Hystrix or Resilience4J used?
 
 How do you do service discovery using Eureka?
 
+use @profile in springboot ? @qualifier ?
+
+ @Configuration vs @Component vs plain class
+
+🧟 10. Prototype in Singleton?
+📜 11. What’s spring.factories for?
+
