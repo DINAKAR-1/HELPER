@@ -60,3 +60,13 @@ map vs flatmap
 
 optional
 
+
+class inmolemtingv two interface with same method 
+
+
+method reference vs concsttuvto ref
+
+
+service vs component why 
+
+why to use constructio injection 
