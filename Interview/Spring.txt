@@ -50,3 +50,5 @@ monitor lock
 
 states of thread 
 
+equals and hashcode 
+
