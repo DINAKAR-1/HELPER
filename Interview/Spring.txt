@@ -52,3 +52,11 @@ states of thread
 
 equals and hashcode 
 
+fail fast vs fail slow 
+
+predi4cta vs consumer 
+
+map vs flatmap
+
+optional
+
