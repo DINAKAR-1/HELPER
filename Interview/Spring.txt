@@ -39,5 +39,14 @@ use @profile in springboot ? @qualifier ?
  @Configuration vs @Component vs plain class
 
 🧟 10. Prototype in Singleton?
+
 📜 11. What’s spring.factories for?
+
+an we do everything with an Interceptor instead of a Filter?
+
+wait vs sleep
+
+monitor lock 
+
+states of thread 
 
