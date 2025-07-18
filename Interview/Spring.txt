@@ -100,7 +100,7 @@ enhancement to hasmap in java 8
 
 why set no nulls ?
 
-hascode and equals whivh first do both excute always ?
+hascode and equals whivh first do both excute always ?*****
 
 whhere we get concurrent modifiction exception ?
 
