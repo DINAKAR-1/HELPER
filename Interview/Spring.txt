@@ -77,3 +77,77 @@ what if both component and sevice applied same spot
 benefit of using maven
 
 when to use parallel streams
+
+
+what are class loaders types?
+
+why string immutable ?
+why char array for password inst of string ?
+
+oops importance not 4 pillars --> modularity 
+
+enum?
+
+why java 8 introudced ?dont tell fetatures
+
+diff btw intermediate and ternary in streams 
+
+whast reduce in sterams?
+
+lambda to funtional interface 
+
+enhancement to hasmap in java 8 
+
+why set no nulls ?
+
+hascode and equals whivh first do both excute always ?
+
+whhere we get concurrent modifiction exception ?
+
+what is identity and wwek hashmap 
+
+runnabel and callable 
+
+more than once start on thread --> iillgal thread exceptoon 
+
+how crreate new exception of runtime 
+
+how external configuration in boot ?
+
+which first prop or yml prop is defalt?
+
+using javax ?
+
+boostrap.yml 
+
+diff japa dn crud 
+
+connect one micro to other sync vs async --> kafka for async 
+
+monitpring the logs ?
+
+how to secure actuator endpoints 
+
+deleetd code ?  202, 203?
+
+returning custom obj vs response entity ?
+
+indexing in annotatuion way 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
