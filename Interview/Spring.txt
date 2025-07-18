@@ -75,3 +75,5 @@ why to use constructio injection
 what if both component and sevice applied same spot 
 
 benefit of using maven
+
+when to use parallel streams
