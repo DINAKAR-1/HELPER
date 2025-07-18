@@ -120,7 +120,7 @@ using javax ?
 
 boostrap.yml 
 
-diff japa dn crud 
+diff japa dn crud ******
 
 connect one micro to other sync vs async --> kafka for async 
 
