@@ -140,7 +140,7 @@ enum does have publiv constructor --> no it doesnt
 what are demon and non demon threads 
 
 
-
+cleaner vs gc in java 9 
 
 
 
