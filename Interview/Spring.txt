@@ -137,6 +137,8 @@ indexing in annotatuion way
 
 enum does have publiv constructor --> no it doesnt 
 
+what are demon and non demon threads 
+
 
 
 
