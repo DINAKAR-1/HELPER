@@ -1,0 +1,77 @@
+🏗️ CREATIONAL PATTERNS (5)
+"How objects are created"
+
+Singleton – Only one object exists globally
+🧠 “The one and only king 👑”
+
+Factory Method – Let subclass decide which class to instantiate
+🧠 “Tell me the type, I’ll give you the object”
+
+Abstract Factory – Factory of factories
+🧠 “Different families of products with same interface”
+
+Builder – Step-by-step object construction
+🧠 “Customize your pizza 🍕 one topping at a time”
+
+Prototype – Clone existing object
+🧠 “Copy paste an object without new keyword ✂️”
+
+🧱 STRUCTURAL PATTERNS (7)
+"How classes and objects are composed"
+
+Adapter – Convert one interface to another
+🧠 “Plug converter 🪫 to 🔋”
+
+Bridge – Separate abstraction from implementation
+🧠 “Remote (abstraction) + TV (implementation)”
+
+Composite – Tree structure (part-whole hierarchy)
+🧠 “Folder has files and folders 📂”
+
+Decorator – Add responsibilities dynamically
+🧠 “Wrap your coffee with milk, sugar etc ☕”
+
+Facade – Unified simple interface over complex system
+🧠 “One front desk for entire hotel 🛎️”
+
+Flyweight – Share objects to save memory
+🧠 “Use same bullet object for every soldier in game 🔫”
+
+Proxy – Placeholder for another object
+🧠 “Talking to customer service instead of the boss 📞”
+
+🤹‍♂️ BEHAVIORAL PATTERNS (11)
+"How objects interact and behave"
+
+Chain of Responsibility – Pass request along a chain
+🧠 “Support ticket goes from L1 → L2 → L3”
+
+Command – Encapsulate request as an object
+🧠 “Remote control buttons are commands”
+
+Interpreter – Grammar interpreter for expressions
+🧠 “Mini programming language parser”
+
+Iterator – Sequentially access elements
+🧠 “Next, next, next… until end 📼”
+
+Mediator – Central controller between components
+🧠 “Air traffic control between planes 🛩️”
+
+Memento – Store object state
+🧠 “Ctrl+Z in real life 🧠”
+
+Observer – Notify all when subject changes
+🧠 “YouTube subscribers get notified 🔔”
+
+State – Change behavior based on internal state
+🧠 “Fan: Off → Low → High → Turbo 💨”
+
+Strategy – Swap algorithms at runtime
+🧠 “Choose your travel route: bike, bus, walk 🚲🚌🚶”
+
+Template Method – Base class defines skeleton, subclasses fill steps
+🧠 “Recipe with customizable toppings 🍲”
+
+Visitor – Add operations to objects without modifying them
+🧠 “Postman visits each house and delivers mail 📬”
