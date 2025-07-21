@@ -146,10 +146,11 @@ learn locking much deeeper
 
 what is exceutor service , can we allot taks to it and does it reuse the threads 
 
-
-
-
-
+types of locks 
+ReentrantLock --> (manual control)
+Product catalog (frequently read)-->	ReadWriteLock
+Cache system (hot reads) -->	StampedLock
+Student project or simple API -->	synchronized
 
 
 
