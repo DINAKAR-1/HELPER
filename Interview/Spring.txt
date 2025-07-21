@@ -154,6 +154,9 @@ Student project or simple API -->	synchronized
 
 
 
+whats aggrigration ,composition ,assosiation
+
+
 
 
 
