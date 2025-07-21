@@ -142,7 +142,9 @@ what are demon and non demon threads
 
 cleaner vs gc in java 9 
 
+learn locking much deeeper
 
+what is exceutor service , can we allot taks to it and does it reuse the threads 
 
 
 
