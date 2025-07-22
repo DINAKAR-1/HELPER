@@ -80,3 +80,10 @@ Dynamic Programming
 416. Partition Equal Subset Sum
 312. Burst Balloons
 1143. Longest Common Subsequence
+
+----------------------------->
+
+need to complete treees first all
+then graphs 
+then heaps
+then dynamic programming in next 1 month
