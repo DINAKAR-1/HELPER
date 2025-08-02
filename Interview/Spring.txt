@@ -50,27 +50,23 @@ monitor lock
 
 states of thread 
 
-equals and hashcode 
+equals and hashcode  --> hashcode first 
 
 fail fast vs fail slow 
 
-predi4cta vs consumer 
+predicate vs consumer 
 
 map vs flatmap
 
 optional
 
+class implementing  two interface with same method 
 
-class inmolemtingv two interface with same method 
-
-
-method reference vs concsttuvto ref
-
+method reference vs constructor refere
 
 service vs component why 
 
 why to use constructio injection 
-
 
 what if both component and sevice applied same spot 
 
@@ -78,10 +74,10 @@ benefit of using maven
 
 when to use parallel streams
 
+what are class loaders types? bootstrap,application , 
 
-what are class loaders types?
+why string immutable ? for threads
 
-why string immutable ?
 why char array for password inst of string ?
 
 oops importance not 4 pillars --> modularity 
@@ -104,7 +100,7 @@ hascode and equals whivh first do both excute always ?*****
 
 whhere we get concurrent modifiction exception ?
 
-what is identity and wwek hashmap 
+what is identity and wwek hashmap *****
 
 runnabel and callable 
 
@@ -112,7 +108,7 @@ more than once start on thread --> iillgal thread exceptoon
 
 how crreate new exception of runtime 
 
-how external configuration in boot ?
+how external configuration in boot ?****
 
 which first prop or yml prop is defalt?
 
@@ -134,13 +130,11 @@ returning custom obj vs response entity ?
 
 indexing in annotatuion way 
 
-
 enum does have publiv constructor --> no it doesnt 
 
-what are demon and non demon threads 
+what are demon and non demon threads --demon are all time treads
 
-
-cleaner vs gc in java 9 
+cleaner(j9) vs gc in java  
 
 learn locking much deeeper
 
@@ -152,13 +146,5 @@ Product catalog (frequently read)-->	ReadWriteLock
 Cache system (hot reads) -->	StampedLock
 Student project or simple API -->	synchronized
 
-
-
 whats aggrigration ,composition ,assosiation
-
-
-
-
-
-
 
