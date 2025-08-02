@@ -24,3 +24,18 @@ after java 8
 -->No protected, package-private, or private for abstract methods
 -->Only default/static methods can be private (from Java 9). from j9 
 
+-------------------------------------------------------------------------
+storing strings 
+normaly strings stored in method area 
+but say during run time 
+like 
+'din' +somevar (which gets val at run time )= dinakar(stored in heap )coz builded by String builder
+but 
+if 
+string ss=din ;
+String s='d'+'i'+'n';
+
+then not in heap just in pool 
+coz for all iterals  resolvd at compile time 
+
+if u want to be in pool then .intern 
