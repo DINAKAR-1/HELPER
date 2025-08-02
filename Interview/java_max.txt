@@ -1,1 +1,26 @@
-jav
+---->
+abstract vs interfaces
+before java 8
+
+abstract class
+should have abstrcat keyword on class
+--> may contain abstarct function or may not but if class has abstract method its a abstarct class
+--> have all access modifiers 
+--> have normal varibles like class ,objects no rules like must be sstatic 
+--> have default ,static methods 
+-->have private construtor 
+
+interfaces-->
+--> only abstract methods 
+--> only static final varibles
+--> only public modifier 
+
+
+after java 8 
+--> interfaces
+--> have default , static methods 
+--> private meth but for internal use only 
+--->still constants same 
+-->No protected, package-private, or private for abstract methods
+-->Only default/static methods can be private (from Java 9). from j9 
+
