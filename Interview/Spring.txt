@@ -136,6 +136,8 @@ what are demon and non demon threads --demon are all time treads
 
 cleaner(j9) vs gc in java  
 
+comaprable vs comaprator ?
+
 learn locking much deeeper
 
 what is exceutor service , can we allot taks to it and does it reuse the threads 
