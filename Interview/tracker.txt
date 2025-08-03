@@ -1,0 +1,15 @@
+here goes all i covered -->
+1.java
+2.springboot
+3.design patterns , SOLID principles
+4.using docker
+5.using microservices and little bit of patterns
+5.using elk (needs more stability ) , using redis 
+6.react(need rev)
+7.system design concepts 
+8.medium level dsa till trees , covered major dsa patterns .
+
+pending -->
+8.using kafka real time 
+8.dsa trees,heaps,graphs ,more dsa patterns
+8.lld ,hld problems
