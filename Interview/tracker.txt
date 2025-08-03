@@ -8,9 +8,9 @@ here goes all i covered -->
 6.react(need rev)
 7.system design concepts 
 8.medium level dsa till trees , covered major dsa patterns .
+8.using kafka real time 
 
 pending -->
-8.using kafka real time 
 8.dsa trees,heaps,graphs ,more dsa patterns
 8.lld ,hld problems
 8.ravi sheet , striver sheet , algo sheet 
