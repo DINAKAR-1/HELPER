@@ -26,6 +26,7 @@ list.forEach(System.out::println);
 
 5. Optional
 Optional<String> maybeName = Optional.ofNullable("Dinakar");
+optional.of throws null pointer excep , but of nullable gives emoty opitional 
 maybeName.ifPresent(name -> System.out.println(name.toUpperCase()));
 
 6. Default & Static Methods in Interfaces
