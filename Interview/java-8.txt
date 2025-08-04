@@ -1,0 +1,8 @@
+--->
+  streams
+  filter
+  map
+  reduce
+  foreach
+  collect(collector.tolist)
+  
