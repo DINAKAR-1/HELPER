@@ -12,17 +12,17 @@ How do you load custom config files?
 
 *** What is the difference between CrudRepository, JpaRepository, and PagingAndSortingRepository?
 
-How is pagination and sorting handled?
+How is pagination and sorting handled?***
 
 How do you use custom queries with @Query?
 
-What is the N+1 problem and how do you fix it?
+What is the N+1 problem and how do you fix it?***
 
 What is @Cacheable, @CacheEvict, and @CachePut?
 
 How do you configure a caching provider like EhCache or Redis?
 
-What is circular dependency and how do you fix it?
+What is circular dependency and how do you fix it?***
 
 How do you resolve memory leaks with HikariCP?
 
