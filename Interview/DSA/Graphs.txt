@@ -1,1 +1,23 @@
-1.what is graph 
+1. What is a Graph?
+A graph is a collection of nodes (vertices) connected by edges.
+
+2. Types of Graphs
+Graphs can be directed/undirected, weighted/unweighted, cyclic/acyclic, or connected/disconnected.
+
+3. Representation
+Graphs are usually represented using an adjacency list (efficient) or an adjacency matrix (simple).
+
+4. Connected Components
+A connected component is a maximal set of nodes where each node is reachable from every other node in that set.
+
+5. BFS (Breadth-First Search)
+BFS explores the graph level by level using a queue.
+
+6. DFS (Depth-First Search)
+DFS explores the graph deeply first using a stack (or recursion).
+
+7. No. of Provinces Problem
+Count connected components in an undirected graph of cities.
+
+8. No. of Islands Problem
+Count connected components in a grid (2D graph) where land is 1 and water is 0.
