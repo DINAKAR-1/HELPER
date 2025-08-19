@@ -16,8 +16,14 @@ BFS explores the graph level by level using a queue.
 6. DFS (Depth-First Search)
 DFS explores the graph deeply first using a stack (or recursion).
 
-7. No. of Provinces Problem
+7. No. of Provinces
 Count connected components in an undirected graph of cities.
 
-8. No. of Islands Problem
+8. No. of Islands
 Count connected components in a grid (2D graph) where land is 1 and water is 0.
+
+9. Flood Fill
+Change the color of a connected region in a 2D grid using BFS/DFS.
+
+10. Rotten Oranges
+Find the minimum time for all fresh oranges to become rotten by spreading in 4 directions (BFS).
