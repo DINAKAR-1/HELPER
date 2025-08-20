@@ -27,3 +27,11 @@ Change the color of a connected region in a 2D grid using BFS/DFS.
 
 10. Rotten Oranges
 Find the minimum time for all fresh oranges to become rotten by spreading in 4 directions (BFS).
+
+11.detect cycle in graph using BFS 
+
+12.detect cycle in graph using DFS
+
+13.Distance of nearest cell having 1 || 0/1 matrix 
+
+14.surrounded regions replace O's with X's
