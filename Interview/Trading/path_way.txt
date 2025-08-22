@@ -5,9 +5,9 @@ table
 ---------------------
 Year	Total Capital	Amount Taken for Trading	Profit from Trading free income at 5% bank + 10 % M F
 1	1	    10	50  7
-2	1.5	  15	75  
-3	2.25	20	100
-4	3.25	30	150
-5	4.75	50	250
+2	1.5	  15	75  10
+3	2.25	20	100 15
+4	3.25	30	150 21
+5	4.75	50	250 33
 --------------------
 by end of 5 years we get 7 cr total ,by risking 10 % a year with a 
