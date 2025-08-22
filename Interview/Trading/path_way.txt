@@ -1,0 +1,13 @@
+1. get 1C
+2. use 10 % of the given capital 
+3. at 3% a week 
+table 
+---------------------
+Year	Total Capital	Amount Taken for Trading	Profit from Trading free income at 5% bank + 10 % M F
+1	1	    10	50  7
+2	1.5	  15	75  
+3	2.25	20	100
+4	3.25	30	150
+5	4.75	50	250
+--------------------
+by end of 5 years we get 7 cr total ,by risking 10 % a year with a 
