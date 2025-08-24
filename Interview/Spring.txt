@@ -150,3 +150,25 @@ Student project or simple API -->	synchronized
 
 whats aggrigration ,composition ,assosiation
 
+What is the lifecycle of a Servlet?
+
+How does JDBC connection pooling work?
+
+Difference between REST and SOAP APIs.
+
+Explain Filters and Listeners in Java EE.
+
+How do you handle transactions in JDBC?
+
+Explain session management in Servlets.
+
+Difference between Statement, PreparedStatement, and CallableStatement.
+
+Internal working of HashMap.
+Difference between ArrayList and LinkedList.
+What is volatile in Java?
+Difference between == and equals().
+Explain Garbage Collection in JVM.
+How does synchronized block work?
+What are Callable and Future in Java?
+Difference between Comparable and Comparator.
