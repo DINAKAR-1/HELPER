@@ -8,6 +8,8 @@ class Node
     Node(int data) {this.data = data;}
 }
 -------------------------
+preorder --> root ,left ,right
+post --> left ,right , root
   public static List<Integer> inorder(Node root1, List<Integer> list)
     {
         if (root1 == null) return list;
