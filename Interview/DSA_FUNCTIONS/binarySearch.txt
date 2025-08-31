@@ -1,4 +1,16 @@
-
+public static int lowerBound(List<Integer> list, int target) {
+    int low = 0, high = list.size();
+    while (low < high) {
+        int mid = low + (high - low) / 2;
+        if (list.get(mid) < target) {
+            low = mid + 1;
+        } else {
+            high = mid;
+        }
+    }
+    return low; // index of first element >= target
+}
+------------------------------------------
  public static int higherbound(List<Integer> list, int target)
     {
         int low = 0;
@@ -17,3 +29,30 @@
         }
         return low;
     }
+------------------------------------------------------
+public static int binarySearch(List<Integer> list, int target) {
+    int low = 0, high = list.size() - 1;
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+        if (list.get(mid) == target) {
+            return mid; // found
+        } else if (list.get(mid) < target) {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+    }
+    return -1; // not found
+}
+---------------------------------------------------
+
+public static int firstOccurrence(List<Integer> list, int target) {
+    int idx = lowerBound(list, target);
+    return (idx < list.size() && list.get(idx) == target) ? idx : -1;
+}
+
+public static int lastOccurrence(List<Integer> list, int target) {
+    int idx = upperBound(list, target) - 1;
+    return (idx >= 0 && list.get(idx) == target) ? idx : -1;
+}
+---------------------------------------------------
