@@ -1,1 +1,35 @@
 --tree --
+-------------------------
+class Node
+{
+    int data;
+    Node left, right;
+
+    Node(int data) {this.data = data;}
+}
+-------------------------
+  public static List<Integer> inorder(Node root1, List<Integer> list)
+    {
+        if (root1 == null) return list;
+        inorder(root1.left, list);
+        list.add(root1.data);
+        inorder(root1.right, list);
+        return list;
+    }
+---------------------------
+ make a binary tree;
+ public static Node binarytree(Node root, Integer data)
+    {
+        if (root == null) return new Node(data);
+        if (data < root.data)
+        {
+            root.left = binarytree(root.left, data);
+        }
+        else
+        {
+            root.right = binarytree(root.right, data);
+        }
+        return root;
+    }
+--------------------------------
+
