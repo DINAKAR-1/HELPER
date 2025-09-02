@@ -1,0 +1,205 @@
+arrays--------
+1. Two Pointer Pattern
+
+👉 Used when you deal with sorted arrays/strings and need to find pairs, remove duplicates, etc.
+
+Example: Pair Sum in Sorted Array
+public class TwoPointerExample {
+    public static boolean hasPairWithSum(int[] nums, int target) {
+        int left = 0, right = nums.length - 1;
+
+        while (left < right) {
+            int sum = nums[left] + nums[right];
+
+            if (sum == target) return true;
+            else if (sum < target) left++;
+            else right--;
+        }
+        return false;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3, 5, 7, 11};
+        System.out.println(hasPairWithSum(arr, 10)); // true (3+7)
+    }
+}
+------------------------------------
+
+2. Sliding Window Pattern
+
+👉 Used when you need to deal with contiguous subarrays/substrings.
+Two types:
+
+Fixed window size
+-------------------------------------------------------------
+Dynamic window size
+
+(a) Fixed Window – Max Sum of Subarray of Size k
+public class FixedSlidingWindow {
+    public static int maxSum(int[] arr, int k) {
+        int windowSum = 0, maxSum = 0;
+
+        // First window
+        for (int i = 0; i < k; i++) {
+            windowSum += arr[i];
+        }
+        maxSum = windowSum;
+
+        // Slide the window
+        for (int i = k; i < arr.length; i++) {
+            windowSum += arr[i] - arr[i - k];
+            maxSum = Math.max(maxSum, windowSum);
+        }
+
+        return maxSum;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {2, 1, 5, 1, 3, 2};
+        System.out.println(maxSum(arr, 3)); // 9 (5+1+3)
+    }
+}
+
+---------------------------------------------------------------
+
+⚡ 3. Prefix Sum
+
+👉 Example: Range sum query
+
+public int[] prefixSum(int[] arr) {
+    int[] prefix = new int[arr.length + 1];
+    for (int i = 0; i < arr.length; i++) {
+        prefix[i + 1] = prefix[i] + arr[i];
+    }
+    return prefix;
+}
+// range sum [l, r] = prefix[r+1] - prefix[l]
+------------------------------------------------------------------------
+⚡ 4. Kadane’s Algorithm
+
+👉 Example: Max subarray sum
+
+public int maxSubArray(int[] nums) {
+    int maxSoFar = nums[0], curr = nums[0];
+    for (int i = 1; i < nums.length; i++) {
+        curr = Math.max(nums[i], curr + nums[i]);
+        maxSoFar = Math.max(maxSoFar, curr);
+    }
+    return maxSoFar;
+}
+------------------------------------------------------------------------
+
+⚡ 5. Fast & Slow Pointers
+
+👉 Example: Detect cycle (Floyd’s)
+
+public boolean hasCycle(int[] arr) {
+    int slow = 0, fast = 0;
+    while (fast < arr.length && arr[fast] < arr.length) {
+        slow = arr[slow];
+        fast = arr[arr[fast]];
+        if (slow == fast) return true;
+    }
+    return false;
+}
+------------------------------------------------------------------------
+
+⚡ 6. Binary Search on Answer
+
+👉 Example: Find min capacity to ship packages
+
+public int shipWithinDays(int[] weights, int days) {
+    int left = Arrays.stream(weights).max().getAsInt();
+    int right = Arrays.stream(weights).sum();
+
+    while (left < right) {
+        int mid = (left + right) / 2;
+        if (canShip(weights, days, mid)) right = mid;
+        else left = mid + 1;
+    }
+    return left;
+}
+
+private boolean canShip(int[] weights, int days, int cap) {
+    int d = 1, load = 0;
+    for (int w : weights) {
+        if (load + w > cap) { d++; load = 0; }
+        load += w;
+    }
+    return d <= days;
+}
+------------------------------------------------------------------------
+
+⚡ 7. Monotonic Stack
+
+👉 Example: Next Greater Element
+
+public int[] nextGreater(int[] nums) {
+    int n = nums.length;
+    int[] res = new int[n];
+    Arrays.fill(res, -1);
+    Stack<Integer> stack = new Stack<>();
+
+    for (int i = 0; i < n; i++) {
+        while (!stack.isEmpty() && nums[i] > nums[stack.peek()]) {
+            res[stack.pop()] = nums[i];
+        }
+        stack.push(i);
+    }
+    return res;
+}
+------------------------------------------------------------------------
+
+⚡ 8. Sorting + Greedy
+
+👉 Example: Merge Intervals
+
+public int[][] merge(int[][] intervals) {
+    Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
+    List<int[]> res = new ArrayList<>();
+    int[] curr = intervals[0];
+
+    for (int[] inter : intervals) {
+        if (inter[0] <= curr[1]) {
+            curr[1] = Math.max(curr[1], inter[1]);
+        } else {
+            res.add(curr);
+            curr = inter;
+        }
+    }
+    res.add(curr);
+    return res.toArray(new int[0][]);
+}
+------------------------------------------------------------------------
+
+⚡ 9. Hashing / Frequency Map
+
+👉 Example: Subarray sum equals k
+
+public int subarraySum(int[] nums, int k) {
+    Map<Integer, Integer> map = new HashMap<>();
+    map.put(0, 1);
+    int sum = 0, count = 0;
+
+    for (int num : nums) {
+        sum += num;
+        if (map.containsKey(sum - k)) count += map.get(sum - k);
+        map.put(sum, map.getOrDefault(sum, 0) + 1);
+    }
+    return count;
+}
+------------------------------------------------------------------------
+
+⚡ 10. Matrix Pattern
+
+👉 Example: Search in sorted 2D matrix
+
+public boolean searchMatrix(int[][] mat, int target) {
+    int row = 0, col = mat[0].length - 1;
+    while (row < mat.length && col >= 0) {
+        if (mat[row][col] == target) return true;
+        else if (mat[row][col] > target) col--;
+        else row++;
+    }
+    return false;
+}
