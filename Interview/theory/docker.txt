@@ -148,3 +148,9 @@ Don’t run as root.
 Use secrets for sensitive info (not env vars).
 
 Regularly scan images for vulnerabilities.
+
+docker volumes 
+commands 
+file script
+7. What are Docker Networks?
+6. How do you persist data in Docker?
