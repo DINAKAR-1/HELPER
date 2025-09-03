@@ -143,3 +143,192 @@ Payment Service processes payment.
 
 Inventory Service updates stock.
 If payment fails, a compensating action (cancel order) is triggered.
+
+======================================
+===================================
+1. What’s the difference between Monolith and Microservices?
+
+Answer:
+
+Monolith: Single deployable unit, tightly coupled, one database, scaling means scaling the whole app.
+
+Microservices: Multiple small services, loosely coupled, each owns its DB, can scale independently.
+⚡ Example: In an e-commerce app: Monolith = one big app handling Orders + Payments + Inventory. Microservices = split into separate services.
+
+2. When shouldn’t you use microservices?
+
+Answer:
+
+When the application is small and simple (overhead > benefits).
+
+When team size is small (managing infra becomes too heavy).
+
+When strong consistency is more important than scalability.
+
+3. How do you decide the boundaries of a microservice?
+
+Answer:
+
+Based on business capabilities (not just CRUD tables).
+
+Example: Payment Service, Inventory Service, Order Service.
+
+Follow Domain-Driven Design (DDD) → bounded contexts.
+
+4. How do you handle backward compatibility in APIs?
+
+Answer:
+
+Version your APIs (/api/v1/orders).
+
+Use feature toggles.
+
+Maintain old APIs until clients migrate.
+
+5. Difference between synchronous vs asynchronous communication?
+
+Answer:
+
+Synchronous: Request/response style → REST, gRPC. Simple but can cause tight coupling.
+
+Asynchronous: Event-driven → Kafka, RabbitMQ. More scalable, resilient, decoupled.
+💡 Use async for high throughput (payments, logs), sync for user-facing requests (login, profile).
+
+6. How do you implement request-response over Kafka/RabbitMQ?
+
+Answer:
+
+Producer sends message with a correlation ID.
+
+Consumer processes and replies on a reply-to queue/topic with the same correlation ID.
+
+Producer matches response with the request.
+
+7. Difference between REST and gRPC in microservices?
+
+Answer:
+
+REST: Text-based (JSON), human-readable, easy to debug, slower.
+
+gRPC: Binary (Protobuf), faster, strongly typed, good for internal service-to-service calls.
+
+8. What is eventual consistency?
+
+Answer:
+Data may not be updated everywhere immediately, but it will converge eventually.
+💡 Example: After placing an order → Order Service confirms instantly, but Inventory Service updates stock asynchronously.
+
+9. How do you handle shared data between microservices?
+
+Answer:
+
+Don’t share DBs directly.
+
+Use events to sync state across services.
+
+Or use a query service (CQRS) if multiple services need read access.
+
+10. Saga Pattern vs Two-Phase Commit (2PC)?
+
+Answer:
+
+2PC: Traditional DB distributed transaction. Blocking, slow, not scalable.
+
+Saga: Breaks transaction into steps with compensating actions. Non-blocking, more scalable, widely used in microservices.
+
+11. What is CQRS and when to use it?
+
+Answer:
+
+CQRS (Command Query Responsibility Segregation): Split write operations (commands) from read operations (queries).
+
+Helps when read-heavy systems need fast queries.
+💡 Example: Banking → Writes go through validation, but reads can hit a denormalized view.
+
+12. How do you scale a microservice horizontally?
+
+Answer:
+
+Deploy multiple instances behind a load balancer.
+
+Use container orchestration (Docker + Kubernetes).
+
+Stateless services scale easier than stateful ones.
+
+13. Circuit Breaker vs Retry Pattern?
+
+Answer:
+
+Retry: Automatically retries a failed request (good for temporary glitches).
+
+Circuit Breaker: Stops requests when a service is failing consistently → avoids system overload.
+👉 Both can be combined: Retry first, then trip breaker if still failing.
+
+14. How do you handle service timeouts?
+
+Answer:
+
+Set timeout configs in HTTP clients (e.g., RestTemplate/WebClient in Spring Boot).
+
+Use circuit breaker with fallback response.
+
+Use async messaging if possible.
+
+15. What is Bulkhead Pattern?
+
+Answer:
+
+Inspired by ship bulkheads (sections).
+
+Isolate resources (like thread pools, DB connections) per service → failure in one service won’t consume all resources.
+💡 Example: Payment service gets its own thread pool separate from Notification service.
+
+16. How do you deploy multiple services together?
+
+Answer:
+
+Docker Compose: For local dev, run multiple containers.
+
+Kubernetes: For production → scaling, load balancing, auto-restarts.
+
+CI/CD pipelines (Jenkins, GitHub Actions) automate deployments.
+
+17. How do you handle logging across microservices?
+
+Answer:
+
+Use centralized logging (ELK, Graylog).
+
+Add correlation IDs in logs to trace requests across services.
+
+18. How do you ensure observability in microservices?
+
+Answer:
+
+Metrics: Prometheus, Micrometer.
+
+Logs: ELK stack.
+
+Tracing: Zipkin, Jaeger.
+
+Combine all to debug distributed flows.
+
+19. What is Strangler Fig Pattern?
+
+Answer:
+
+Migrate from monolith → microservices gradually.
+
+Wrap old system with API gateway, and slowly replace modules with microservices.
+
+20. How do you test microservices?
+
+Answer:
+
+Unit tests (per service).
+
+Contract testing (e.g., Pact) → ensure API compatibility.
+
+Integration testing with multiple services.
+
+End-to-end testing via Postman/Newman or automated tools.
