@@ -1,1 +1,174 @@
-..
+🔥 Kafka Interview Questions & Answers (2-Year Experience, Spring Boot + Java Full Stack)
+1. What is Kafka and why do we use it?
+
+👉 Answer:
+Kafka is a distributed event streaming platform. Instead of services calling each other directly (tight coupling), Kafka lets them talk via events/messages.
+We use it for:
+
+Decoupling services (producer doesn’t care who consumes).
+
+Handling high throughput (millions of events/sec).
+
+Scalability & fault tolerance (replication, partitioning).
+
+Event-driven architecture (real-time processing).
+
+2. What are Kafka Topics, Partitions, and Offsets?
+
+👉 Answer:
+
+Topic → A category/feed name (like a table in DB).
+
+Partition → A topic is split into multiple partitions for parallelism.
+
+Offset → Each message in a partition gets a unique sequential ID.
+
+Example: If topic orders has 3 partitions, producers can publish to all 3. Consumers track offsets to know what’s read.
+
+3. How does Kafka ensure fault tolerance?
+
+👉 Answer:
+
+Replication: Each partition has a leader and multiple replicas.
+
+If a leader broker dies, a replica is promoted.
+
+Consumers and producers reconnect automatically.
+
+ACKs (acks=0,1,all) ensure durability at different levels.
+
+4. How do you integrate Kafka with Spring Boot?
+
+👉 Answer:
+Use Spring Kafka dependency.
+
+Configure producer/consumer in application.yml.
+
+Use @KafkaListener to consume.
+
+Use KafkaTemplate to produce.
+
+Example:
+
+// Producer
+@Autowired
+private KafkaTemplate<String, String> kafkaTemplate;
+
+public void sendMessage(String msg) {
+    kafkaTemplate.send("orders", msg);
+}
+
+// Consumer
+@KafkaListener(topics = "orders", groupId = "order-group")
+public void consume(String message) {
+    System.out.println("Consumed: " + message);
+}
+
+5. What’s the difference between Kafka and traditional message brokers (like RabbitMQ/ActiveMQ)?
+
+👉 Answer:
+
+Kafka → Designed for high throughput, scalability, event streaming. Messages are persisted for a configurable time. Consumers can replay.
+
+RabbitMQ → Good for request-response, low latency, smaller workloads, but not built for heavy event streaming.
+
+6. What’s a Consumer Group in Kafka?
+
+👉 Answer:
+
+A consumer group is a set of consumers that share the work of consuming a topic.
+
+Kafka ensures each partition is consumed by only one consumer in the group.
+
+Scaling consumers = scaling partitions.
+
+Example: If topic has 3 partitions and consumer group has 3 consumers → each consumer gets 1 partition.
+
+7. How do you handle message ordering in Kafka?
+
+👉 Answer:
+
+Kafka guarantees ordering within a partition, not across partitions.
+
+To ensure order:
+
+Send related events to the same partition using a key.
+
+E.g., all messages for customerId=123 go to the same partition.
+
+8. How do you commit offsets in Kafka?
+
+👉 Answer:
+
+Automatic commit → Kafka commits offsets periodically. Risk: message might be processed twice.
+
+Manual commit → Developer controls when to mark message as consumed. Safer if you need "at-least-once" processing.
+
+9. What are delivery semantics in Kafka?
+
+👉 Answer:
+
+At most once: Messages may be lost but never redelivered.
+
+At least once (default): No message lost, but duplicates possible.
+
+Exactly once: Guaranteed no loss, no duplicates (via idempotent producer + transactional consumer).
+
+10. Can Kafka be used in a microservices architecture?
+
+👉 Answer:
+Yes. Kafka acts as the backbone for event-driven microservices:
+
+Services publish events (producer).
+
+Other services consume (consumer).
+
+Loose coupling, scalability, and resilience.
+
+11. How do you secure Kafka?
+
+👉 Answer:
+
+Authentication: SASL (SCRAM, Kerberos).
+
+Authorization: ACLs.
+
+Encryption: TLS for data in transit.
+
+12. What are some real-world use cases you’ve seen/implemented with Kafka?
+
+👉 Answer (customize for interviews):
+
+Logging pipeline (collect logs from microservices into Elasticsearch).
+
+Order management (producers → order events, consumers → update inventory, billing).
+
+Real-time analytics (Kafka + Spark/Flink).
+
+13. How does Kafka differ from a database?
+
+👉 Answer:
+
+Kafka = commit log + streaming. Not for queries/joins like SQL.
+
+Database = storage + query engine.
+
+Kafka is often used alongside DB, not instead of it.
+
+14. What’s the role of Zookeeper in Kafka?
+
+👉 Answer:
+
+(Before Kafka 2.8) Zookeeper managed brokers, partitions, leader election.
+
+(Now) Kafka has KRaft mode (self-managed) → Zookeeper is optional and being phased out.
+
+15. What happens if a consumer is slower than producer?
+
+👉 Answer:
+
+Kafka stores data for a configured retention period.
+
+Slow consumer can catch up later unless retention time expires.
+
+If retention expires → data is lost for that consumer.
