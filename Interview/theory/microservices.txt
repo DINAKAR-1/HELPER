@@ -332,3 +332,22 @@ Contract testing (e.g., Pact) → ensure API compatibility.
 Integration testing with multiple services.
 
 End-to-end testing via Postman/Newman or automated tools.
+
+
+2phase 
+1. Prepare Phase
+
+A Coordinator (transaction manager) asks all participants (databases/services):
+“Hey, can you commit this transaction?”
+
+Each participant tries the transaction locally and replies:
+
+Yes (Vote Commit) → ready to commit.
+
+No (Vote Abort) → can’t do it.
+
+2. Commit Phase
+
+If all said Yes → Coordinator tells everyone: Commit.
+
+If anyone said No → Coordinator tells everyone: Rollback.
