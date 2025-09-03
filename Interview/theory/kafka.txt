@@ -172,3 +172,137 @@ Kafka stores data for a configured retention period.
 Slow consumer can catch up later unless retention time expires.
 
 If retention expires → data is lost for that consumer.
+======================================================================================
+
+⚡ Level 2 & Level 3 Kafka Interview Questions (With Answers & Explanations)
+1. What’s the difference between acks=0, acks=1, and acks=all in Kafka producers?
+
+👉 Answer:
+
+acks=0 → Producer doesn’t wait for broker acknowledgment. Fastest, but messages can be lost.
+
+acks=1 → Producer waits for leader only. If leader crashes before replication, data can be lost.
+
+acks=all → Producer waits until all replicas acknowledge. Slowest, but safest (no data loss).
+
+⚡ Why it matters: Shows you understand durability guarantees.
+
+2. What is an idempotent producer?
+
+👉 Answer:
+
+Normally, retries can cause duplicate messages.
+
+Idempotent producer (enabled via enable.idempotence=true) ensures exactly-once delivery to a partition.
+
+Uses a unique producer ID + sequence number to deduplicate.
+
+⚡ Why it matters: Interviewers love to test if you know how Kafka avoids duplicates.
+
+3. How does consumer rebalancing work?
+
+👉 Answer:
+
+In a consumer group, Kafka ensures each partition is assigned to exactly one consumer.
+
+When a new consumer joins/leaves, partitions are reassigned → this is called rebalance.
+
+During rebalance, consumers stop processing temporarily → can cause latency.
+
+⚡ Best practices: Use cooperative rebalancing (KIP-429) in newer Kafka for smoother transitions.
+
+4. Difference between poll() and @KafkaListener in Spring Boot?
+
+👉 Answer:
+
+poll() API → Low-level Kafka consumer. You call poll(timeout) manually, handle offsets yourself.
+
+@KafkaListener → Spring abstraction. Handles poll loop, thread management, offset commits for you.
+
+Use poll() when you need fine-grained control, else @KafkaListener is easier.
+
+⚡ Why it matters: Many devs only know @KafkaListener, but interviews want the low-level insight.
+
+5. What’s a Dead Letter Queue (DLQ) in Kafka?
+
+👉 Answer:
+
+If a consumer can’t process a message (due to validation error, bad JSON, etc.), you don’t want to lose it.
+
+Instead, send it to a DLQ topic.
+
+Later, devs can debug/reprocess from DLQ.
+
+⚡ Why it matters: Shows you understand error handling strategies in real systems.
+
+6. How can you tune Kafka performance?
+
+👉 Answer:
+
+Increase partitions → More parallelism.
+
+Batching (batch.size) → Send messages in chunks instead of one by one.
+
+linger.ms → Small delay to allow batching.
+
+Compression (snappy, lz4) → Reduce network overhead.
+
+Async I/O → Don’t block producer threads.
+
+⚡ Pro tip: More partitions ≠ always better. Too many = overhead for brokers & consumers.
+
+7. What is Schema Registry and why do we need it?
+
+👉 Answer:
+
+Kafka itself stores raw bytes. Without a schema, consumers need to “guess” structure.
+
+Schema Registry (Confluent) ensures producers & consumers agree on data format (Avro, Protobuf, JSON Schema).
+
+Supports schema evolution (backward/forward compatibility).
+
+⚡ Why it matters: If you ever say “Kafka + Avro + Schema Registry”, the interviewer will assume you’ve seen real enterprise Kafka setups.
+
+8. Difference between Kafka Streams and a normal consumer?
+
+👉 Answer:
+
+Normal Consumer: Just reads messages, processes, maybe writes to DB.
+
+Kafka Streams API: Library for stream processing → filtering, joins, windowing, aggregations directly on Kafka topics.
+
+Example: orders + payments → join into completed_orders.
+
+⚡ Why it matters: Kafka Streams = “real-time ETL”. Good to at least know the buzzwords.
+
+9. How does Kafka handle data retention?
+
+👉 Answer:
+
+Messages are stored for a configurable time (retention.ms) or until log size limit (retention.bytes).
+
+Even if consumed, messages stay until retention kicks in.
+
+Useful for replays (consumer can reset offset).
+
+⚡ Common trap: Kafka is not like RabbitMQ → it doesn’t delete messages immediately after consumption.
+
+10. How is Kafka monitored in production?
+
+👉 Answer:
+
+Metrics:
+
+Lag (how far consumers are behind).
+
+Throughput (messages/sec).
+
+Broker health (disk usage, partition leaders).
+
+Tools:
+
+Prometheus + Grafana → monitoring.
+
+Confluent Control Center → enterprise UI.
+
+⚡ Why it matters: Knowing monitoring = you’ve seen Kafka beyond tutorials.
