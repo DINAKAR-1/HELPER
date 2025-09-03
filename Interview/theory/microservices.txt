@@ -1,1 +1,145 @@
---
+Common Microservices Interview Questions (2 Years Exp)
+1. What are microservices and why do we use them?
+
+Answer:
+Microservices are an architectural style where an application is split into small, independent services that communicate via APIs (usually REST or messaging).
+
+Each service is loosely coupled, independently deployable, and focuses on one business capability.
+
+Benefits: scalability, faster deployments, fault isolation, technology flexibility.
+
+⚡ Roast check: If you say "microservices = small code files", the interviewer will cancel your return Uber ride.
+
+2. How do microservices communicate with each other?
+
+Answer:
+
+Sync: REST (HTTP), gRPC
+
+Async: Kafka, RabbitMQ, ActiveMQ (message queues)
+
+Async is often preferred for decoupling & reliability.
+
+💡 Example: In an e-commerce app: Order Service sends an "OrderCreated" event to Kafka → Payment Service & Inventory Service consume it.
+
+3. What are challenges with microservices?
+
+Answer:
+
+Distributed system complexity (debugging across services is hard).
+
+Data consistency (harder than monolith, usually eventual consistency).
+
+Network latency & failures.
+
+Monitoring & logging (need centralized solutions like ELK/Prometheus).
+
+Deployment overhead (managing 10+ services isn’t fun without Docker/K8s).
+
+4. How do you handle database in microservices?
+
+Answer:
+
+Each microservice should own its database → avoids tight coupling.
+
+Data consistency handled using Sagas / Event-driven architecture.
+
+5. What is API Gateway in microservices?
+
+Answer:
+API Gateway is a single entry point for all microservices. It:
+
+Routes requests to services.
+
+Handles auth, rate limiting, logging.
+
+Example: Netflix Zuul, Spring Cloud Gateway, NGINX.
+
+6. How do you handle service discovery?
+
+Answer:
+Since services may scale dynamically, we need service discovery.
+
+Eureka / Consul / Zookeeper help register and discover services automatically.
+
+7. What is Circuit Breaker? Why use it?
+
+Answer:
+Circuit Breaker (Resilience4j/Hystrix) prevents cascading failures.
+
+If Service A calls Service B, and B is down, the breaker opens → avoids hammering B & returns fallback response.
+
+8. How do you secure microservices?
+
+Answer:
+
+Authentication/Authorization via JWT tokens, OAuth2.
+
+API Gateway enforces authentication.
+
+Services trust each other via shared secrets or mTLS.
+
+9. How do you monitor microservices?
+
+Answer:
+
+Logs → ELK Stack (ElasticSearch, Logstash, Kibana).
+
+Metrics → Prometheus + Grafana.
+
+Distributed Tracing → Zipkin / Jaeger.
+
+Major Microservice Design Patterns (Important for 2 YOE)
+
+🔥 Interviewers love these because they test if you can handle real-world problems:
+
+Database per Service
+
+Each service has its own DB, avoids coupling.
+
+Communication handled via events if needed.
+
+Saga Pattern (for distributed transactions)
+
+Breaks down transactions into steps across services.
+
+If one fails → compensating action is triggered.
+
+Example: Hotel Booking → Payment fails → cancel reservation.
+
+API Gateway Pattern
+
+Single entry for clients.
+
+Handles routing, security, throttling.
+
+Circuit Breaker Pattern
+
+Protects services from failures & timeouts.
+
+CQRS (Command Query Responsibility Segregation)
+
+Split write operations (commands) from read queries.
+
+Helps scale read-heavy apps.
+
+Event Sourcing
+
+Instead of storing current state, store sequence of events.
+
+Rebuild state by replaying events.
+
+Strangler Fig Pattern
+
+Useful for migrating monolith → microservices step by step.
+
+⚡ Example Interview Question with Pattern:
+Q: How do you handle distributed transactions in microservices?
+A: We use the Saga Pattern. For example, when placing an order:
+
+Order Service creates order → sends event.
+
+Payment Service processes payment.
+
+Inventory Service updates stock.
+If payment fails, a compensating action (cancel order) is triggered.
