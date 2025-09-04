@@ -375,3 +375,177 @@ Pagination / infinite scroll.
 
 Memoize child components.
 👉 Instead of rendering 10,000 rows, only render what’s visible.
+
+-===========================
+1. What is Redux and why do we use it?
+
+Answer:
+
+Redux = predictable state container for JS apps.
+
+State is centralized in a single store.
+
+Components dispatch actions, reducers update state, and UI re-renders.
+👉 Used when state needs to be shared across many components (think user auth, cart, theme).
+
+2. Core principles of Redux?
+
+Answer:
+
+Single source of truth → one store holds entire app state.
+
+State is read-only → only changed by dispatching actions.
+
+Changes via pure functions → reducers are pure functions that return new state.
+
+3. Explain Redux flow in simple steps.
+
+Answer:
+
+User does something → dispatch(action).
+
+Reducer takes current state + action → returns new state.
+
+Store updates and notifies subscribers.
+
+React components subscribed via useSelector re-render.
+
+👉 Basically: UI → Action → Reducer → Store → UI again 🔄
+
+4. What are actions in Redux?
+
+Answer:
+
+Objects that describe what happened.
+
+Must have a type property.
+
+{ type: "INCREMENT", payload: 1 }
+
+5. What are reducers?
+
+Answer:
+
+Pure functions that take (state, action) and return new state.
+
+function counterReducer(state = { count: 0 }, action) {
+  switch (action.type) {
+    case "INCREMENT": return { count: state.count + 1 };
+    default: return state;
+  }
+}
+
+6. What is a Redux store?
+
+Answer:
+
+The single object holding app state.
+
+Created with createStore (legacy) or configureStore (Redux Toolkit).
+
+import { configureStore } from "@reduxjs/toolkit";
+const store = configureStore({ reducer: counterReducer });
+
+7. Difference between Redux and Context API?
+
+Answer:
+
+Context API → small apps, light global state.
+
+Redux → large apps, advanced debugging, async flows, middleware.
+👉 Interview tip: “I’d use Context for small global state, Redux when app scales with complex state.”
+
+8. What is Redux Thunk?
+
+Answer:
+
+Middleware that lets you write async logic in Redux.
+
+Normally actions must return plain objects, but Thunk lets actions return a function.
+
+function fetchUsers() {
+  return async (dispatch) => {
+    dispatch({ type: "FETCH_START" });
+    const res = await fetch("/users");
+    const data = await res.json();
+    dispatch({ type: "FETCH_SUCCESS", payload: data });
+  };
+}
+
+9. Redux vs Redux Toolkit?
+
+Answer:
+
+Redux (old way):
+
+Lots of boilerplate → actions, constants, reducers, switch cases.
+
+Redux Toolkit (RTK):
+
+Opinionated, less boilerplate, includes createSlice, built-in Thunk.
+
+const counterSlice = createSlice({
+  name: "counter",
+  initialState: { value: 0 },
+  reducers: {
+    increment: (state) => { state.value += 1; }
+  }
+});
+
+
+👉 RTK is the recommended way now.
+
+10. What are selectors in Redux?
+
+Answer:
+
+Functions to extract specific state from store.
+
+Helps avoid repeating logic.
+
+const selectCount = (state) => state.counter.value;
+
+11. Difference between synchronous and asynchronous actions in Redux?
+
+Answer:
+
+Sync actions: return plain object immediately ({ type, payload }).
+
+Async actions: involve API calls, use middleware (Thunk, Saga).
+
+12. What’s Redux Saga and how is it different from Thunk?
+
+Answer:
+
+Thunk: async logic inside functions, easier, beginner-friendly.
+
+Saga: uses generators for complex async flows, good for large apps.
+👉 If interviewer asks, say “Thunk is enough for most apps, Saga when you need advanced async orchestration.”
+
+13. Real-time scenario: How would you persist Redux state after page refresh?
+
+Answer:
+
+Use redux-persist library.
+
+It saves state to localStorage/sessionStorage and rehydrates on reload.
+
+14. What happens if reducers are not pure functions?
+
+Answer:
+
+State mutations, unpredictable behavior, broken time-travel debugging, side effects.
+👉 Reducers must be pure.
+
+15. Can you explain middleware in Redux?
+
+Answer:
+
+Middleware = function that sits between dispatching action and reaching reducer.
+
+Example: logging, async calls, error handling.
+
+const logger = store => next => action => {
+  console.log("Dispatching", action);
+  return next(action);
+};
