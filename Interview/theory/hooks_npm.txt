@@ -1,0 +1,149 @@
+1. What are React Hooks? Why were they introduced?
+
+Answer:
+Hooks let you use state and lifecycle features in functional components without writing class components.
+They were introduced because:
+
+Class components were bulky (too much boilerplate).
+
+Logic reuse was hard (HOCs and render props were messy).
+
+Hooks give a cleaner, functional style with easy state + side effects.
+
+2. What’s the difference between useState and useReducer?
+
+Answer:
+
+useState: Best for simple, independent states.
+
+useReducer: Best when you have complex state logic or multiple sub-values that depend on each other.
+
+👉 Think of useState as a “pencil” ✏️ and useReducer as a “Swiss knife” 🛠️.
+
+3. What does useEffect replace from class components?
+
+Answer:
+It replaces componentDidMount, componentDidUpdate, and componentWillUnmount.
+
+Side effects: fetching data, subscriptions, DOM manipulation.
+
+Cleanup: returning a function from inside useEffect.
+
+4. Why can’t we use Hooks inside loops or conditions?
+
+Answer:
+Because React relies on the order of Hooks calls to map them to the correct state.
+If you put them inside loops/conditions, the order may change and React will panic like “bro, where’s my hook?!” 🫠
+
+5. What are custom hooks?
+
+Answer:
+A custom hook is just a JavaScript function starting with use that can call other hooks.
+👉 They help you reuse logic across components.
+Example: useAuth(), useFetch(url).
+
+6. What’s the difference between useMemo and useCallback?
+
+Answer:
+
+useMemo(fn, deps): Memoizes the result of a computation (e.g., expensive calculation).
+
+useCallback(fn, deps): Memoizes the function itself (useful for passing stable functions as props).
+
+Think of useMemo = cache the answer 📊,
+useCallback = cache the calculator 🧮.
+
+7. What’s the problem with using useEffect for everything?
+
+Answer:
+Overusing useEffect can cause:
+
+Unnecessary re-renders.
+
+Infinite loops if dependencies aren’t handled right.
+
+Mixing business logic with lifecycle logic.
+
+Better: Move logic outside useEffect if it doesn’t involve side-effects.
+
+8. How does useRef differ from state?
+
+Answer:
+
+useState: triggers a re-render when updated.
+
+useRef: stores a mutable value without causing re-renders.
+
+Great for: storing DOM references, timers, previous values.
+
+⚡ NPM (Node Package Manager) Q&A
+1. What is npm?
+
+Answer:
+npm = Node Package Manager.
+
+Manages project dependencies.
+
+Provides a registry of reusable packages.
+
+Lets you run scripts (npm start, npm test).
+
+2. What’s the difference between dependencies and devDependencies in package.json?
+
+Answer:
+
+dependencies: Needed in production (React, axios, lodash).
+
+devDependencies: Needed only for development (Babel, Webpack, ESLint, Jest).
+
+3. What’s the difference between npm install and npm ci?
+
+Answer:
+
+npm install: Installs deps from package.json (may update lockfile).
+
+npm ci: Installs exact versions from package-lock.json, faster + stable for CI/CD.
+
+4. What is the difference between ^ and ~ in package.json?
+
+Answer:
+
+^1.2.3: Updates minor + patch versions (e.g., 1.3.0, 1.2.9).
+
+~1.2.3: Updates only patch versions (e.g., 1.2.4).
+
+5. What is npx and how is it different from npm?
+
+Answer:
+
+npm: Installs packages globally or locally.
+
+npx: Runs packages without installing globally.
+
+Example:
+
+npx create-react-app my-app
+
+
+runs directly from registry, no need to keep it installed forever.
+
+6. How do you update all npm packages in a project?
+
+Answer:
+
+npm outdated
+npm update
+
+
+Or use npm-check-updates (ncu):
+
+npx npm-check-updates -u
+npm install
+
+7. What are peerDependencies in npm?
+
+Answer:
+They specify that your package expects a dependency to be provided by whoever installs it.
+
+Example:
+A React library might declare "react": ">=18" as a peerDependency, meaning the consumer must already have React installed.
