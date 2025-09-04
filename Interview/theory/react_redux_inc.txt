@@ -199,3 +199,179 @@ try {
 } catch (error) {
   setError("Failed to load data, please retry.");
 }
+6. What is reconciliation in React?
+
+Answer:
+
+Reconciliation = React’s process of updating the DOM when state/props change.
+
+React compares the new Virtual DOM with the old one → applies only minimal changes to real DOM.
+👉 That’s why React is fast and efficient.
+
+17. What’s the difference between React.Fragment and a <div> wrapper?
+
+Answer:
+
+Both group elements, but:
+
+<div> → adds extra node to DOM.
+
+<React.Fragment> → groups children without extra node.
+
+return (
+  <>
+    <h1>Hello</h1>
+    <p>World</p>
+  </>
+);
+
+
+👉 Useful when avoiding unnecessary div soup.
+
+18. What is the difference between useMemo and useCallback?
+
+Answer:
+
+useMemo → memoizes a value.
+
+useCallback → memoizes a function.
+
+const memoizedValue = useMemo(() => expensiveCalc(num), [num]);
+const memoizedFn = useCallback(() => doSomething(num), [num]);
+
+19. What is lazy loading in React?
+
+Answer:
+
+Load components only when needed, not all at once.
+
+const About = React.lazy(() => import("./About"));
+
+
+Use with <Suspense fallback={<Loader />}>.
+👉 Improves initial load time (perf boost 💨).
+
+20. How does React handle forms differently from vanilla JS?
+
+Answer:
+
+React keeps form inputs in state (controlled components).
+
+Vanilla JS → you fetch values from DOM (document.getElementById).
+👉 Controlled = predictable state, easier validation.
+
+21. What is Redux and when would you use it?
+
+Answer:
+
+Redux = predictable state container for React.
+
+Use when:
+
+Many components need shared state.
+
+You want centralized control (logging, debugging, persistence).
+
+Core concepts: store, actions, reducers.
+👉 But if your app is small → Context API is enough.
+
+22. What is the difference between Redux and Context API?
+
+Answer:
+
+Context API: simple global state, works well for small-medium apps.
+
+Redux: more powerful → middleware, time-travel debugging, async handling.
+👉 Interview tip: Say “I’d start with Context, but if the app grows large with complex state, I’d migrate to Redux.”
+
+23. What is the difference between client-side and server-side rendering in React?
+
+Answer:
+
+Client-side rendering (CSR):
+
+Browser loads empty HTML → React renders everything with JS.
+
+Faster navigation, slower first load.
+
+Server-side rendering (SSR):
+
+Server sends pre-rendered HTML → React hydrates on client.
+
+Faster initial load, better SEO.
+
+👉 Example: Next.js supports SSR out of the box.
+
+24. What is hydration in React?
+
+Answer:
+
+After SSR sends HTML → React attaches event listeners and makes it interactive.
+
+This process is called hydration.
+
+25. What are error boundaries in React?
+
+Answer:
+
+Special components that catch JS errors in child components.
+
+class ErrorBoundary extends React.Component {
+  state = { hasError: false };
+  static getDerivedStateFromError() { return { hasError: true }; }
+  render() { return this.state.hasError ? "Something broke" : this.props.children; }
+}
+
+
+👉 Prevents whole app crash, shows fallback UI.
+
+26. What are portals in React?
+
+Answer:
+
+Way to render children into a different DOM node outside parent hierarchy.
+
+ReactDOM.createPortal(<Modal />, document.getElementById("modal-root"));
+
+
+👉 Useful for modals, tooltips, popups.
+
+27. What’s the difference between useRef and createRef?
+
+Answer:
+
+createRef → creates new ref every render (used in class comps).
+
+useRef → persists across renders (used in function comps).
+👉 useRef is like a “box” that survives re-renders.
+
+28. What is the difference between useEffect(() => {}, []) and useEffect(() => {})?
+
+Answer:
+
+[] → runs only once (on mount).
+
+No [] → runs after every render.
+
+[dep] → runs when dep changes.
+👉 This is the classic “gotcha” question.
+
+29. What are controlled vs uncontrolled side effects?
+
+Answer:
+
+Controlled = predictable, inside useEffect.
+
+Uncontrolled = outside React’s lifecycle (like manually updating DOM, timers).
+👉 Always prefer controlled side effects.
+
+30. Real-time scenario: How would you handle performance issues in a React app with huge lists?
+
+Answer:
+
+Use windowing/virtualization → react-window, react-virtualized.
+
+Pagination / infinite scroll.
+
+Memoize child components.
+👉 Instead of rendering 10,000 rows, only render what’s visible.
