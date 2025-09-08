@@ -5,35 +5,35 @@
   reduce
   foreach
   collect(collector.tolist)
-  
+------------------------------------------------------------  
 1. Lambda Expressions
 List<String> names = List.of("bob", "dinakar", "neo");
 names.forEach(name -> System.out.println(name.toUpperCase()));
-
+------------------------------------------------------------
 2. Functional Interfaces
 Interfaces with exactly one abstract method.
 Predicate<String> startsWithD = s -> s.startsWith("D");
 System.out.println(startsWithD.test("Dinakar")); // true
-
+------------------------------------------------------------
 3. Streams API
 Operations:
 Intermediate: filter, map, sorted
 Terminal: collect, forEach, reduce
-
+------------------------------------------------------------
 4. Method References
 List<String> list = List.of("hello", "java");
 list.forEach(System.out::println);
-
+------------------------------------------------------------
 5. Optional
 Optional<String> maybeName = Optional.ofNullable("Dinakar");
 optional.of throws null pointer excep , but of nullable gives emoty opitional 
 maybeName.ifPresent(name -> System.out.println(name.toUpperCase()));
-
+------------------------------------------------------------
 6. Default & Static Methods in Interfaces
-
+------------------------------------------------------------
 7. Collectors
 Use with .collect() to gather stream data.
-
+------------------------------------------------------------
 Common ones:
 Collectors.toList()
 
@@ -42,15 +42,15 @@ Collectors.toMap()
 Collectors.groupingBy()
 
 Collectors.joining()
-
+------------------------------------------------------------
  9. Parallel Streams
 list.parallelStream().forEach(System.out::println);
-
+------------------------------------------------------------
  10. New Date and Time API (java.time)LocalDate today = LocalDate.now();
 LocalDate birthday = LocalDate.of(1996, 8, 4);
 Period age = Period.between(birthday, today);
 System.out.println(age.getYears() + " years old");
-
+------------------------------------------------------------
  Can streams be reused?
 NOPE. Once consumed, they’re closed forever. Just like your chances after sending “hey” thrice to your crush.
 
