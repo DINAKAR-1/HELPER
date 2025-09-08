@@ -1,154 +1,98 @@
 🔥 Docker Interview Q&A (2 Years Exp)
+------------------------------------------------------------
 1. What is Docker, and why is it used?
-
 Answer:
 Docker is a platform that packages applications into containers, which are lightweight, portable units containing code + runtime + libraries + dependencies.
 It’s used because:
-
 Consistency across environments (works on my machine → works everywhere).
-
 Faster deployments compared to VMs.
-
 Efficient resource usage.
-
 👉 You can say: “Instead of shipping my app with a 10GB VM, I ship a small container image, deploy anywhere.”
-
+------------------------------------------------------------
 2. How is Docker different from a Virtual Machine?
-
 Answer:
-
 VM: Has its own OS kernel, heavy, slow to boot.
-
 Docker: Shares host OS kernel, lightweight, faster to start.
-
 Example: Running 10 apps → VM would need 10 OS instances, Docker just 10 containers on one OS.
-
+------------------------------------------------------------
 3. What is a Docker Image vs a Container?
-
 Answer:
-
 Image: Blueprint/template (read-only).
-
 Container: Running instance of an image (with read/write layer).
-
 👉 Example: nginx:latest is an image, when you docker run nginx, it becomes a container.
-
+------------------------------------------------------------
 4. What is Dockerfile?
-
 Answer:
 A text file with instructions to build an image.
 Common instructions:
-
 FROM → base image
-
 RUN → execute commands
-
 COPY/ADD → add files
-
 CMD/ENTRYPOINT → default process
-
+------------------------------------------------------------
 5. What is Docker Compose and why do we use it?
-
 Answer:
-
 Tool to define and run multi-container apps.
-
 Uses docker-compose.yml.
-
 Example: A Spring Boot app + Postgres + Redis → defined in one YAML file, run with docker-compose up.
-
+------------------------------------------------------------
 6. How do you persist data in Docker?
-
 Answer:
 By using Volumes or Bind Mounts.
-
 Volumes are managed by Docker (docker volume create).
-
 Bind mounts link a host directory (-v /host/path:/container/path).
-
 👉 Without this, data vanishes when container stops.
-
+------------------------------------------------------------
 7. What are Docker Networks?
-
 Answer:
-
 Docker provides isolated networks for containers.
-
 Types:
-
 Bridge (default) → container-to-container on same host.
-
 Host → container shares host network.
-
 None → no network.
-
+------------------------------------------------------------
 8. How do you reduce Docker image size?
-
 Answer:
-
 Use lightweight base images (e.g., alpine).
-
 Combine RUN instructions.
-
 Clean cache after installs (apt-get clean).
-
 Multi-stage builds.
-
+------------------------------------------------------------
 9. What is the difference between CMD and ENTRYPOINT?
-
 Answer:
-
 CMD → provides default arguments, can be overridden at runtime.
-
 ENTRYPOINT → main command, can’t be replaced (only arguments can be passed).
-
 Example:
-
 ENTRYPOINT ["java", "-jar", "app.jar"]
 CMD ["--spring.profiles.active=dev"]
-
+------------------------------------------------------------
 10. How do you check logs of a running container?
-
 Answer:
 docker logs <container_id>
-
+------------------------------------------------------------
 11. What happens if a container crashes? How do you restart automatically?
-
 Answer:
 Use --restart policy:
-
 no (default)
-
 always
-
 on-failure
-
 👉 Example:
-
 docker run --restart=always myapp
-
+------------------------------------------------------------
 12. What is the difference between Docker Swarm and Kubernetes?
-
 Answer:
-
 Swarm: Native Docker clustering, simpler, less powerful.
-
 Kubernetes: More complex, widely used, supports scaling, auto-healing, service discovery.
-
 👉 For 2 yrs exp: Just say “We usually use Docker Compose in dev, and Kubernetes for production orchestration.”
-
+------------------------------------------------------------
 13. How do you secure Docker containers?
-
 Answer:
-
 Use minimal base images.
-
 Don’t run as root.
-
 Use secrets for sensitive info (not env vars).
-
 Regularly scan images for vulnerabilities.
-
+------------------------------------------------------------
+MISC: 
 docker volumes 
 commands 
 file script

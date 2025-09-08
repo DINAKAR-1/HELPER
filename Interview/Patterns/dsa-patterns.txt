@@ -1,47 +1,48 @@
 patterns go brrr-->
 what ive completed -->
-  ----------------------------->
+----------------------------->
 Prefix Sum
 303. Range Sum Query - Immutable
 525. Contiguous Array
 560. Subarray Sum Equals K
-
+------------------------------------------------------------
 Two Pointers
 167. Two Sum II - Input Array is Sorted
 15. 3 Sum
 11. Container with most water
-
+------------------------------------------------------------
 Sliding Window
 643. Maximum Average Subarray I
 3. Longest Substring without Repeating Characters
 76. Minimum Window Substring
-
+------------------------------------------------------------
 Fast and Slow Pointers
 141. Linked List Cycle
 202. Happy Number
 287. Find the Duplicate Number
-
+------------------------------------------------------------
 Backtracking
 46. Permutations
 78. Subsets
 51. N-Queens
-  
+------------------------------------------------------------
 Linked List in-place reversal
 206. Reverse Linked List
 92. Reverse Linked List II
 24. Swap Nodes in Pairs
-
+------------------------------------------------------------
 Monotonic Stack
 496. Next Greater Element I
 739. Daily Temperatures
 84. Largest Rectangle in Histogram
-  
+------------------------------------------------------------  
 Modified Binary Search
 33. Search in Rotated Sorted Array
 153. Find Minimum in Rotated Sorted Array
 240. Search a 2D Matrix II
- ------------------------------------->
-  yet to complete 
+------------------------------------->
+yet to complete 
+------------------------------------------------------------
 Overlapping Intervals
 56. Merge Intervals
 57. Insert Interval

@@ -4,82 +4,52 @@ useEffect(() => {...}, []) = componentDidMount
 useEffect(() => {...}, [dep]) = componentDidUpdate
 
 return () => {...} inside useEffect = componentWillUnmount
-
+------------------------------------------------------------
 1. What are React lifecycle phases?
-
 Answer:
 React components have three main phases (for class components):
-
 Mounting – component is created and inserted into DOM (constructor, render, componentDidMount).
-
 Updating – re-render due to props/state change (shouldComponentUpdate, render, componentDidUpdate).
-
 Unmounting – component is removed from DOM (componentWillUnmount).
-
 👉 For functional components with hooks, lifecycle is handled using useEffect with proper dependency arrays.
-
+------------------------------------------------------------
 2. Difference between functional and class components?
-
 Answer:
-
 Class components use ES6 classes, lifecycle methods, and this.
-
 Functional components are plain JS functions that can use Hooks (useState, useEffect, etc.).
-
 Since React 16.8+, functional components are preferred (cleaner, easier, faster).
-
+------------------------------------------------------------
 3. What are React Hooks? Why are they introduced?
-
 Answer:
-
 Hooks let you use state and lifecycle methods inside functional components.
-
 Common hooks: useState, useEffect, useContext, useReducer, useMemo, useCallback.
-
 Introduced because class components were harder to reuse logic, test, and manage. Hooks solved that by giving reusable stateful logic.
-
+------------------------------------------------------------
 4. Difference between useEffect and useLayoutEffect?
-
 Answer:
-
 useEffect: Runs after paint → good for API calls, subscriptions.
-
 useLayoutEffect: Runs before paint → good for measuring DOM, synchronizing layout.
 👉 If you need to block the paint until calculations are done, use useLayoutEffect.
-
+------------------------------------------------------------
 5. What is Virtual DOM and how React uses it?
-
 Answer:
-
 Virtual DOM = lightweight in-memory copy of real DOM.
-
 On state/prop change → React creates a new Virtual DOM → diffs it with old one (diffing algo) → updates only changed parts in real DOM.
 👉 This makes React fast compared to manual DOM manipulations.
-
+------------------------------------------------------------
 6. What is prop drilling and how to avoid it?
-
 Answer:
-
 Prop drilling = passing props through multiple layers just to reach a deeply nested component.
-
 Avoid with:
-
 Context API
-
 Redux / Zustand / Recoil
-
 Custom hooks
-
+------------------------------------------------------------
 7. What is React Context API?
-
 Answer:
-
 A way to manage global state without prop drilling.
-
 Example:
-
 const MyContext = React.createContext();
-
 function App() {
   return (
     <MyContext.Provider value="Dinakar Rocks 🚀">
@@ -92,377 +62,239 @@ function Child() {
   const value = React.useContext(MyContext);
   return <h1>{value}</h1>;
 }
-
+------------------------------------------------------------
 8. What is memoization in React?
-
 Answer:
-
 Memoization = caching expensive calculations to avoid re-computation.
-
 In React:
-
 React.memo → memoizes components.
-
 useMemo → memoizes values.
-
 useCallback → memoizes functions.
 👉 Helps with performance optimization.
-
+------------------------------------------------------------
 9. What’s the difference between controlled and uncontrolled components?
-
 Answer:
-
 Controlled: Form data managed by React state.
-
 <input value={name} onChange={e => setName(e.target.value)} />
-
-
 Uncontrolled: Form data handled by DOM itself using ref.
-
 <input ref={inputRef} />
-
+------------------------------------------------------------
 10. What are React keys and why are they important?
-
 Answer:
-
 Keys help React identify which items changed in a list.
-
 Without keys → React may re-render unnecessarily → performance issues.
-
 Rule: Use unique and stable keys (like id, not index unless static).
-
+------------------------------------------------------------
 11. What’s the difference between useState and useReducer?
-
 Answer:
-
 useState → simple state, small logic.
-
 useReducer → complex state transitions, like Redux but local.
-
 const [state, dispatch] = useReducer(reducer, initialState);
-
+------------------------------------------------------------
 12. How do you optimize a React app?
-
 Answer:
-
 Use React.memo, useMemo, useCallback.
-
 Lazy loading (React.lazy + Suspense).
-
 Code splitting with Webpack.
-
 Virtualization (react-window, react-virtualized).
-
 Avoid anonymous functions inside render.
-
 Pagination & infinite scrolling instead of rendering huge lists.
-
+------------------------------------------------------------
 13. What are Higher Order Components (HOC)?
-
 Answer:
-
 A pattern to reuse component logic.
-
 Takes a component → returns a new component with extra props/logic.
-
 function withLogger(WrappedComponent) {
   return function Enhanced(props) {
     console.log("Props:", props);
     return <WrappedComponent {...props} />;
   };
 }
-
+------------------------------------------------------------
 14. What is React Router and difference between BrowserRouter vs HashRouter?
-
 Answer:
-
 React Router = library for navigation.
-
 BrowserRouter → uses HTML5 history API (/home).
-
 HashRouter → uses hash fragment (#/home).
 👉 BrowserRouter is cleaner; HashRouter is useful when server doesn’t support dynamic routes.
-
+------------------------------------------------------------
 15. Real-time scenario: How would you handle an API failure in React?
-
 Answer:
-
 Show loading spinner, error message, and allow retry.
-
 Use try-catch or catch in fetch/axios.
-
 Example:
-
 try {
   const data = await fetch("/api/data").then(r => r.json());
   setData(data);
 } catch (error) {
   setError("Failed to load data, please retry.");
 }
+------------------------------------------------------------
 6. What is reconciliation in React?
-
 Answer:
-
 Reconciliation = React’s process of updating the DOM when state/props change.
-
 React compares the new Virtual DOM with the old one → applies only minimal changes to real DOM.
 👉 That’s why React is fast and efficient.
-
+------------------------------------------------------------
 17. What’s the difference between React.Fragment and a <div> wrapper?
-
 Answer:
-
 Both group elements, but:
-
 <div> → adds extra node to DOM.
-
 <React.Fragment> → groups children without extra node.
-
 return (
   <>
     <h1>Hello</h1>
     <p>World</p>
   </>
 );
-
-
 👉 Useful when avoiding unnecessary div soup.
-
+------------------------------------------------------------
 18. What is the difference between useMemo and useCallback?
-
 Answer:
-
 useMemo → memoizes a value.
-
 useCallback → memoizes a function.
-
 const memoizedValue = useMemo(() => expensiveCalc(num), [num]);
 const memoizedFn = useCallback(() => doSomething(num), [num]);
-
+------------------------------------------------------------
 19. What is lazy loading in React?
-
 Answer:
-
 Load components only when needed, not all at once.
-
 const About = React.lazy(() => import("./About"));
-
-
 Use with <Suspense fallback={<Loader />}>.
 👉 Improves initial load time (perf boost 💨).
-
+------------------------------------------------------------
 20. How does React handle forms differently from vanilla JS?
-
 Answer:
-
 React keeps form inputs in state (controlled components).
-
 Vanilla JS → you fetch values from DOM (document.getElementById).
 👉 Controlled = predictable state, easier validation.
-
+------------------------------------------------------------
 21. What is Redux and when would you use it?
-
 Answer:
-
 Redux = predictable state container for React.
-
 Use when:
-
 Many components need shared state.
-
 You want centralized control (logging, debugging, persistence).
-
 Core concepts: store, actions, reducers.
 👉 But if your app is small → Context API is enough.
-
+------------------------------------------------------------
 22. What is the difference between Redux and Context API?
-
 Answer:
-
 Context API: simple global state, works well for small-medium apps.
-
 Redux: more powerful → middleware, time-travel debugging, async handling.
 👉 Interview tip: Say “I’d start with Context, but if the app grows large with complex state, I’d migrate to Redux.”
-
+------------------------------------------------------------
 23. What is the difference between client-side and server-side rendering in React?
-
 Answer:
-
 Client-side rendering (CSR):
-
 Browser loads empty HTML → React renders everything with JS.
-
 Faster navigation, slower first load.
-
 Server-side rendering (SSR):
-
 Server sends pre-rendered HTML → React hydrates on client.
-
 Faster initial load, better SEO.
-
 👉 Example: Next.js supports SSR out of the box.
-
+------------------------------------------------------------
 24. What is hydration in React?
-
 Answer:
-
 After SSR sends HTML → React attaches event listeners and makes it interactive.
-
 This process is called hydration.
-
+------------------------------------------------------------
 25. What are error boundaries in React?
-
 Answer:
-
 Special components that catch JS errors in child components.
-
 class ErrorBoundary extends React.Component {
   state = { hasError: false };
   static getDerivedStateFromError() { return { hasError: true }; }
   render() { return this.state.hasError ? "Something broke" : this.props.children; }
 }
-
-
 👉 Prevents whole app crash, shows fallback UI.
-
+------------------------------------------------------------
 26. What are portals in React?
-
 Answer:
-
 Way to render children into a different DOM node outside parent hierarchy.
-
 ReactDOM.createPortal(<Modal />, document.getElementById("modal-root"));
-
-
-👉 Useful for modals, tooltips, popups.
-
+👉 Useful for modals, tooltips, popups.\
+------------------------------------------------------------
 27. What’s the difference between useRef and createRef?
-
 Answer:
-
 createRef → creates new ref every render (used in class comps).
-
 useRef → persists across renders (used in function comps).
 👉 useRef is like a “box” that survives re-renders.
-
+------------------------------------------------------------
 28. What is the difference between useEffect(() => {}, []) and useEffect(() => {})?
-
 Answer:
-
 [] → runs only once (on mount).
-
 No [] → runs after every render.
-
 [dep] → runs when dep changes.
 👉 This is the classic “gotcha” question.
-
+------------------------------------------------------------
 29. What are controlled vs uncontrolled side effects?
-
 Answer:
-
 Controlled = predictable, inside useEffect.
-
 Uncontrolled = outside React’s lifecycle (like manually updating DOM, timers).
 👉 Always prefer controlled side effects.
-
+------------------------------------------------------------
 30. Real-time scenario: How would you handle performance issues in a React app with huge lists?
-
 Answer:
-
 Use windowing/virtualization → react-window, react-virtualized.
-
 Pagination / infinite scroll.
-
 Memoize child components.
 👉 Instead of rendering 10,000 rows, only render what’s visible.
-
+------------------------------------------------------------
 -===========================
 1. What is Redux and why do we use it?
-
 Answer:
-
 Redux = predictable state container for JS apps.
-
 State is centralized in a single store.
-
 Components dispatch actions, reducers update state, and UI re-renders.
 👉 Used when state needs to be shared across many components (think user auth, cart, theme).
-
+------------------------------------------------------------
 2. Core principles of Redux?
-
 Answer:
-
 Single source of truth → one store holds entire app state.
-
 State is read-only → only changed by dispatching actions.
-
 Changes via pure functions → reducers are pure functions that return new state.
-
 3. Explain Redux flow in simple steps.
-
 Answer:
-
 User does something → dispatch(action).
-
 Reducer takes current state + action → returns new state.
-
 Store updates and notifies subscribers.
-
 React components subscribed via useSelector re-render.
-
 👉 Basically: UI → Action → Reducer → Store → UI again 🔄
-
+------------------------------------------------------------
 4. What are actions in Redux?
-
 Answer:
-
 Objects that describe what happened.
-
 Must have a type property.
-
 { type: "INCREMENT", payload: 1 }
-
+------------------------------------------------------------
 5. What are reducers?
-
 Answer:
-
 Pure functions that take (state, action) and return new state.
-
 function counterReducer(state = { count: 0 }, action) {
   switch (action.type) {
     case "INCREMENT": return { count: state.count + 1 };
     default: return state;
   }
 }
-
+------------------------------------------------------------
 6. What is a Redux store?
-
 Answer:
-
 The single object holding app state.
-
 Created with createStore (legacy) or configureStore (Redux Toolkit).
-
 import { configureStore } from "@reduxjs/toolkit";
 const store = configureStore({ reducer: counterReducer });
-
+------------------------------------------------------------
 7. Difference between Redux and Context API?
-
 Answer:
-
 Context API → small apps, light global state.
-
 Redux → large apps, advanced debugging, async flows, middleware.
 👉 Interview tip: “I’d use Context for small global state, Redux when app scales with complex state.”
-
+------------------------------------------------------------
 8. What is Redux Thunk?
-
 Answer:
-
 Middleware that lets you write async logic in Redux.
-
 Normally actions must return plain objects, but Thunk lets actions return a function.
-
 function fetchUsers() {
   return async (dispatch) => {
     dispatch({ type: "FETCH_START" });
@@ -471,19 +303,13 @@ function fetchUsers() {
     dispatch({ type: "FETCH_SUCCESS", payload: data });
   };
 }
-
+------------------------------------------------------------
 9. Redux vs Redux Toolkit?
-
 Answer:
-
 Redux (old way):
-
 Lots of boilerplate → actions, constants, reducers, switch cases.
-
 Redux Toolkit (RTK):
-
 Opinionated, less boilerplate, includes createSlice, built-in Thunk.
-
 const counterSlice = createSlice({
   name: "counter",
   initialState: { value: 0 },
@@ -491,61 +317,41 @@ const counterSlice = createSlice({
     increment: (state) => { state.value += 1; }
   }
 });
-
-
 👉 RTK is the recommended way now.
-
+------------------------------------------------------------
 10. What are selectors in Redux?
-
 Answer:
-
 Functions to extract specific state from store.
-
 Helps avoid repeating logic.
-
 const selectCount = (state) => state.counter.value;
-
+------------------------------------------------------------
 11. Difference between synchronous and asynchronous actions in Redux?
-
 Answer:
-
 Sync actions: return plain object immediately ({ type, payload }).
-
 Async actions: involve API calls, use middleware (Thunk, Saga).
-
+------------------------------------------------------------
 12. What’s Redux Saga and how is it different from Thunk?
-
 Answer:
-
 Thunk: async logic inside functions, easier, beginner-friendly.
-
 Saga: uses generators for complex async flows, good for large apps.
 👉 If interviewer asks, say “Thunk is enough for most apps, Saga when you need advanced async orchestration.”
-
+------------------------------------------------------------
 13. Real-time scenario: How would you persist Redux state after page refresh?
-
 Answer:
-
 Use redux-persist library.
-
 It saves state to localStorage/sessionStorage and rehydrates on reload.
-
+------------------------------------------------------------
 14. What happens if reducers are not pure functions?
-
 Answer:
-
 State mutations, unpredictable behavior, broken time-travel debugging, side effects.
 👉 Reducers must be pure.
-
+------------------------------------------------------------
 15. Can you explain middleware in Redux?
-
 Answer:
-
 Middleware = function that sits between dispatching action and reaching reducer.
-
 Example: logging, async calls, error handling.
-
 const logger = store => next => action => {
   console.log("Dispatching", action);
   return next(action);
 };
+------------------------------------------------------------
