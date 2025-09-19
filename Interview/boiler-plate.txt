@@ -50,7 +50,7 @@ Integer[] nums = {5, 1, 9, 3};
 Arrays.sort(nums); // ascending
 Arrays.sort(nums, Collections.reverseOrder()); // descending
 -----------------------------
-List<Integer> list = new ArrayList<>(Arrays.asList(5, 1, 9, 3));
+List<Integer> list = new ArrayList<>(Arrays.asList(5, 1, 9, 3)); without new only fixed list 
 Collections.sort(list); // ascending
 Collections.sort(list, Collections.reverseOrder()); // descending
 
