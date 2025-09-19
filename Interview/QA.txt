@@ -1,0 +1,48 @@
+ 
+Q2: Can you explain your Work Log Tracker project?
+
+I: Tell me about your Work Log Tracker project.
+
+D:
+“This was a task management and time tracking platform I built using React.js and Spring Boot. The idea was to let team leads assign tasks, and developers log daily updates.
+
+I implemented pagination, searching, and sorting to optimize performance for large datasets.
+
+I also created role-based APIs with JWT authentication so admins and developers had different permissions.
+
+The result was better transparency and productivity tracking within the team, making daily reporting smooth.”
+
+Q3: Can you explain your Dynamic Ticketing System?
+
+I: What about your Dynamic Ticketing System project?
+
+D:
+“This is one of my favorite projects — a reusable ticketing module built in Spring Boot and PostgreSQL.
+
+It allows users to raise, track, and resolve issues across projects.
+
+I made it plug-and-play so it could be integrated with different applications.
+
+I added email + in-app notifications to keep stakeholders informed throughout the ticket lifecycle.
+
+This project was integrated into multiple CGG applications and improved customer satisfaction by over 60% because of faster issue resolution.”
+
+Q4: What’s a technical challenge you solved recently?
+
+I: Can you give me an example of a challenge you faced?
+
+D:
+“Yes — in one project, we were hitting performance issues because certain APIs were frequently fetching the same data from the database.
+
+I introduced Redis caching for those endpoints, which reduced DB hits and improved response speed by almost 50%.
+
+This not only improved user experience but also reduced infrastructure load.”
+
+Q5: Why should we hire you?
+
+I: Finally, why should we consider you?
+
+D:
+“I bring full-stack expertise, hands-on experience in scaling backend systems with Spring Boot and microservices, and a track record of optimizing performance with caching, security, and clean design patterns.
+
+I’m not just comfortable with coding and problem-solving, but also with delivering production-ready features end-to-end. Given my experience and enthusiasm for learning, I believe I can contribute effectively and grow along with the team.”
