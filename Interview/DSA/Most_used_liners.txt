@@ -1,4 +1,0 @@
-...brr
-------------------------------------->>>>>>>>>>>>>>>>>>
-Stack<Character> stack = new Stack<>();
-for (char i : s.toCharArray()) 
