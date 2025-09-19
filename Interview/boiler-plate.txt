@@ -21,6 +21,9 @@ public class Main {
         return Arrays.stream(arr).sum();
     }
 }
+------------------------------------->>>>>>>>>>>>>>>>>>
+Stack<Character> stack = new Stack<>();
+for (char i : s.toCharArray()) 
 
 ------------------------------------------
 String s = sc.nextLine();
