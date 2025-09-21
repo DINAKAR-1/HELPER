@@ -1,0 +1,43 @@
+package com.dlabs.shortengine.component;
+
+import java.util.Arrays;
+
+public class Test {
+private static int[] smallCore;
+
+public static void main (String [] args){
+    int[] arr={1,2,3,4};
+   System.out.println( getSmall(arr));
+}
+
+//our function which encaps core function because we need to process the data
+//may be iterate or recurse
+
+//first write the whole body and dummy return what they expecting
+//later break them down
+
+//outer logic should be in first meth
+//core logic should be in core meth
+public static int getSmall(int [] arr){
+
+  smallCore = getcombinedArr(arr);
+  Arrays.sort(smallCore);
+ return smallCore[0];
+}
+
+public static int[] getcombinedArr(int [] arr){
+ int n=arr.length%2==0?arr.length/2:arr.length/2+1;
+ int[] smallArr = new int[n];
+ int j=0;
+ for(int i=0;i<arr.length-1;i+=2){
+    String str = String.valueOf(arr[i])+String.valueOf(arr[i+1]);
+     smallArr[j]=Integer.parseInt(str);
+     j++;
+ }
+ // If odd length → keep last element
+        if (arr.length % 2 != 0) {
+            smallArr[j] = arr[arr.length - 1];
+        }
+    return smallArr;
+}
+}
