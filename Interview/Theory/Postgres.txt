@@ -1,1 +1,21 @@
 Postgres goes brr.
+-------------------------
+
+Level 1 – Warm-up (Basics Recap)
+SELECT, WHERE, ORDER BY, LIMIT
+INSERT, UPDATE, DELETE
+Simple filters: AND, OR, BETWEEN, LIKE, IN
+Aggregations: COUNT, SUM, AVG, MIN, MAX
+GROUP BY + HAVING
+--
+SELECT department, COUNT(*) 
+FROM employees
+WHERE salary > 50000
+GROUP BY department
+HAVING COUNT(*) > 5
+ORDER BY COUNT(*) DESC;
+--
+order of pheonix
+Filter → Group → Aggregate → Filter groups (HAVING) → Sort → Done.
+
+--------------------------
