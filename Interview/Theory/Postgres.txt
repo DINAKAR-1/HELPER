@@ -1,6 +1,44 @@
 Postgres goes brr.
 -------------------------
+⚡ Bonus Optimization Tips (Expanded)
 
+Indexes:
+Filter columns → WHERE
+Join columns → JOIN
+Sort columns → ORDER BY
+Group columns → GROUP BY
+Use partial indexes for queries that filter on a subset of data.
+Covering indexes: include extra columns in the index to avoid touching the table (INCLUDE in Postgres).
+Query Writing:
+Avoid SELECT * → select only the columns you actually need.
+Pre-aggregate repeated queries → materialized views or CTEs.
+Use CTEs wisely: PostgreSQL materializes them by default, which may slow things for huge tables.
+Filter early → move conditions to WHERE rather than filtering in application code.
+Use EXISTS instead of IN for subqueries on large tables.
+Prefer JOINs over subqueries when possible for clarity and performance.
+Query Planning & Stats:
+ANALYZE tables → keeps planner statistics accurate.
+EXPLAIN ANALYZE → always check the plan before doing micro-optimizations.
+Check for sequential scans → may indicate missing indexes.
+Aggregation & Grouping:
+Group columns → GROUP BY
+Use HAVING only when you need to filter aggregated results, not simple row filters.
+Pre-aggregate if data is large and queried repeatedly (materialized views).
+Sorting & Pagination:
+Sort columns → ORDER BY
+Use index-supported sorting where possible.
+For pagination with large offsets → consider keyset pagination instead of OFFSET.
+Joins & Relationships:
+Always join on indexed columns.
+Avoid joining huge tables without filters → can explode the rsult set.
+Be careful with LEFT JOINs → if not needed, prefer INNER JOIN.
+Miscellaneous:
+Avoid unnecessary type casts → slows down index usage.
+Minimize functions on columns in WHERE → prevents index use.
+Batch inserts/updates → reduces transaction overhead.
+Use EXPLAIN (BUFFERS) in Postgres to see I/O impact.
+Keep your schema normalized but denormalize for read-heavy queries if necessary.
+===================================================================================================================
 Level 1 – Warm-up (Basics Recap)
 SELECT, WHERE, ORDER BY, LIMIT
 INSERT, UPDATE, DELETE
@@ -16,7 +54,8 @@ HAVING COUNT(*) > 5
 ORDER BY COUNT(*) DESC;
 --
 order of pheonix
-Filter → Group → Aggregate → Filter groups (HAVING) → Sort → Done.
+FROM/JOIN → WHERE → GROUP BY → HAVING → SELECT → DISTINCT → ORDER BY → LIMIT
+
 
 use EXPLAIN , EXPLAIN ANALYSE for the cost 
 read bottom up 
