@@ -68,7 +68,29 @@ select sum(salary ) FILTER (where status='pedning')as kount
 
 used instead of count(case when then 1)
 group by is not mandatory 
-
 efficeny same as case but much more readable for eyes 
+-----------------------------------------
+distinct on 
+-------------
+CTE'S
+-------------
+Rule of thumb:
+
+Use FILTER → for conditional aggregation (one row per group).
+
+Use WINDOW functions → for running totals, rankings, row-wise analytics (many rows per group).
+------------------------------
+SELECT
+    category,
+    product,
+    revenue,
+    RANK() OVER (PARTITION BY category ORDER BY revenue DESC) AS rank_in_category
+FROM sales;
 
 
+to rank category based on revenue 
+
+---------------
+Use RANK() → when gaps in rank matter (like medal positions in a competition).
+
+Use DENSE_RANK() → when you want consecutive ranking numbers (like top products, top customers).
