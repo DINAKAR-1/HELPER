@@ -60,3 +60,15 @@ FROM/JOIN → WHERE → GROUP BY → HAVING → SELECT → DISTINCT → ORDER BY
 use EXPLAIN , EXPLAIN ANALYSE for the cost 
 read bottom up 
 --------------------------
+
+using FILTER keyword:
+for counts (or aggregates)
+select count(*) FILTER (where status='pedning')grp by factory_id as kount
+select sum(salary ) FILTER (where status='pedning')as kount
+
+used instead of count(case when then 1)
+group by is not mandatory 
+
+efficeny same as case but much more readable for eyes 
+
+
