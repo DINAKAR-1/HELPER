@@ -14,3 +14,23 @@ pending -->
 8.dsa trees,heaps,graphs ,more dsa patterns
 8.lld ,hld problems
 8.ravi sheet , striver sheet , algo sheet 
+
+----------------------------------------
+dsa (easy - medium )
+
+1.arrays ✔︎
+2.searching ✔︎
+3.sorting ✔︎
+4.strings ✔︎
+5.patterns ✔︎
+6.recursion ✔︎
+7.bitwise ✔︎
+8.math ✔︎
+9.complexities ✔︎
+10.oop ✔︎
+11.linkedlist ✔︎
+12.stack/queue ✔︎
+
+13.trees (partial)
+14.heaps (0)
+15.graphs (study in prog)
