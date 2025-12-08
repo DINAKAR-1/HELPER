@@ -1,5 +1,7 @@
+-----------------
 dfs
-    public void dfs(int v) {
+-----------------
+public void dfs(int v) {
         visited[v]=1;
         System.out.print(v+" -> ");
         for(int i:adj.get(v)) {
@@ -8,9 +10,9 @@ dfs
             }
         }
     }
-
+--------------------------------
 bfs
-
+--------------------------------
 public void bfs(int start) {
     Queue<Integer> queue = new LinkedList<>();
     visited[start] = 1;
