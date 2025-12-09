@@ -1,1 +1,100 @@
 life cycle goes brr....
+
+main ()
+read classpath 
+checkout if its a web app or not
+
+SpringApplication Initialization
+load app context 
+app context initializer
+app context listener
+
+Environment Setup
+application.properties / application.yml
+
+ApplicationContext Creation DI Container (IoC container)
+reates the context (Web? Reactive? Non-web?)
+Registers bean definitions
+Prepares bean factory
+
+Bean Definition Loading
+Spring scans your project using:
+
+@ComponentScan
+.jar scanning
+Auto-configurations (spring-boot-autoconfigure)
+It finds your:
+@Component
+@Service
+@Repository
+@Controller
+@Configuration
+Basically it stalks your whole project like CID following a suspect.
+
+Bean Instantiation & Dependency Injection
+Spring now creates beans using:
+Constructor injection
+Setter injection
+Field injection (booo, we don’t use that 😤)
+This step triggers:
+@PostConstruct
+InitializingBean.afterPropertiesSet()
+BeanPostProcessors (hello AOP 👀)
+
+7. Auto-Configuration Magic
+Spring Boot loads auto-configs using @EnableAutoConfiguration.
+Examples:
+DataSource auto-config
+Web MVC auto-config
+Security auto-config
+JPA auto-config
+Spring checks your classpath and says:
+“Oh you have PostgreSQL jar? Bet. I’ll set everything up for you.”
+
+8. ApplicationContext Refresh
+In the refresh phase:
+BeanFactory gets finalized
+All bean post-processors run
+Event listeners fire
+Embedded server starts (Tomcat/Jetty/Netty)
+
+
+9. CommandLineRunner & ApplicationRunner
+Right after the context is ready, Spring calls:
+CommandLineRunner.run()
+ApplicationRunner.run()
+
+10. Application Running
+Now the app is fully running:
+Web server listening
+Controllers mapped
+Security filters active
+Repositories ready
+Actuator endpoints available
+
+11. Shutdown Trigger
+When you stop the app:
+Ctrl+C
+Kill signal
+Kubernetes pod termination
+Windows tantrums
+
+12. Graceful Shutdown & Cleanup
+Spring:
+Stops accepting new requests
+Finishes ongoing requests (timeout configured)
+Calls @PreDestroy
+Calls DisposableBean.destroy()
+Stops web server
+Closes ApplicationContext
+
+
+1. main()	App startup begins
+2. Init	SpringApplication gets ready
+3. Env	Reads config
+4. Create Context	DI container booted
+5. Load Beans	Scan + register beans
+6. Instantiate Beans	DI + lifecycle callbacks
+7. Auto Config	Spring Boot magic
+8. Refresh	App becomes alive
+9. Runners	Your custom startup code
