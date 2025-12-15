@@ -28,3 +28,5 @@ and conusme each and for that each again neighbors
 
 
 dfs goes whatever it finds first and if hits rock then bounce back and go to other in its way deeep
+
+we use queue for bfs and stack for dfs or recursion and vis array
