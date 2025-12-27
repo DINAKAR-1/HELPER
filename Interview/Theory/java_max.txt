@@ -24,7 +24,7 @@ after java 8
 -->Only default/static methods can be private (from Java 9). from j9 
 -------------------------------------------------------------------------
 storing strings 
-normaly strings stored in method area 
+normaly strings stored in String Constant Pool is in the HEAP 
 but say during run time 
 like 
 'din' +somevar (which gets val at run time )= dinakar(stored in heap )coz builded by String builder
