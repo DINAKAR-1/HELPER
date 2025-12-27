@@ -2,7 +2,7 @@
 all data about class 
 static vars ,static final
 method signature ,retunr types
-constant pool which is referenced from the method area.
+constant pool which is referenced from the method area.(now its in heap)
 ------------------------------------------------------------
 --> heaps
 all objects 
