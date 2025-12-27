@@ -15,4 +15,10 @@ method call
 method varibles --> not references ,only like int ,float 
 
 
-
+Declaration	Stored how
+static final int A = 10;	Inlined (constant pool / bytecode)
+static final String S = "din";	String in pool (heap), ref in metadata
+static final int B = getVal();	Method Area
+static int x = 10;	Method Area
+final int y = 10; (instance)	Heap (inside object)
+final int z = 10; (local)	Stack
