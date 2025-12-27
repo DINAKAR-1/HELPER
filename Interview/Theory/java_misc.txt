@@ -1,0 +1,44 @@
+to be note
+primitive memory sizes
+
+access modifiers
+
+wrapper and meths
+
+how protected works 
+
+method hiding only for static mems
+also overloading for static too 
+Static methods are NOT inherited
+👉 But they ARE accessible via subclass
+
+abs vs interface 
+
+throws
+threads
+
+finally , finalize
+
+innner class
+
+late  binding 
+early binding
+
+generic class
+Static members cannot use type parameter
+
+collections ***
+
+fail-fast vs fail-safe
+
+Iterator vs ListIterator
+
+HashMap internal working (Java 8+)
+
+Concurrent collections
+
+comparable  comparator 
+
+ 
+arra vs inlined list**
+CopyOnWriteArrayList
