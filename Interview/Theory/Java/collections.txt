@@ -1,1 +1,17 @@
 ..br
+Collection framework -->
+for only wrapper classes 
+Collections is a class for util methods
+Arrays is a class for primitive
+
+interfaces
+----------------
+List 
+
+Queue
+Set
+
+
+interface
+--------------------
+Map ( its not  a part of it )
