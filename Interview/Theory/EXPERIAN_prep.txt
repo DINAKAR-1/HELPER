@@ -1,8 +1,3 @@
-collections
-java 8 realtime
-oops examples 
-prop definations 
------------------
 what covered  for EXPERIAN prep
 -----------------
 java  
@@ -20,19 +15,15 @@ microservices
 @Conditional
 annotations
 DispatcherServlet
+exceutor service
 -------------
-need to cover
-collections
-imp packages to import if live coding 
-strutturce 
+need to cover 
  
-ACID  
-(proper definations)
-servlet thing
-
-thread exce servie 
 locks - deep level 
-
+collections
+java 8 realtime
+oops examples 
+prop definations
 optimization of code 
 ------------
 
