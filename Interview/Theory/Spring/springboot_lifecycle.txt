@@ -1,100 +1,199 @@
-life cycle goes brr....
+✅ FINAL SPRING BOOT LIFECYCLE (CORRECT + SIMPLE)
+🔑 Remember this in 3 PHASES
 
-main ()
-read classpath 
-checkout if its a web app or not
+Startup
 
-SpringApplication Initialization
-load app context 
-app context initializer
-app context listener
+Context & Beans
 
-Environment Setup
+Run & Shutdown
+
+🟢 PHASE 1: STARTUP & PREP (Bootstrapping)
+1️⃣ main() – JVM starts
+SpringApplication.run(App.class, args);
+
+
+What happens:
+
+JVM starts
+
+Classpath is read
+
+Spring checks: Web / Reactive / Non-web app?
+
+2️⃣ SpringApplication Initialization
+
+Spring prepares itself:
+
+Creates SpringApplication
+
+Loads initial listeners
+
+Prepares application context type
+
+👉 No beans yet. Just prep.
+
+3️⃣ Environment Setup
+
+Spring loads configuration:
+
 application.properties / application.yml
 
-ApplicationContext Creation DI Container (IoC container)
-reates the context (Web? Reactive? Non-web?)
-Registers bean definitions
-Prepares bean factory
+Profiles
 
-Bean Definition Loading
-Spring scans your project using:
+System & command-line args
+
+🧠 Config comes BEFORE beans (important)
+
+🟡 PHASE 2: CONTEXT & BEANS (Core Magic)
+4️⃣ ApplicationContext Creation
+
+Spring creates the IoC container:
+
+Web → ServletWebServerApplicationContext
+
+Reactive → Reactive context
+
+Non-web → Simple context
+
+Also:
+
+BeanFactory prepared
+
+Context initializers applied
+
+5️⃣ Bean Definition Loading (NO objects yet)
+
+Spring scans and registers beans:
 
 @ComponentScan
-.jar scanning
-Auto-configurations (spring-boot-autoconfigure)
-It finds your:
+
+@Configuration
+
+Auto-configurations
+
+JAR scanning
+
+It finds:
+
 @Component
 @Service
 @Repository
 @Controller
-@Configuration
-Basically it stalks your whole project like CID following a suspect.
+@Bean
 
-Bean Instantiation & Dependency Injection
-Spring now creates beans using:
-Constructor injection
-Setter injection
-Field injection (booo, we don’t use that 😤)
-This step triggers:
+
+📌 Important:
+👉 Beans are DEFINED, not created yet.
+
+6️⃣ Auto-Configuration
+
+Spring Boot now applies auto-config:
+
+Based on classpath
+
+Based on conditions
+
+Example:
+
+“Oh you have JPA + Postgres? I got you.”
+
+Auto-config adds more bean definitions.
+
+7️⃣ Bean Instantiation & Dependency Injection
+
+NOW objects are created 🧠
+
+Order:
+
+Constructor
+
+Dependency Injection
+
 @PostConstruct
-InitializingBean.afterPropertiesSet()
-BeanPostProcessors (hello AOP 👀)
 
-7. Auto-Configuration Magic
-Spring Boot loads auto-configs using @EnableAutoConfiguration.
-Examples:
-DataSource auto-config
-Web MVC auto-config
-Security auto-config
-JPA auto-config
-Spring checks your classpath and says:
-“Oh you have PostgreSQL jar? Bet. I’ll set everything up for you.”
+afterPropertiesSet()
 
-8. ApplicationContext Refresh
-In the refresh phase:
-BeanFactory gets finalized
-All bean post-processors run
-Event listeners fire
-Embedded server starts (Tomcat/Jetty/Netty)
+BeanPostProcessors (AOP 🔥)
 
+👉 Beans become ready to use
 
-9. CommandLineRunner & ApplicationRunner
-Right after the context is ready, Spring calls:
-CommandLineRunner.run()
-ApplicationRunner.run()
+🔵 PHASE 3: RUNNING & SHUTDOWN
+8️⃣ ApplicationContext Refresh
 
-10. Application Running
-Now the app is fully running:
-Web server listening
-Controllers mapped
-Security filters active
-Repositories ready
-Actuator endpoints available
+This is the big switch ON 🔌
 
-11. Shutdown Trigger
-When you stop the app:
+Context finalized
+
+Event listeners fired
+
+Embedded server starts (Tomcat, etc.)
+
+App is officially ALIVE 🚀
+
+9️⃣ Runners Executed
+
+Spring calls:
+
+CommandLineRunner
+
+ApplicationRunner
+
+👉 Your custom startup logic runs here.
+
+🔟 Application Running
+
+Normal state:
+
+Controllers active
+
+Filters & interceptors working
+
+DB connections ready
+
+Actuator exposed
+
+1️⃣1️⃣ Shutdown Trigger
+
+Triggered by:
+
 Ctrl+C
-Kill signal
-Kubernetes pod termination
-Windows tantrums
 
-12. Graceful Shutdown & Cleanup
+SIGTERM
+
+Kubernetes pod kill
+
+1️⃣2️⃣ Graceful Shutdown
+
 Spring:
+
 Stops accepting new requests
-Finishes ongoing requests (timeout configured)
+
+Finishes in-flight requests
+
 Calls @PreDestroy
-Calls DisposableBean.destroy()
-Stops web server
-Closes ApplicationContext
 
+Calls destroy()
 
-1. main()	App startup begins
-2. Init	SpringApplication gets ready
-3. Env	Reads config
-4. Create Context	DI container booted
-5. Load Beans	Scan + register beans
-6. Instantiate Beans	DI + lifecycle callbacks
-7. Auto Config	Spring Boot magic
-8. Refresh	App becomes alive
-9. Runners	Your custom startup code
+Stops server
+
+Closes context
+
+🧹 Clean exit.
+
+🧠 SUPER-SHORT VERSION (INTERVIEW CHEAT CODE)
+
+Memorize this 👇
+
+main()
+→ Environment prepared
+→ ApplicationContext created
+
+→ Bean definitions loaded
+→ Auto-configuration applied
+→ Beans instantiated & initialized
+
+→ Context refreshed
+→ Server started
+→ Runners executed
+→ App running
+→ Graceful shutdown
