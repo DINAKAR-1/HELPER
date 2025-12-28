@@ -22,3 +22,33 @@ Configuration Management
   Spring Cloud Config
 Observability(ELK)
 Deployment(DOCKER)
+
+
+-----------
+spring-cloud-starter-netflix-eureka-server
+spring-cloud-starter-netflix-eureka-client
+
+spring-cloud-starter-gateway
+spring-cloud-starter-netflix-eureka-client
+
+spring-cloud-starter-openfeign
+spring-cloud-starter-circuitbreaker-resilience4j
+spring-boot-starter-security
+spring-boot-starter-oauth2-resource-server
+spring-cloud-config-server
+----------------------
+🟦 Eureka Server
+eureka-server
+🟩 API Gateway
+gateway
+eureka-client
+security
+🟨 Business Microservice
+web
+data-jpa
+eureka-client
+openfeign
+resilience4j
+security
+config-client
+sleuth
