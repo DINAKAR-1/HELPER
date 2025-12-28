@@ -1,13 +1,14 @@
 What is application.properties vs application.yml?
 
-What is Spring Boot and how is it different from Spring Framework?
-
-What is application.properties vs application.yml?
+What is Spring Boot and how is it different from Spring Framework? 
 
 How does Spring Boot handle dependency injection?
 
 What’s the purpose of @ConfigurationProperties and @EnableConfigurationProperties?
+@PropertySource loads files; @ConfigurationProperties binds values
 
+@async
+.
 How do you load custom config files?
 
 *** What is the difference between CrudRepository, JpaRepository, and PagingAndSortingRepository?
@@ -94,7 +95,6 @@ lambda to funtional interface
 
 enhancement to hasmap in java 8 
 
-why set no nulls ?
 
 hascode and equals whivh first do both excute always ?*****
 
@@ -166,7 +166,7 @@ Difference between Statement, PreparedStatement, and CallableStatement.
 
 Internal working of HashMap.
 Difference between ArrayList and LinkedList.
-What is volatile in Java?
+What is volatile in Java?***
 Difference between == and equals().
 Explain Garbage Collection in JVM.
 How does synchronized block work?
