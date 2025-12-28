@@ -1,0 +1,24 @@
+What is Microservices?
+Service Registry
+API Gateway
+Inter-Service Communication (VERY IMPORTANT)
+  Sync Communication
+  ASync Communication
+Database per Service
+Data Consistency in Microservice
+  Saga
+Circuit Breaker
+Fault Tolerance Techniques
+  Circuit Breaker
+  Retry
+  Timeout
+  Bulkhead
+  Fallback
+Security in Microservices
+  JWT
+  OAuth2
+Configuration Management
+  Centralized config
+  Spring Cloud Config
+Observability(ELK)
+Deployment(DOCKER)
