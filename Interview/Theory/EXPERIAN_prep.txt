@@ -1,0 +1,42 @@
+collections
+java 8 realtime
+oops examples 
+prop definations 
+-----------------
+what covered  for EXPERIAN prep
+-----------------
+java  
+memory area 
+java 8 
+spring, springboot questions
+solid principles
+creational patterns 
+sdlc 
+-waterfall 
+-agile 
+microservices
+	fiegn vs web client 
+	client side load balance
+@Conditional
+annotations
+DispatcherServlet
+-------------
+need to cover
+collections
+imp packages to import if live coding 
+strutturce 
+ 
+ACID  
+(proper definations)
+servlet thing
+
+thread exce servie 
+locks - deep level 
+
+optimization of code 
+------------
+
+try to make him know that , you know things 
+so make the dfs ready 
+and went keyword hits 
+do deep 
