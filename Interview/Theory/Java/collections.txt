@@ -5,13 +5,56 @@ Collections is a class for util methods
 Arrays is a class for primitive
 
 interfaces
-----------------
-List 
+---------------
+Iterable
+   |
+Collection
+   |
+-------------------------
+|           |           |
+List        Set         Queue
+-----------------------------------
+java.lang.Iterable
+│
+└── java.util.Collection
+    │
+    ├── List
+    │   │
+    │   ├── ArrayList
+    │   ├── LinkedList
+    │   ├── Vector        (legacy ⚰️)
+    │   │    └── Stack    (legacy ⚰️)
+    │   └── CopyOnWriteArrayList (concurrent)
+    │
+    ├── Set
+    │   │
+    │   ├── HashSet
+    │   │    └── LinkedHashSet
+    │   │
+    │   ├── TreeSet
+    │   └── CopyOnWriteArraySet (concurrent)
+    │
+    └── Queue
+        │
+        ├── PriorityQueue
+        │
+        └── Deque
+            │
+            ├── ArrayDeque
+            └── LinkedList
 
-Queue
-Set
+java.util.Map
+│
+├── HashMap
+│   └── LinkedHashMap
+│
+├── TreeMap
+│
+├── Hashtable        (legacy ⚰️)
+│
+└── ConcurrentMap
+    │
+    └── ConcurrentHashMap
 
-
-interface
 --------------------
 Map ( its not  a part of it )
