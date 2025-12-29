@@ -16,13 +16,17 @@ microservices
 annotations
 DispatcherServlet
 exceutor service
+collections
+java 8 realtime
+streams
+oops examples 
+
 -------------
 need to cover 
  
+multi threading 
 locks - deep level 
-collections
-java 8 realtime
-oops examples 
+
 prop definations
 optimization of code 
 ------------
