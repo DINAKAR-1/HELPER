@@ -32,25 +32,8 @@ Proxy – Placeholder for another object
 "How objects interact and behave"
 
 Chain of Responsibility – Pass request along a chain
--> “Support ticket goes from L1 → L2 → L3”
-Command – Encapsulate request as an object
--> “Remote control buttons are commands”
-Interpreter – Grammar interpreter for expressions
--> “Mini programming language parser”
-Iterator – Sequentially access elements
--> “Next, next, next… until end 📼”
-Mediator – Central controller between components
--> “Air traffic control between planes 🛩️”
-Memento – Store object state
--> “Ctrl+Z in real life ->”
+-> “Support ticket goes from L1 → L2 → L3” 
 Observer – Notify all when subject changes
 -> “YouTube subscribers get notified 🔔”
-State – Change behavior based on internal state
--> “Fan: Off → Low → High → Turbo 💨”
-Strategy – Swap algorithms at runtime
--> “Choose your travel route: bike, bus, walk 🚲🚌🚶”
-Template Method – Base class defines skeleton, subclasses fill steps
--> “Recipe with customizable toppings 🍲”
-Visitor – Add operations to objects without modifying them
--> “Postman visits each house and delivers mail 📬”
+ 
 ------------------------------------------------------------

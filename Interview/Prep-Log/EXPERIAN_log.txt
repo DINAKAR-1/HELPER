@@ -35,3 +35,22 @@ try to make him know that , you know things
 so make the dfs ready 
 and went keyword hits 
 do deep 
+-------------------
+questions asked 
+1.sterams
+use filter and map 
+functional interface 
+overload and overrding 
+static and default method overirding in interface 
+@requestmapping and @getmapping 
+whats the difference 
+props in react
+state 
+use usefect and create a table
+lifecycle meths 
+hooks 
+why use effect 
+
+throws exception in inteface and implementing class
+
+and does the class implemets or extends 

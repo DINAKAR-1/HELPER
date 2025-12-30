@@ -1,17 +1,1 @@
-scrap goes brr
-poll
-dlq
-kafka streams vs normak cons
-consumer rebalancing
-idempotent producer
 
-acks in prods 
-kafka differ from normal db
-
-delivery semantics in kafka 
-commit offsets 
-\consumer group 
-partition and replication 
-offsets
-
- lifecycle, components, es6, etc.
