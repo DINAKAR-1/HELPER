@@ -1,0 +1,22 @@
+solid principles
+design patterns  
+---------------
+java 
+java 8 
+collection 
+microservices
+---------------   
+revise react 
+----------------- 
+ 
+intro 
+project 
+why this stack 
+why edxperian 
+why not previosu 
+what u learned 
+prod issue 
+handling 
+overtime 
+--------------------
+last : sql 
