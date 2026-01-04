@@ -45,6 +45,7 @@ blockers	->
 	5.coupon book renewal (idk the status)
 	6.form should auto fill data 
 	7.show rejected applics in  officer dashboard
+	8.sos otp -> save in db 
 
 legend 
 	0.Book no -> common for all 100 rcpts
@@ -52,5 +53,5 @@ legend
 		bookno + recipt no (1-100)
 	2.form id (id in db) -> internal use distinct
 	
-	  
+===========================================
  
