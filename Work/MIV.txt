@@ -46,6 +46,8 @@ blockers	->
 	6.form should auto fill data 
 	7.show rejected applics in  officer dashboard
 	8.sos otp -> save in db 
+	9.show all districts for mobile side 
+	10.dual form options in mobile instead of active distrcit base
 
 legend 
 	0.Book no -> common for all 100 rcpts
