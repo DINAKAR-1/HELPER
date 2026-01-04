@@ -1,0 +1,56 @@
+web side
+-------------->
+applicant -> (1,2,3,4,5)
+	1.apply form 
+	2.view applics (show all stat)
+    3.if coupon -> qr scan -> can see applic data 
+	
+officer lvl 1 (stat 5) (user location village -> panchayat officer)
+	0.dashboard
+	1.approve/reject at webside
+	
+officer lvl 2 (stat 2) (sand location mandal MRO)
+	0.dashboard
+	1.approve/reject at webside 
+	2.if apprv -> gen coupon->Send a SOS otp 
+	
+next iteration:
+	0.watermark 'expired' after valid to date
+=====================================
+mobile side 
+--------------->
+applicant -> (1,2,3,4,5)
+	1.apply form 
+	2.view applics (show all stat) 
+	3.if coupon -> qr scan -> can see applic data 
+
+officer SRO (after coupon generation)
+	0.scan qr 
+	1.approve sand tranist by otp (should be atomic)
+	2.end of flow if available quantity is 0
+---------------->
+
+flow status -> go live issued
+ 
+blockers	-> 
+	0.valid - dispatch/delivery date -> currently same as selected before approval (2 months from approval date)
+	1.payment failed case 
+	r.maintain status 1 , 
+	  show stats -> 
+	  'payment pending' for officer
+	  'make payment' for applicant
+	2.status in (preview) -> partially dispatch 
+	3.check if form fields data inserting proply by mobile/web
+	4.partial approve case , mobile approve case
+	5.coupon book renewal (idk the status)
+	6.form should auto fill data 
+	7.show rejected applics in  officer dashboard
+
+legend 
+	0.Book no -> common for all 100 rcpts
+	1.order id -> uniq
+		bookno + recipt no (1-100)
+	2.form id (id in db) -> internal use distinct
+	
+	  
+ 
