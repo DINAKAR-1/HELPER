@@ -4,56 +4,44 @@ for only wrapper classes
 Collections is a class for util methods
 Arrays is a class for primitive
 
-interfaces
----------------
-Iterable
-   |
-Collection
-   |
--------------------------
-|           |           |
-List        Set         Queue
------------------------------------
 java.lang.Iterable
 │
 └── java.util.Collection
     │
     ├── List
-    │   │
     │   ├── ArrayList
     │   ├── LinkedList
-    │   ├── Vector        (legacy ⚰️)
-    │   │    └── Stack    (legacy ⚰️)
-    │   └── CopyOnWriteArrayList (concurrent)
+    │   ├── Vector ⚰️
+    │   │    └── Stack ⚰️
+    │   └── CopyOnWriteArrayList
     │
     ├── Set
-    │   │
     │   ├── HashSet
     │   │    └── LinkedHashSet
-    │   │
-    │   ├── TreeSet
-    │   └── CopyOnWriteArraySet (concurrent)
+    │   ├── TreeSet (NavigableSet)
+    │   └── CopyOnWriteArraySet
     │
     └── Queue
-        │
         ├── PriorityQueue
+        ├── Deque
+        │   ├── ArrayDeque
+        │   └── LinkedList
         │
-        └── Deque
-            │
-            ├── ArrayDeque
-            └── LinkedList
+        └── BlockingQueue
+            ├── ArrayBlockingQueue
+            ├── LinkedBlockingQueue
+            ├── PriorityBlockingQueue
+            ├── DelayQueue
+            └── SynchronousQueue
 
-java.util.Map
+
+java.util.Map   ❌ not part of Collection
 │
 ├── HashMap
 │   └── LinkedHashMap
-│
-├── TreeMap
-│
-├── Hashtable        (legacy ⚰️)
-│
+├── TreeMap (NavigableMap)
+├── Hashtable ⚰️
 └── ConcurrentMap
-    │
     └── ConcurrentHashMap
 
 --------------------
