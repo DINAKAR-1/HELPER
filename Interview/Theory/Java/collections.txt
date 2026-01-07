@@ -46,3 +46,14 @@ java.util.Map   ❌ not part of Collection
 
 --------------------
 Map ( its not  a part of it )
+----------------------
+
+Collections store objects, not primitives.”
+
+“Map is not part of Collection because it represents key–value mappings.”
+
+“TreeSet and TreeMap implement Navigable interfaces.”
+
+“Legacy classes are synchronized and replaced by concurrent utilities.”
+
+“BlockingQueue is designed for producer–consumer problems.”
