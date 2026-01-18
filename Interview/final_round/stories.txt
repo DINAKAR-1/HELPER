@@ -1,0 +1,49 @@
+1️⃣ CORE STORY — “Who I am & what I work on”
+
+“I’m a backend/full-stack Java developer working primarily with Spring Boot. 
+In my current role, I work on MIV, a government monitoring platform that provides dashboards and insights for financial transactions and applications.
+My responsibility is mainly backend services, authentication, and ensuring reliability of user-facing features. 
+I enjoy working on systems where correctness, stability, and clarity really matter.”
+
+Covers:
+Tell me about yourself, walk me through project, legacy systems, why hire you
+
+2️⃣ CHALLENGING PROBLEM — Ambiguity & assumptions (NON-PROD)
+
+“One challenging problem I handled in MIV was dealing with unclear and evolving requirements for a user-facing feature.
+Different stakeholders had slightly different expectations.
+Instead of jumping into implementation, I clarified the core goal, validated assumptions with examples, and designed the solution in smaller parts so it could adapt to changes. 
+This reduced rework and helped us deliver on time.”
+
+Covers:
+Challenging problem, ambiguity, changing requirements, open-ended problems, pushing back
+
+3️⃣ PRODUCTION ISSUE — Redis cache issue (PROD)
+
+ where users hittingh db for freq data and we introduced redis caching for that 
+Covers:
+Production issues, debugging, handling pressure, tight deadlines, failure under pressure
+
+4️⃣ MISTAKE — Assumption / over-engineering
+
+“Early on, I assumed a requirement was stable and implemented it based on initial understanding. Later, I realized expectations were slightly different. 
+I took responsibility, clarified the requirement, and adjusted the solution. It taught me to validate assumptions early, especially for user-facing features.”
+
+Covers:
+Mistake, weakness, feedback, learning, self-awareness
+
+5️⃣ PEOPLE STORY — Ownership & teamwork
+
+“I’ve worked with teammates who were slower due to unfamiliarity with the system. Instead of escalating immediately,
+I helped clarify tasks and shared context so delivery wasn’t blocked. When needed, I also kept the manager informed early.
+I believe problems should be addressed constructively, not personally.”
+
+Covers:
+Slow teammate, mentoring, disagreement, ownership beyond role, manager feedback
+
+6️⃣ MINDSET — How I work
+
+“I stay motivated by seeing my work being used reliably by real users. For repetitive tasks, I focus on consistency and improving the process. I keep myself updated through documentation, practical implementation, and learning while working. To me, clean code means readable, maintainable code that’s easy to change. Technical debt should be managed consciously, not ignored.”
+
+Covers:
+Motivation, demotivation, boring work, learning, clean code, tech debt, code quality
