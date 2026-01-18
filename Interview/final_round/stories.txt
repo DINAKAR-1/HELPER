@@ -12,7 +12,8 @@ Tell me about yourself, walk me through project, legacy systems, why hire you
 
 “One challenging problem I handled in MIV was dealing with unclear and evolving requirements for a user-facing feature.
 Different stakeholders had slightly different expectations.
-Instead of jumping into implementation, I clarified the core goal, validated assumptions with examples, and designed the solution in smaller parts so it could adapt to changes. 
+Instead of jumping into implementation, I clarified the core goal, validated assumptions with examples, and designed the solution in smaller parts 
+so it could adapt to changes. 
 This reduced rework and helped us deliver on time.”
 or
 “One technical challenge I worked on was designing role-based access control for different user types in MIV. The challenge was that access rules were evolving, and hard-coding checks would have made the system rigid and difficult to maintain.
