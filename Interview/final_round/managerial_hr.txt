@@ -44,6 +44,7 @@ If given an open-ended problem, how do you start?
 
 Describe a challenging problem you solved?
 what was a production issue example ?
+how does your day look like ?
 
 
 
