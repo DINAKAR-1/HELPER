@@ -1,0 +1,74 @@
+goes brrr...
+
+Tell me about yourself
+Walk me through your current project
+Describe a challenging problem you solved
+How do you handle production issues?
+How do you approach debugging?
+Tell me about a mistake you made?
+What would your manager say about you
+How do you handle ambiguity?
+What motivates you at work?
+What demotivates you?
+How do you handle repetitive or boring work?
+How do you deal with a slow or underperforming teammate?
+Have you mentored anyone?
+What do you do if requirements keep changing?
+How do you keep yourself updated?
+
+Working with legacy systems?
+How do you handle feedback?
+Disagreement with teammate / senior
+How do you handle tight deadlines?
+Multiple tasks at once?
+
+How do you ensure code quality?
+What does clean code mean to you?
+How do you handle technical debt?
+
+Why Experian?
+What do you know about Experian?
+Why should we hire you?
+Where do you see yourself in 3–5 years?
+Why are you leaving your current company?
+Do you have any offers?
+Are you open to learning new tech?
+What are your strengths?
+Weakness?
+
+Tell me about a time you took ownership beyond your role
+Tell me about a time you pushed back on a bad idea
+How do you handle failure under pressure
+What kind of manager do you work best with?
+If given an open-ended problem, how do you start?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------
+questions by me -->
+----------------------
+How much ownership does an engineer typically have?
+What does growth look like in the first year?
