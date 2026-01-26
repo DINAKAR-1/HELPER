@@ -1,0 +1,6 @@
+...brr
+git rebase
+git merge with confilicts ** imp
+git cherry 
+git checkout to previous reviison
+
